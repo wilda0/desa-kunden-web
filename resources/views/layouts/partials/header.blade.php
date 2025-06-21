@@ -60,7 +60,7 @@
                         Publik</a>
                 </div>
             </div>
-            <a href="#dokumen" class="text-gray-600 hover:text-blue-600 nav-link">Dokumen Desa</a>
+            <a href="{{ route('dokumen.index') }}" class="text-gray-600 hover:text-blue-600 nav-link">Dokumen Desa</a>
             <a href="#galeri" class="text-gray-600 hover:text-blue-600 nav-link">Galeri</a>
             <a href="{{ route('berita.index') }}" class="text-gray-600 hover:text-blue-600 nav-link">Berita</a>
         </div>
@@ -123,7 +123,7 @@
                     class="block py-2 px-4 text-xs hover:bg-gray-100">Informasi Publik</a>
             </div>
         </div>
-        <a href="#dokumen" @click="mobileMenuOpen = false"
+        <a href="{{ route('dokumen.index') }}" @click="mobileMenuOpen = false"
             class="block py-2 px-4 text-sm hover:bg-gray-200">Dokumen Desa</a>
         <a href="#galeri" @click="mobileMenuOpen = false"
             class="block py-2 px-4 text-sm hover:bg-gray-200">Galeri</a>
