@@ -41,5 +41,8 @@
         @stack('modals')
 
         @livewireScripts
+
+        <!-- Script tambahan dari child views -->
+        @stack('scripts')
     </body>
 </html>

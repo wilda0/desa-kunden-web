@@ -20,6 +20,11 @@
                     <x-nav-link href="{{ route('admin.dokumen.index') }}" :active="request()->routeIs('admin.dokumen.*')">
                         {{ __('Dokumen') }}
                     </x-nav-link>
+
+                    {{-- Link baru untuk Permohonan Informasi --}}
+                    <x-nav-link href="{{ route('admin.permohonan.index') }}" :active="request()->routeIs('admin.permohonan.*')">
+                        {{ __('Permohonan Informasi') }}
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -97,9 +102,14 @@
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
 
-             {{-- Link baru untuk CRUD Dokumen (Mobile) --}}
+            {{-- Link baru untuk CRUD Dokumen (Mobile) --}}
             <x-responsive-nav-link href="{{ route('admin.dokumen.index') }}" :active="request()->routeIs('admin.dokumen.*')">
                 {{ __('Dokumen') }}
+            </x-responsive-nav-link>
+
+            {{-- Link baru untuk Permohonan (Mobile) --}}
+            <x-responsive-nav-link href="{{ route('admin.permohonan.index') }}" :active="request()->routeIs('admin.permohonan.*')">
+                {{ __('Permohonan Informasi') }}
             </x-responsive-nav-link>
         </div>
 

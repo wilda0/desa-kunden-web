@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Dokumen;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Response;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class DokumenController extends Controller
 {
@@ -111,4 +113,26 @@ class DokumenController extends Controller
 
         return redirect()->route('admin.dokumen.index')->with('success', 'Dokumen berhasil dihapus.');
     }
+
+    public function download($id)
+    {
+        $dokumen = Dokumen::findOrFail($id);
+
+        // Increment counter
+        $dokumen->increment('download_count');
+
+        $pathToFile = storage_path('app/public/' . $dokumen->file_path);
+        if (!file_exists($pathToFile)) {
+            abort(404, 'File tidak ditemukan.');
+        }
+
+        return response()->download($pathToFile, $dokumen->judul . '.pdf');
+    }
+
+    public function dokumenPublik()
+    {
+        $dokumens = Dokumen::latest()->get();
+        return view('dokumen', compact('dokumens'));
+    }
+
 }

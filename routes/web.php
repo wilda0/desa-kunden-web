@@ -2,36 +2,52 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DokumenController;
+use App\Http\Controllers\PermohonanController;
 
-// == HALAMAN PUBLIK ==
-Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+| Ini adalah file routing utama untuk aplikasi web.
+| Rute dibagi menjadi:
+| 1. Halaman Publik
+| 2. Halaman Admin (dengan middleware autentikasi)
+*/
 
-Route::get('/berita', function () {
-    return view('berita');
-})->name('berita.index');
+/*
+|--------------------------------------------------------------------------
+| HALAMAN PUBLIK
+|--------------------------------------------------------------------------
+*/
+Route::get('/', fn () => view('welcome'))->name('welcome');
 
-Route::get('/dokumen', function () {
-    return view('dokumen');
-})->name('dokumen.index');
+Route::get('/berita', fn () => view('berita'))->name('berita.index');
+Route::get('/permohonan-informasi', fn () => view('permohonan-informasi'))->name('permohonan.create');
 
-Route::get('/permohonan-informasi', function () {
-    return view('permohonan-informasi');
-})->name('permohonan.create');
+// Dokumen Publik
+Route::get('/dokumen', [DokumenController::class, 'dokumenPublik'])->name('dokumen.index');
+Route::get('/unduh-dokumen/{id}', [DokumenController::class, 'download'])->name('dokumen.download');
+Route::post('/permohonan-informasi', [PermohonanController::class, 'store'])->name('permohonan.store');
 
-// == HALAMAN ADMIN ==
+/*
+|--------------------------------------------------------------------------
+| HALAMAN ADMIN
+|--------------------------------------------------------------------------
+*/
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
 
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    // Dashboard Admin
+    Route::get('/dashboard', fn () => view('dashboard'))->name('dashboard');
 
-    // --- Route Resource untuk CRUD Dokumen Admin ---
+    // CRUD Dokumen (Admin)
     Route::resource('/admin/dokumen', DokumenController::class)->names('admin.dokumen');
+
+    // Dashboard permohonan
+    Route::get('/admin/permohonan', [PermohonanController::class, 'index'])->name('admin.permohonan.index');
+    Route::patch('/admin/permohonan/{id}/toggle', [PermohonanController::class, 'toggleStatus'])->name('admin.permohonan.toggle');
 
 });

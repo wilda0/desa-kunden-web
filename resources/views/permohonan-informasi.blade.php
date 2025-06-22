@@ -57,7 +57,7 @@
 
             <!-- Form Section -->
             <div class="bg-white p-8 rounded-lg shadow-md max-w-4xl mx-auto">
-                <form action="#" method="POST">
+                <form action="{{ route('permohonan.store') }}" method="POST">
                     @csrf
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 

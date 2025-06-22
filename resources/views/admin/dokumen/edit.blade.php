@@ -70,4 +70,16 @@
             </div>
         </div>
     </div>
+
+    @push('scripts')
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+        <script>
+            flatpickr("#tanggal_input", {
+                dateFormat: "Y-m-d",
+                allowInput: true
+            });
+        </script>
+    @endpush
+
 </x-app-layout>

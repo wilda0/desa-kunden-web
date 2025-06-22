@@ -28,13 +28,16 @@
                             <!-- Judul Dokumen -->
                             <div>
                                 <x-label for="judul" value="{{ __('Judul Dokumen') }}" />
-                                <x-input id="judul" class="block mt-1 w-full" type="text" name="judul" :value="old('judul')" required autofocus />
+                                <x-input id="judul" class="block mt-1 w-full" type="text" name="judul"
+                                    :value="old('judul')" required autofocus placeholder="Masukkan Nama Dokumen" />
                             </div>
 
                             <!-- Jenis Dokumen -->
                             <div>
                                 <x-label for="jenis_dokumen" value="{{ __('Jenis Dokumen') }}" />
-                                <select name="jenis_dokumen" id="jenis_dokumen" class="block mt-1 w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm">
+                                <select name="jenis_dokumen" id="jenis_dokumen"
+                                    class="block mt-1 w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm">
+                                    <option disabled selected>Pilih Jenis Dokumen</option>
                                     <option value="Daftar Informasi Publik">Daftar Informasi Publik</option>
                                     <option value="Dokumen Keuangan">Dokumen Keuangan</option>
                                     <option value="Dokumen Arsip">Dokumen Arsip</option>
@@ -44,7 +47,8 @@
                             <!-- Tanggal Input -->
                             <div>
                                 <x-label for="tanggal_input" value="{{ __('Tanggal Input') }}" />
-                                <x-input id="tanggal_input" class="block mt-1 w-full" type="date" name="tanggal_input" :value="old('tanggal_input')" required />
+                                <x-input id="tanggal_input" class="block mt-1 w-full" type="date" name="tanggal_input"
+                                    :value="old('tanggal_input')" required placeholder="Masukkan Tanggal Input" />
                             </div>
 
                             <!-- Upload Dokumen PDF -->
@@ -67,4 +71,16 @@
             </div>
         </div>
     </div>
+
+    @push('scripts')
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+        <script>
+            flatpickr("#tanggal_input", {
+                dateFormat: "Y-m-d",
+                allowInput: true
+            });
+        </script>
+    @endpush
+
 </x-app-layout>
