@@ -25,6 +25,11 @@
                     <x-nav-link href="{{ route('admin.permohonan.index') }}" :active="request()->routeIs('admin.permohonan.*')">
                         {{ __('Permohonan Informasi') }}
                     </x-nav-link>
+
+                    {{-- Link baru untuk Berita Desa --}}
+                    <x-nav-link href="{{ route('admin.berita.index') }}" :active="request()->routeIs('admin.berita.*')">
+                        {{ __('Berita Desa') }}
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -110,6 +115,11 @@
             {{-- Link baru untuk Permohonan (Mobile) --}}
             <x-responsive-nav-link href="{{ route('admin.permohonan.index') }}" :active="request()->routeIs('admin.permohonan.*')">
                 {{ __('Permohonan Informasi') }}
+            </x-responsive-nav-link>
+
+            {{-- Link baru untuk Berita Desa (Mobile) --}}
+            <x-responsive-nav-link href="{{ route('admin.berita.index') }}" :active="request()->routeIs('admin.berita.*')">
+                {{ __('Berita Desa') }}
             </x-responsive-nav-link>
         </div>
 

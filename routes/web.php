@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DokumenController;
 use App\Http\Controllers\PermohonanController;
+use App\Http\Controllers\BeritaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,4 +51,5 @@ Route::middleware([
     Route::get('/admin/permohonan', [PermohonanController::class, 'index'])->name('admin.permohonan.index');
     Route::patch('/admin/permohonan/{id}/toggle', [PermohonanController::class, 'toggleStatus'])->name('admin.permohonan.toggle');
 
+    Route::resource('/admin/berita', BeritaController::class)->names('admin.berita');
 });
