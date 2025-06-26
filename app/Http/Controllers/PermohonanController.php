@@ -12,9 +12,15 @@ class PermohonanController extends Controller
         $request->validate([
             'nama' => 'required|string|max:255',
             'instansi' => 'required|string|max:255',
-            'telepon' => 'required|string|max:20',
+            'telepon' => [
+                'required',
+                'regex:/^08[0-9]{7,11}$/',
+            ],
             'email' => 'required|email',
             'permohonan' => 'required|string',
+        ], [
+            'telepon.regex' => 'Nomor telepon harus dimulai dengan 08 dan terdiri dari 9 hingga 13 digit angka.',
+            'email.email' => 'Format email tidak valid. Harus menyertakan "@" dan domain.',
         ]);
 
         Permohonan::create($request->all());

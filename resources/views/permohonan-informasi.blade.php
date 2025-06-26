@@ -57,7 +57,7 @@
 
             <!-- Form Section -->
             <div class="bg-white p-8 rounded-lg shadow-md max-w-4xl mx-auto">
-                <form action="{{ route('permohonan.store') }}" method="POST">
+                <form action="{{-- route('permohonan.store') --}}" method="POST">
                     @csrf
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
@@ -90,7 +90,7 @@
                                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                     <i data-lucide="phone" class="w-5 h-5 text-gray-400"></i>
                                 </div>
-                                <input type="tel" name="telepon" id="telepon" class="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" placeholder="Masukkan nomor telepon Anda" required>
+                                <input type="tel" name="telepon" id="telepon" class="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" placeholder="Masukkan nomor telepon Anda (08xxxxx)" pattern="08[0-9]{7,11}" required>
                             </div>
                         </div>
 
@@ -101,7 +101,7 @@
                                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                     <i data-lucide="at-sign" class="w-5 h-5 text-gray-400"></i>
                                 </div>
-                                <input type="email" name="email" id="email" class="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" placeholder="Masukkan alamat email" required>
+                                <input type="email" name="email" id="email" class="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" placeholder="Masukkan alamat email (xxx@xxx)" required>
                             </div>
                         </div>
 
@@ -123,6 +123,25 @@
             </div>
         </div>
     </main>
+
+    <!-- Notifikasi Sukses (Toast) -->
+    @if (session('success'))
+        <div x-data="{ show: true }"
+             x-init="setTimeout(() => show = false, 5000)"
+             x-show="show"
+             x-transition:enter="transition ease-out duration-300"
+             x-transition:enter-start="opacity-0 transform translate-y-4 sm:translate-y-0 sm:translate-x-4"
+             x-transition:enter-end="opacity-100 transform translate-y-0 sm:translate-x-0"
+             x-transition:leave="transition ease-in duration-300"
+             x-transition:leave-start="opacity-100"
+             x-transition:leave-end="opacity-0"
+             class="fixed top-5 right-5 z-50 bg-green-500 text-white py-3 px-5 rounded-lg shadow-lg flex items-center"
+             style="display: none;">
+            <i data-lucide="check-circle" class="w-6 h-6 mr-3"></i>
+            <span>{{ session('success') }}</span>
+            <button @click="show = false" class="ml-4 text-green-100 hover:text-white">&times;</button>
+        </div>
+    @endif
 
     <!-- Footer -->
     @include('layouts.partials.footer')
