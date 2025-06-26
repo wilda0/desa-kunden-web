@@ -73,32 +73,43 @@
     </div>
 
     @push('scripts')
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script>
-        const fotoInput = document.getElementById('foto');
-        const previewFoto = document.getElementById('preview-foto');
-        const fotoLama = document.getElementById('foto-lama');
+        document.addEventListener('DOMContentLoaded', function() {
+            // Inisialisasi Flatpickr
+            flatpickr("#tanggal", {
+                dateFormat: "Y-m-d",
+                allowInput: true,
+            });
 
-        if (fotoInput) {
-            fotoInput.addEventListener('change', function(e) {
-                const file = e.target.files[0];
-                if (file) {
-                    const reader = new FileReader();
-                    reader.onload = function(evt) {
-                        previewFoto.src = evt.target.result;
-                        previewFoto.style.display = 'block';
+            // Script untuk Preview Foto
+            const fotoInput = document.getElementById('foto');
+            const previewFoto = document.getElementById('preview-foto');
+            const fotoLama = document.getElementById('foto-lama');
+
+            if (fotoInput) {
+                fotoInput.addEventListener('change', function(e) {
+                    const file = e.target.files[0];
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = function(evt) {
+                            previewFoto.src = evt.target.result;
+                            previewFoto.style.display = 'block';
+                            if (fotoLama) {
+                                fotoLama.style.display = 'none';
+                            }
+                        }
+                        reader.readAsDataURL(file);
+                    } else {
+                        previewFoto.style.display = 'none';
                         if (fotoLama) {
-                            fotoLama.style.display = 'none';
+                            fotoLama.style.display = 'block';
                         }
                     }
-                    reader.readAsDataURL(file);
-                } else {
-                    previewFoto.style.display = 'none';
-                    if (fotoLama) {
-                        fotoLama.style.display = 'block';
-                    }
-                }
-            });
-        }
+                });
+            }
+        });
     </script>
     @endpush
 </x-app-layout>

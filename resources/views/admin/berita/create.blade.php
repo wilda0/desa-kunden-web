@@ -28,19 +28,19 @@
                             <!-- Nama Berita -->
                             <div>
                                 <x-label for="nama_berita" value="{{ __('Nama Berita') }}" />
-                                <x-input id="nama_berita" class="block mt-1 w-full" type="text" name="nama_berita" :value="old('nama_berita')" required autofocus />
+                                <x-input id="nama_berita" class="block mt-1 w-full" type="text" name="nama_berita" :value="old('nama_berita')" required autofocus placeholder="Masukkan Nama Berita" />
                             </div>
 
                             <!-- Tanggal -->
                             <div>
                                 <x-label for="tanggal" value="{{ __('Tanggal') }}" />
-                                <x-input id="tanggal" class="block mt-1 w-full" type="date" name="tanggal" :value="old('tanggal')" required />
+                                <x-input id="tanggal" class="block mt-1 w-full" type="date" name="tanggal" :value="old('tanggal')" required placeholder="Masukkan Tanggal" />
                             </div>
 
                             <!-- Deskripsi -->
                             <div>
                                 <x-label for="deskripsi" value="{{ __('Deskripsi') }}" />
-                                <textarea id="deskripsi" name="deskripsi" rows="8" class="block mt-1 w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm">{{ old('deskripsi') }}</textarea>
+                                <textarea id="deskripsi" name="deskripsi" required placeholder="Masukkan Deskripsi" rows="8" class="block mt-1 w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm">{{ old('deskripsi') }}</textarea>
                             </div>
 
                             <!-- Masukkan Foto -->
@@ -66,25 +66,36 @@
     </div>
 
     @push('scripts')
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script>
-        const fotoInput = document.getElementById('foto');
-        const previewFoto = document.getElementById('preview-foto');
-
-        if (fotoInput) {
-            fotoInput.addEventListener('change', function(e) {
-                const file = e.target.files[0];
-                if (file) {
-                    const reader = new FileReader();
-                    reader.onload = function(evt) {
-                        previewFoto.src = evt.target.result;
-                        previewFoto.style.display = 'block';
-                    }
-                    reader.readAsDataURL(file);
-                } else {
-                    previewFoto.style.display = 'none';
-                }
+        document.addEventListener('DOMContentLoaded', function() {
+            // Inisialisasi Flatpickr
+            flatpickr("#tanggal", {
+                dateFormat: "Y-m-d",
+                allowInput: true
             });
-        }
+
+            // Script untuk Preview Foto
+            const fotoInput = document.getElementById('foto');
+            const previewFoto = document.getElementById('preview-foto');
+
+            if (fotoInput) {
+                fotoInput.addEventListener('change', function(e) {
+                    const file = e.target.files[0];
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = function(evt) {
+                            previewFoto.src = evt.target.result;
+                            previewFoto.style.display = 'block';
+                        }
+                        reader.readAsDataURL(file);
+                    } else {
+                        previewFoto.style.display = 'none';
+                    }
+                });
+            }
+        });
     </script>
     @endpush
 </x-app-layout>

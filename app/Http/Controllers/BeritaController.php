@@ -12,7 +12,6 @@ class BeritaController extends Controller
     {
         $query = Berita::query();
 
-        // Filter berdasarkan tanggal
         if ($request->filled('tanggal')) {
             $query->whereDate('tanggal', $request->tanggal);
         }
@@ -22,7 +21,6 @@ class BeritaController extends Controller
         )->latest()->paginate(10);
 
         return view('admin.berita.index', compact('beritas'));
-
     }
 
     public function create()
@@ -86,6 +84,21 @@ class BeritaController extends Controller
     {
         $berita = Berita::findOrFail($id);
         return view('admin.berita.show', compact('berita'));
+    }
+
+    public function publik()
+    {
+        $beritas = Berita::latest()->paginate(6);
+        return view('berita', compact('beritas'));
+    }
+
+    public function detail($id)
+    {
+        $berita = Berita::findOrFail($id);
+        $berita->increment('views');
+        $latestBeritas = Berita::where('id', '!=', $id)->latest()->limit(5)->get();
+
+        return view('berita-detail', compact('berita', 'latestBeritas'));
     }
 
 }

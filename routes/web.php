@@ -22,13 +22,16 @@ use App\Http\Controllers\BeritaController;
 */
 Route::get('/', fn () => view('welcome'))->name('welcome');
 
-Route::get('/berita', fn () => view('berita'))->name('berita.index');
+// Berita Publik
+Route::get('/berita', [BeritaController::class, 'publik'])->name('berita.index');
+Route::get('/berita/{id}', [BeritaController::class, 'detail'])->name('berita.detail');
+
 Route::get('/permohonan-informasi', fn () => view('permohonan-informasi'))->name('permohonan.create');
+Route::post('/permohonan-informasi', [PermohonanController::class, 'store'])->name('permohonan.store');
 
 // Dokumen Publik
 Route::get('/dokumen', [DokumenController::class, 'dokumenPublik'])->name('dokumen.index');
 Route::get('/unduh-dokumen/{id}', [DokumenController::class, 'download'])->name('dokumen.download');
-Route::post('/permohonan-informasi', [PermohonanController::class, 'store'])->name('permohonan.store');
 
 /*
 |--------------------------------------------------------------------------
@@ -40,16 +43,15 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-
-    // Dashboard Admin
     Route::get('/dashboard', fn () => view('dashboard'))->name('dashboard');
 
-    // CRUD Dokumen (Admin)
+    // Dokumen Admin
     Route::resource('/admin/dokumen', DokumenController::class)->names('admin.dokumen');
 
-    // Dashboard permohonan
+    // Permohonan Informasi Admin
     Route::get('/admin/permohonan', [PermohonanController::class, 'index'])->name('admin.permohonan.index');
     Route::patch('/admin/permohonan/{id}/toggle', [PermohonanController::class, 'toggleStatus'])->name('admin.permohonan.toggle');
 
+    // Berita Admin
     Route::resource('/admin/berita', BeritaController::class)->names('admin.berita');
 });
