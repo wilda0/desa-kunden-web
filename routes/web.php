@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DokumenController;
 use App\Http\Controllers\PermohonanController;
 use App\Http\Controllers\BeritaController;
+use App\Http\Controllers\GaleriController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,12 +27,16 @@ Route::get('/', fn () => view('welcome'))->name('welcome');
 Route::get('/berita', [BeritaController::class, 'publik'])->name('berita.index');
 Route::get('/berita/{id}', [BeritaController::class, 'detail'])->name('berita.detail');
 
+// Permohonan Informasi
 Route::get('/permohonan-informasi', fn () => view('permohonan-informasi'))->name('permohonan.create');
 Route::post('/permohonan-informasi', [PermohonanController::class, 'store'])->name('permohonan.store');
 
 // Dokumen Publik
 Route::get('/dokumen', [DokumenController::class, 'dokumenPublik'])->name('dokumen.index');
 Route::get('/unduh-dokumen/{id}', [DokumenController::class, 'download'])->name('dokumen.download');
+
+// Galeri Desa
+Route::get('/galeri-desa', fn() => view('galeri-desa'))->name('galeri.index');
 
 /*
 |--------------------------------------------------------------------------
@@ -54,4 +59,7 @@ Route::middleware([
 
     // Berita Admin
     Route::resource('/admin/berita', BeritaController::class)->names('admin.berita');
+
+    // Galeri Desa
+    Route::resource('/admin/galeri', GaleriController::class)->names('admin.galeri');
 });

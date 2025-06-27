@@ -171,7 +171,7 @@
                         </div>
                     </a>
 
-                    <a href="#" class="block rounded-lg transition-shadow hover:shadow-lg">
+                    <a href="{{ route('galeri.index') }}" class="block rounded-lg transition-shadow hover:shadow-lg">
                         <div class="flex items-start space-x-4 p-6 border border-gray-200 rounded-lg h-full">
                             <div class="bg-pink-100 text-pink-600 p-3 rounded-full flex-shrink-0"><i data-lucide="image"></i></div>
                             <div>
@@ -233,8 +233,13 @@
         </section>
 
         <!-- Berita Section -->
+        @php
+            use App\Models\Berita;
+            $beritaTerbaru = Berita::latest()->take(8)->get();
+        @endphp
+
         <section id="berita" class="py-16 bg-white" x-data="slider()">
-            <div class="container mx-auto px-16">
+            <div class="container mx-auto px-6 lg:px-16">
                 <div class="flex justify-between items-center mb-8">
                     <h2 class="text-3xl font-bold text-center sm:text-left">Berita Desa</h2>
                     <div class="hidden sm:flex space-x-2">
@@ -246,139 +251,82 @@
                             :disabled="atEnd"><i data-lucide="arrow-right" class="w-5 h-5"></i></button>
                     </div>
                 </div>
+
                 <div class="overflow-hidden">
                     <div x-ref="slider" @scroll.debounce.100ms="updateButtons()"
                         class="flex overflow-x-auto space-x-6 pb-4 slider-container snap-x snap-mandatory scroll-smooth">
-                        <!-- Berita Items -->
+                        @foreach ($beritaTerbaru as $berita)
                         <div class="flex-shrink-0 w-80 snap-start">
                             <div class="bg-white rounded-lg shadow-md overflow-hidden h-full">
-                                <img src="https://placehold.co/600x400/003366/FFFFFF?text=Kegiatan+Desa"
-                                    alt="Karang Taruna" class="w-full h-40 object-cover">
+                                <img src="{{ Storage::url($berita->foto) }}"
+                                    alt="{{ $berita->nama_berita }}" class="w-full h-40 object-cover">
                                 <div class="p-4">
-                                    <h3 class="font-bold text-lg mb-2">Karang Taruna Aktif Dusun Sumber Agung</h3>
-                                    <p class="text-xs text-gray-500 mb-3">13 Agustus 2024</p>
-                                    <a href="#" class="text-blue-600 hover:underline text-sm font-semibold">Baca
-                                        Selengkapnya</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="flex-shrink-0 w-80 snap-start">
-                            <div class="bg-white rounded-lg shadow-md overflow-hidden h-full">
-                                <img src="https://placehold.co/600x400/3B82F6/FFFFFF?text=Kunjungan"
-                                    alt="Kunjungan RW" class="w-full h-40 object-cover">
-                                <div class="p-4">
-                                    <h3 class="font-bold text-lg mb-2">KKN UII 2024 Berkunjung ke rumah Pak RW</h3>
-                                    <p class="text-xs text-gray-500 mb-3">13 Agustus 2024</p>
-                                    <a href="#" class="text-blue-600 hover:underline text-sm font-semibold">Baca
-                                        Selengkapnya</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="flex-shrink-0 w-80 snap-start">
-                            <div class="bg-white rounded-lg shadow-md overflow-hidden h-full">
-                                <img src="https://placehold.co/600x400/F59E0B/FFFFFF?text=Warta+Usaha"
-                                    alt="Warta Usaha" class="w-full h-40 object-cover">
-                                <div class="p-4">
-                                    <h3 class="font-bold text-lg mb-2">Warta Usaha Rakyat</h3>
-                                    <p class="text-xs text-gray-500 mb-3">13 Agustus 2024</p>
-                                    <a href="#" class="text-blue-600 hover:underline text-sm font-semibold">Baca
-                                        Selengkapnya</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="flex-shrink-0 w-80 snap-start">
-                            <div class="bg-white rounded-lg shadow-md overflow-hidden h-full">
-                                <img src="https://placehold.co/600x400/10B981/FFFFFF?text=Sosialisasi+UMKM"
-                                    alt="Sosialisasi UMKM" class="w-full h-40 object-cover">
-                                <div class="p-4">
-                                    <h3 class="font-bold text-lg mb-2">Sosialisasi Pemasaran Digital & Perizinan UMKM
+                                    <h3 class="font-bold text-lg mb-2">
+                                        {{ \Illuminate\Support\Str::limit($berita->nama_berita, 50) }}
                                     </h3>
-                                    <p class="text-xs text-gray-500 mb-3">13 Agustus 2024</p>
-                                    <a href="#" class="text-blue-600 hover:underline text-sm font-semibold">Baca
-                                        Selengkapnya</a>
+                                    <p class="text-gray-600 text-sm mb-4 line-clamp-3">
+                                        {{ Str::limit($berita->deskripsi, 80) }}
+                                    </p>
+                                    <div class="flex justify-between items-center text-xs text-gray-500 border-t pt-3 mt-auto">
+                                        <div class="space-y-1">
+                                            <div class="flex items-center">
+                                                <i data-lucide="user-2" class="w-4 h-4 mr-1.5"></i>
+                                                <span>Administrator</span>
+                                            </div>
+                                            <div class="flex items-center">
+                                                <i data-lucide="eye" class="w-4 h-4 mr-1.5"></i>
+                                                <span>Dilihat {{ $berita->views ?? 0 }} kali</span>
+                                            </div>
+                                        </div>
+                                        <div class="bg-blue-600 text-white text-center rounded-md px-2 py-1 shadow">
+                                            <span class="font-bold text-lg leading-none">{{ \Carbon\Carbon::parse($berita->tanggal)->format('d') }}</span>
+                                            <span class="block text-xs leading-none">{{ \Carbon\Carbon::parse($berita->tanggal)->isoFormat('MMM Y') }}</span>
+                                        </div>
+                                    </div>
+                                    <a href="{{ route('berita.detail', $berita->id) }}"
+                                        class="text-blue-600 hover:underline text-sm font-semibold">
+                                        Baca Selengkapnya
+                                    </a>
                                 </div>
                             </div>
                         </div>
-                        <div class="flex-shrink-0 w-80 snap-start">
-                            <div class="bg-white rounded-lg shadow-md overflow-hidden h-full">
-                                <img src="https://placehold.co/600x400/8B5CF6/FFFFFF?text=Gotong+Royong"
-                                    alt="Gotong Royong" class="w-full h-40 object-cover">
-                                <div class="p-4">
-                                    <h3 class="font-bold text-lg mb-2">Kerja Bakti Membersihkan Saluran Irigasi</h3>
-                                    <p class="text-xs text-gray-500 mb-3">5 Agustus 2024</p>
-                                    <a href="#" class="text-blue-600 hover:underline text-sm font-semibold">Baca
-                                        Selengkapnya</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="flex-shrink-0 w-80 snap-start">
-                            <div class="bg-white rounded-lg shadow-md overflow-hidden h-full">
-                                <img src="https://placehold.co/600x400/EC4899/FFFFFF?text=Pentas+Seni"
-                                    alt="Pentas Seni" class="w-full h-40 object-cover">
-                                <div class="p-4">
-                                    <h3 class="font-bold text-lg mb-2">Pentas Seni dan Budaya Desa</h3>
-                                    <p class="text-xs text-gray-500 mb-3">1 Agustus 2024</p>
-                                    <a href="#" class="text-blue-600 hover:underline text-sm font-semibold">Baca
-                                        Selengkapnya</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="flex-shrink-0 w-80 snap-start">
-                            <div class="bg-white rounded-lg shadow-md overflow-hidden h-full">
-                                <img src="https://placehold.co/600x400/EF4444/FFFFFF?text=Lomba+17an" alt="Lomba 17an"
-                                    class="w-full h-40 object-cover">
-                                <div class="p-4">
-                                    <h3 class="font-bold text-lg mb-2">Lomba-Lomba HUT RI ke-79</h3>
-                                    <p class="text-xs text-gray-500 mb-3">28 Juli 2024</p>
-                                    <a href="#" class="text-blue-600 hover:underline text-sm font-semibold">Baca
-                                        Selengkapnya</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="flex-shrink-0 w-80 snap-start">
-                            <div class="bg-white rounded-lg shadow-md overflow-hidden h-full">
-                                <img src="https://placehold.co/600x400/F97316/FFFFFF?text=Pelatihan"
-                                    alt="Pelatihan Pertanian" class="w-full h-40 object-cover">
-                                <div class="p-4">
-                                    <h3 class="font-bold text-lg mb-2">Pelatihan Pertanian Organik Modern</h3>
-                                    <p class="text-xs text-gray-500 mb-3">25 Juli 2024</p>
-                                    <a href="#" class="text-blue-600 hover:underline text-sm font-semibold">Baca
-                                        Selengkapnya</a>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
+
                 <div class="text-center mt-8">
                     <a href="{{ route('berita.index') }}"
-                        class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full transition duration-300">Lihat
-                        Semua Berita</a>
+                        class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full transition duration-300">
+                        Lihat Semua Berita
+                    </a>
                 </div>
             </div>
         </section>
 
         <!-- Galeri Section -->
+        @php
+            use App\Models\Galeri;
+            $galeriTerbaru = Galeri::latest()->take(4)->get();
+        @endphp
         <section id="galeri" class="py-16 bg-gray-50">
-            <div class="container mx-auto px-16">
+            <div class="container mx-auto px-6 lg:px-16">
                 <h2 class="text-3xl font-bold mb-8 text-center">Galeri Desa</h2>
+
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    <img src="https://placehold.co/400x300/CCCCCC/FFFFFF?text=Foto+1"
-                        class="rounded-lg shadow-md w-full h-full object-cover aspect-square hover:scale-105 transition-transform duration-300"
-                        alt="Galeri 1">
-                    <img src="https://placehold.co/400x300/CCCCCC/FFFFFF?text=Foto+2"
-                        class="rounded-lg shadow-md w-full h-full object-cover aspect-square hover:scale-105 transition-transform duration-300"
-                        alt="Galeri 2">
-                    <img src="https://placehold.co/400x300/CCCCCC/FFFFFF?text=Foto+3"
-                        class="rounded-lg shadow-md w-full h-full object-cover aspect-square hover:scale-105 transition-transform duration-300"
-                        alt="Galeri 3">
-                    <img src="https://placehold.co/400x300/CCCCCC/FFFFFF?text=Foto+4"
-                        class="rounded-lg shadow-md w-full h-full object-cover aspect-square hover:scale-105 transition-transform duration-300"
-                        alt="Galeri 4">
+                    @forelse ($galeriTerbaru as $item)
+                        <img src="{{ Storage::url($item->gambar) }}"
+                            class="rounded-lg shadow-md w-full h-full object-cover aspect-square hover:scale-105 transition-transform duration-300"
+                            alt="{{ $item->judul }}">
+                    @empty
+                        <p class="col-span-4 text-center text-gray-500">Belum ada foto galeri tersedia.</p>
+                    @endforelse
                 </div>
+
                 <div class="text-center mt-8">
-                    <a href="#"
-                        class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full transition duration-300">Lihat
-                        Semua Galeri</a>
+                    <a href="{{ route('galeri.index') }}"
+                        class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full transition duration-300">
+                        Lihat Semua Galeri
+                    </a>
                 </div>
             </div>
         </section>

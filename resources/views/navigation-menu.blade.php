@@ -6,7 +6,7 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
-                        <x-application-mark class="block h-9 w-auto" />
+                        <img src="{{ asset('images/logo-kunden.png') }}" alt="Logo Desa Kunden" class="h-10 w-auto">
                     </a>
                 </div>
 
@@ -29,6 +29,11 @@
                     {{-- Link baru untuk Berita Desa --}}
                     <x-nav-link href="{{ route('admin.berita.index') }}" :active="request()->routeIs('admin.berita.*')">
                         {{ __('Berita Desa') }}
+                    </x-nav-link>
+
+                    {{-- Link baru untuk Galeri Desa --}}
+                    <x-nav-link href="{{ route('admin.galeri.index') }}" :active="request()->routeIs('admin.galeri.*')">
+                        {{ __('Galeri') }}
                     </x-nav-link>
                 </div>
             </div>
@@ -120,6 +125,11 @@
             {{-- Link baru untuk Berita Desa (Mobile) --}}
             <x-responsive-nav-link href="{{ route('admin.berita.index') }}" :active="request()->routeIs('admin.berita.*')">
                 {{ __('Berita Desa') }}
+            </x-responsive-nav-link>
+
+            {{-- Link baru untuk Berita Desa (Mobile) --}}
+            <x-responsive-nav-link href="{{ route('admin.galeri.index') }}" :active="request()->routeIs('admin.galeri.*')">
+                {{ __('Galeri Desa') }}
             </x-responsive-nav-link>
         </div>
 
