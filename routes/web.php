@@ -5,6 +5,9 @@ use App\Http\Controllers\DokumenController;
 use App\Http\Controllers\PermohonanController;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\GaleriController;
+use App\Http\Controllers\AparaturController;
+use App\Models\Berita;
+use App\Models\Aparatur;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +24,15 @@ use App\Http\Controllers\GaleriController;
 | HALAMAN PUBLIK
 |--------------------------------------------------------------------------
 */
-Route::get('/', fn () => view('welcome'))->name('welcome');
+Route::get('/', function () {
+    $beritaTerbaru = Berita::latest()->take(8)->get();
+    $aparaturs = Aparatur::latest()->get();
+
+    return view('welcome', [
+        'beritaTerbaru' => $beritaTerbaru,
+        'aparaturs'     => $aparaturs,
+    ]);
+})->name('welcome');
 
 // Berita Publik
 Route::get('/berita', [BeritaController::class, 'publik'])->name('berita.index');
@@ -38,6 +49,9 @@ Route::get('/unduh-dokumen/{id}', [DokumenController::class, 'download'])->name(
 
 // Galeri Desa
 Route::get('/galeri-desa', fn() => view('galeri-desa'))->name('galeri.index');
+
+// Aparatur Desa
+Route::get('/aparatur', fn() => view('aparatur'))->name('aparatur.index');
 
 /*
 |--------------------------------------------------------------------------
@@ -63,4 +77,7 @@ Route::middleware([
 
     // Galeri Desa
     Route::resource('/admin/galeri', GaleriController::class)->names('admin.galeri');
+
+    // Aparatur Desa
+    Route::resource('/admin/aparatur', AparaturController::class)->names('admin.aparatur');
 });

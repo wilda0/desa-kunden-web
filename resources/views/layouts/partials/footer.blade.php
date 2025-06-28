@@ -24,7 +24,7 @@
                             Jumat: 08.00-15.00 WIB</span></li>
                 </ul>
             </div>
-            
+
             <!-- Peta & Akses Pengguna -->
             <div>
                 <h3 class="text-xl font-bold mb-4">Peta Wilayah</h3>
@@ -44,11 +44,6 @@
                             @else
                                 <a href="{{ route('login') }}"
                                     class="text-gray-300 hover:text-white hover:underline transition">Log in</a>
-
-                                @if (Route::has('register'))
-                                    <a href="{{ route('register') }}"
-                                        class="text-gray-300 hover:text-white hover:underline transition">Register</a>
-                                @endif
                             @endauth
                         </div>
                     </div>

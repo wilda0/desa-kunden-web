@@ -35,6 +35,11 @@
                     <x-nav-link href="{{ route('admin.galeri.index') }}" :active="request()->routeIs('admin.galeri.*')">
                         {{ __('Galeri') }}
                     </x-nav-link>
+
+                    {{-- Link baru untuk Aparatur --}}
+                    <x-nav-link href="{{ route('admin.aparatur.index') }}" :active="request()->routeIs('admin.aparatur.*')">
+                        {{ __('Aparatur') }}
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -71,11 +76,11 @@
                                 {{ __('Profile') }}
                             </x-dropdown-link>
 
-                            @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
+                            {{-- @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
                                 <x-dropdown-link href="{{ route('api-tokens.index') }}">
                                     {{ __('API Tokens') }}
                                 </x-dropdown-link>
-                            @endif
+                            @endif --}}
 
                             <div class="border-t border-gray-200 dark:border-gray-600"></div>
 
@@ -127,9 +132,14 @@
                 {{ __('Berita Desa') }}
             </x-responsive-nav-link>
 
-            {{-- Link baru untuk Berita Desa (Mobile) --}}
+            {{-- Link baru untuk Galeri Desa (Mobile) --}}
             <x-responsive-nav-link href="{{ route('admin.galeri.index') }}" :active="request()->routeIs('admin.galeri.*')">
                 {{ __('Galeri Desa') }}
+            </x-responsive-nav-link>
+
+            {{-- Link baru untuk Aparatur (Mobile) --}}
+            <x-responsive-nav-link href="{{ route('admin.aparatur.index') }}" :active="request()->routeIs('admin.aparatur.*')">
+                {{ __('Aparatur') }}
             </x-responsive-nav-link>
         </div>
 
@@ -154,11 +164,11 @@
                     {{ __('Profile') }}
                 </x-responsive-nav-link>
 
-                @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
+                {{-- @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
                     <x-responsive-nav-link href="{{ route('api-tokens.index') }}" :active="request()->routeIs('api-tokens.index')">
                         {{ __('API Tokens') }}
                     </x-responsive-nav-link>
-                @endif
+                @endif --}}
 
                 <!-- Authentication -->
                 <form method="POST" action="{{ route('logout') }}" x-data>

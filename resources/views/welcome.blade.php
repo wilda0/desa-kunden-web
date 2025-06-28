@@ -351,77 +351,22 @@
                     <div x-ref="slider" @scroll.debounce.100ms="updateButtons()"
                         class="flex overflow-x-auto gap-6 pb-4 slider-container snap-x snap-mandatory scroll-smooth">
 
-                        <div class="flex-shrink-0 w-52 snap-start">
-                            <div
-                                class="bg-gray-50 rounded-lg shadow-md overflow-hidden h-full group transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-xl">
-                                <img src="https://placehold.co/208x288/EFEFEF/777777?text=Foto" alt="Aparatur Desa 1"
-                                    class="w-full h-56 object-cover object-center">
-                                <div class="p-3 text-center">
-                                    <h4 class="font-bold text-md">Nama Pejabat 1</h4>
-                                    <p class="text-gray-500 text-xs">Jabatan</p>
+                        @forelse ($aparaturs as $aparatur)
+                            <div class="flex-shrink-0 w-52 snap-start">
+                                <div
+                                    class="bg-gray-50 rounded-lg shadow-md overflow-hidden h-full group transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-xl">
+                                    <img src="{{ Storage::url($aparatur->foto) }}" alt="{{ $aparatur->nama }}"
+                                        class="w-full h-56 object-cover object-center">
+                                    <div class="p-3 text-center">
+                                        <h4 class="font-bold text-md">{{ $aparatur->nama }}</h4>
+                                        <p class="text-gray-500 text-xs">{{ $aparatur->jabatan }}</p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        @empty
+                            <p class="text-gray-500">Belum ada data aparatur desa.</p>
+                        @endforelse
 
-                        <div class="flex-shrink-0 w-52 snap-start">
-                            <div
-                                class="bg-gray-50 rounded-lg shadow-md overflow-hidden h-full group transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-xl">
-                                <img src="https://placehold.co/208x288/EFEFEF/777777?text=Foto" alt="Aparatur Desa 2"
-                                    class="w-full h-56 object-cover object-center">
-                                <div class="p-3 text-center">
-                                    <h4 class="font-bold text-md">Nama Pejabat 2</h4>
-                                    <p class="text-gray-500 text-xs">Jabatan</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="flex-shrink-0 w-52 snap-start">
-                            <div
-                                class="bg-gray-50 rounded-lg shadow-md overflow-hidden h-full group transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-xl">
-                                <img src="https://placehold.co/208x288/EFEFEF/777777?text=Foto" alt="Aparatur Desa 3"
-                                    class="w-full h-56 object-cover object-center">
-                                <div class="p-3 text-center">
-                                    <h4 class="font-bold text-md">Nama Pejabat 3</h4>
-                                    <p class="text-gray-500 text-xs">Jabatan</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="flex-shrink-0 w-52 snap-start">
-                            <div
-                                class="bg-gray-50 rounded-lg shadow-md overflow-hidden h-full group transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-xl">
-                                <img src="https://placehold.co/208x288/EFEFEF/777777?text=Foto" alt="Aparatur Desa 4"
-                                    class="w-full h-56 object-cover object-center">
-                                <div class="p-3 text-center">
-                                    <h4 class="font-bold text-md">Nama Pejabat 4</h4>
-                                    <p class="text-gray-500 text-xs">Jabatan</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="flex-shrink-0 w-52 snap-start">
-                            <div
-                                class="bg-gray-50 rounded-lg shadow-md overflow-hidden h-full group transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-xl">
-                                <img src="https://placehold.co/208x288/EFEFEF/777777?text=Foto" alt="Aparatur Desa 5"
-                                    class="w-full h-56 object-cover object-center">
-                                <div class="p-3 text-center">
-                                    <h4 class="font-bold text-md">Nama Pejabat 5</h4>
-                                    <p class="text-gray-500 text-xs">Jabatan</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="flex-shrink-0 w-52 snap-start">
-                            <div
-                                class="bg-gray-50 rounded-lg shadow-md overflow-hidden h-full group transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-xl">
-                                <img src="https://placehold.co/208x288/EFEFEF/777777?text=Foto" alt="Aparatur Desa 6"
-                                    class="w-full h-56 object-cover object-center">
-                                <div class="p-3 text-center">
-                                    <h4 class="font-bold text-md">Nama Pejabat 6</h4>
-                                    <p class="text-gray-500 text-xs">Jabatan</p>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
