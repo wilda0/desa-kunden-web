@@ -45,6 +45,11 @@
                     <x-nav-link href="{{ route('admin.produk-hukum.index') }}" :active="request()->routeIs('admin.produk-hukum.*')">
                         {{ __('Produk Hukum') }}
                     </x-nav-link>
+
+                    {{-- Link baru untuk Informasi Publik --}}
+                    <x-nav-link href="{{ route('admin.informasi-publik.index') }}" :active="request()->routeIs('admin.informasi-publik.*')">
+                        {{ __('Informasi Publik') }}
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -158,6 +163,11 @@
             {{-- Link baru untuk Produk Hukum (Mobile) --}}
             <x-responsive-nav-link href="{{ route('admin.produk-hukum.index') }}" :active="request()->routeIs('admin.produk-hukum.*')">
                 {{ __('Produk Hukum') }}
+            </x-responsive-nav-link>
+
+            {{-- Link baru untuk Informasi Publik (Mobile) --}}
+            <x-responsive-nav-link href="{{ route('admin.informasi-publik.index') }}" :active="request()->routeIs('admin.informasi-publik.*')">
+                {{ __('Informasi Publik') }}
             </x-responsive-nav-link>
         </div>
 

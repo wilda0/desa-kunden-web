@@ -9,6 +9,26 @@ use Barryvdh\DomPDF\Facade\Pdf;
 
 class ProdukHukumController extends Controller
 {
+    public function publik(Request $request)
+    {
+        $query = ProdukHukum::query();
+
+        if ($request->filled('jenis_hukum')) {
+            $query->where('jenis_hukum', $request->jenis_hukum);
+        }
+
+        if ($request->filled('tahun')) {
+            $query->where('tahun', $request->tahun);
+        }
+
+        $jenisHukumList = ProdukHukum::select('jenis_hukum')->distinct()->pluck('jenis_hukum');
+        $tahunList = ProdukHukum::select('tahun')->distinct()->orderBy('tahun', 'desc')->pluck('tahun');
+
+        $produkHukums = $query->latest()->paginate(10)->withQueryString();
+
+        return view('produk-hukum', compact('produkHukums', 'jenisHukumList', 'tahunList'));
+    }
+
     public function index()
     {
         $produkHukums = ProdukHukum::latest()->paginate(10);
@@ -60,25 +80,5 @@ class ProdukHukumController extends Controller
         $produkHukum->delete();
 
         return redirect()->route('admin.produk-hukum.index')->with('success', 'Produk Hukum berhasil dihapus.');
-    }
-
-    public function publik(Request $request)
-    {
-        $query = ProdukHukum::query();
-
-        if ($request->filled('jenis_hukum')) {
-            $query->where('jenis_hukum', $request->jenis_hukum);
-        }
-
-        if ($request->filled('tahun')) {
-            $query->where('tahun', $request->tahun);
-        }
-
-        $jenisHukumList = ProdukHukum::select('jenis_hukum')->distinct()->pluck('jenis_hukum');
-        $tahunList = ProdukHukum::select('tahun')->distinct()->orderBy('tahun', 'desc')->pluck('tahun');
-
-        $produkHukums = $query->latest()->paginate(10)->withQueryString();
-
-        return view('produk-hukum', compact('produkHukums', 'jenisHukumList', 'tahunList'));
     }
 }

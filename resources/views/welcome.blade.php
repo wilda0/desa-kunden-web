@@ -333,6 +333,10 @@
             </div>
         </section>
 
+        @php
+            use App\Models\Aparatur;
+            $aparaturs = Aparatur::all();
+        @endphp
         <!-- Aparatur Desa Section -->
         <section id="aparatur" class="py-16 bg-white" x-data="slider()">
             <div class="container mx-auto px-16">

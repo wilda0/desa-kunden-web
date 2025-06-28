@@ -57,7 +57,8 @@
                     <a href="{{ route('produk-hukum.index') }}"
                         class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50">Produk
                         Hukum</a>
-                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50">Informasi
+                    <a href="{{ route('informasi-publik.index') }}"
+                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50">Informasi
                         Publik</a>
                 </div>
             </div>
@@ -121,7 +122,7 @@
             <div x-show="open" class="pl-4">
                 <a href="{{ route('produk-hukum.index') }}" @click="mobileMenuOpen = false"
                     class="block py-2 px-4 text-xs hover:bg-gray-100">Produk Hukum</a>
-                <a href="#" @click="mobileMenuOpen = false"
+                <a href="{{ route('informasi-publik.index') }}" @click="mobileMenuOpen = false"
                     class="block py-2 px-4 text-xs hover:bg-gray-100">Informasi Publik</a>
             </div>
         </div>

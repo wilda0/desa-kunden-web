@@ -7,6 +7,7 @@ use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\GaleriController;
 use App\Http\Controllers\AparaturController;
 use App\Http\Controllers\ProdukHukumController;
+use App\Http\Controllers\InformasiPublikController;
 use App\Models\Berita;
 use App\Models\Aparatur;
 
@@ -25,15 +26,7 @@ use App\Models\Aparatur;
 | HALAMAN PUBLIK
 |--------------------------------------------------------------------------
 */
-Route::get('/', function () {
-    $beritaTerbaru = Berita::latest()->take(8)->get();
-    $aparaturs = Aparatur::latest()->get();
-
-    return view('welcome', [
-        'beritaTerbaru' => $beritaTerbaru,
-        'aparaturs'     => $aparaturs,
-    ]);
-})->name('welcome');
+Route::get('/', fn() => view('welcome'))->name('welcome');
 
 // Berita Publik
 Route::get('/berita', [BeritaController::class, 'publik'])->name('berita.index');
@@ -41,7 +34,7 @@ Route::get('/berita/{id}', [BeritaController::class, 'detail'])->name('berita.de
 Route::post('/berita/{id}/komentar', [BeritaController::class, 'simpanKomentar'])->name('berita.komentar');
 
 // Permohonan Informasi
-Route::get('/permohonan-informasi', fn () => view('permohonan-informasi'))->name('permohonan.create');
+Route::get('/permohonan-informasi', fn() => view('permohonan-informasi'))->name('permohonan.create');
 Route::post('/permohonan-informasi', [PermohonanController::class, 'store'])->name('permohonan.store');
 
 // Dokumen Publik
@@ -57,6 +50,9 @@ Route::get('/aparatur', fn() => view('aparatur'))->name('aparatur.index');
 // Produk Hukum
 Route::get('/produk-hukum', [ProdukHukumController::class, 'publik'])->name('produk-hukum.index');
 
+// Informasi Publik
+Route::get('/informasi-publik', [InformasiPublikController::class, 'publik'])->name('informasi-publik.index');
+
 /*
 |--------------------------------------------------------------------------
 | HALAMAN ADMIN
@@ -67,7 +63,7 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('/dashboard', fn () => view('dashboard'))->name('dashboard');
+    Route::get('/dashboard', fn() => view('dashboard'))->name('dashboard');
 
     // Dokumen Admin
     Route::resource('/admin/dokumen', DokumenController::class)->names('admin.dokumen');
@@ -88,4 +84,6 @@ Route::middleware([
     // Produk Hukum
     Route::resource('/admin/produk-hukum', ProdukHukumController::class)->names('admin.produk-hukum');
 
+    // Informasi Publik
+    Route::resource('/admin/informasi-publik', InformasiPublikController::class)->names('admin.informasi-publik');
 });
