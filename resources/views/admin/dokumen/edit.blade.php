@@ -21,7 +21,6 @@
                         </div>
                     @endif
 
-                    {{-- Perubahan ada di baris 'action' di bawah ini --}}
                     <form action="{{ route('admin.dokumen.update', $dokumen->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
@@ -57,7 +56,7 @@
                             </div>
 
                             <div class="flex items-center justify-end mt-4">
-                               <a href="{{ route('admin.dokumen.index') }}" class="text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white underline mr-4">
+                                <a href="{{ route('admin.dokumen.index') }}" class="text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white underline mr-4">
                                     Batal
                                 </a>
                                 <x-button>

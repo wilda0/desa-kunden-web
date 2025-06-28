@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Galeri - Website Desa Kunden</title>
 
+    <link rel="icon" type="image/png" href="{{ asset('images/logo-kunden.png') }}">
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600,700" rel="stylesheet" />
@@ -144,9 +146,9 @@
                 <div x-ref="filmstrip" class="flex justify-center space-x-2 overflow-x-auto filmstrip pb-2">
                     <template x-for="(image, index) in images" :key="index">
                         <img @click="currentIndex = index"
-                             :src="image.src"
-                             class="w-20 h-14 object-cover rounded-md cursor-pointer transition-opacity"
-                             :class="{ 'border-2 border-white opacity-100': currentIndex === index, 'opacity-50 hover:opacity-100': currentIndex !== index, 'active-thumbnail': currentIndex === index }">
+                            :src="image.src"
+                            class="w-20 h-14 object-cover rounded-md cursor-pointer transition-opacity"
+                            :class="{ 'border-2 border-white opacity-100': currentIndex === index, 'opacity-50 hover:opacity-100': currentIndex !== index, 'active-thumbnail': currentIndex === index }">
                     </template>
                 </div>
             </div>

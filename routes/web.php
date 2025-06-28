@@ -28,7 +28,6 @@ Route::get('/berita', [BeritaController::class, 'publik'])->name('berita.index')
 Route::get('/berita/{id}', [BeritaController::class, 'detail'])->name('berita.detail');
 Route::post('/berita/{id}/komentar', [BeritaController::class, 'simpanKomentar'])->name('berita.komentar');
 
-
 // Permohonan Informasi
 Route::get('/permohonan-informasi', fn () => view('permohonan-informasi'))->name('permohonan.create');
 Route::post('/permohonan-informasi', [PermohonanController::class, 'store'])->name('permohonan.store');

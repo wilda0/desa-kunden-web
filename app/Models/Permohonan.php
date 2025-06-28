@@ -9,7 +9,6 @@ class Permohonan extends Model
 {
     use HasFactory;
 
-    // Field yang bisa diisi mass-assignment
     protected $fillable = [
         'nama',
         'instansi',

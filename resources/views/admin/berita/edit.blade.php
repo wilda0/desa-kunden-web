@@ -58,7 +58,7 @@
 
                             {{-- Tombol --}}
                             <div class="flex items-center justify-end mt-4">
-                               <a href="{{ route('admin.berita.index') }}" class="text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white underline mr-4">
+                                <a href="{{ route('admin.berita.index') }}" class="text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white underline mr-4">
                                     Batal
                                 </a>
                                 <x-button>

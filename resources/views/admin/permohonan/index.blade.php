@@ -79,7 +79,7 @@
                                                             :class="on ? 'bg-green-500' : 'bg-gray-300 dark:bg-gray-600'">
                                                         <span class="sr-only">Toggle Status</span>
                                                         <span class="inline-block w-4 h-4 transform bg-white rounded-full transition-transform duration-300 ease-in-out"
-                                                              :class="{ 'translate-x-6': on, 'translate-x-1': !on }">
+                                                            :class="{ 'translate-x-6': on, 'translate-x-1': !on }">
                                                         </span>
                                                     </button>
                                                     <span x-text="on ? 'Selesai' : 'Baru'" class="text-sm font-medium" :class="{ 'text-green-600 dark:text-green-400': on, 'text-gray-500': !on }"></span>
