@@ -91,6 +91,11 @@
         <div class="container mx-auto px-6 lg:px-16 py-12">
             <!-- Title Section -->
             <div class="border-b-2 border-gray-200 pb-4 mb-8">
+                <nav class="text-sm mb-4 text-gray-500">
+                    <a href="{{ route('welcome') }}" class="hover:text-blue-600">Home</a>
+                    <span class="mx-2">/</span>
+                    <span class="text-gray-700">Galeri Desa</span>
+                </nav>
                 <h1 class="text-4xl font-bold text-gray-800">Galeri Desa</h1>
                 <p class="text-gray-500 mt-2">Menampilkan kegiatan-kegiatan yang berlangsung di desa.</p>
             </div>
