@@ -6,6 +6,7 @@ use App\Http\Controllers\PermohonanController;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\GaleriController;
 use App\Http\Controllers\AparaturController;
+use App\Http\Controllers\ProdukHukumController;
 use App\Models\Berita;
 use App\Models\Aparatur;
 
@@ -53,6 +54,9 @@ Route::get('/galeri-desa', fn() => view('galeri-desa'))->name('galeri.index');
 // Aparatur Desa
 Route::get('/aparatur', fn() => view('aparatur'))->name('aparatur.index');
 
+// Produk Hukum
+Route::get('/produk-hukum', [ProdukHukumController::class, 'publik'])->name('produk-hukum.index');
+
 /*
 |--------------------------------------------------------------------------
 | HALAMAN ADMIN
@@ -80,4 +84,8 @@ Route::middleware([
 
     // Aparatur Desa
     Route::resource('/admin/aparatur', AparaturController::class)->names('admin.aparatur');
+
+    // Produk Hukum
+    Route::resource('/admin/produk-hukum', ProdukHukumController::class)->names('admin.produk-hukum');
+
 });

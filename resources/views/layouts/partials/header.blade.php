@@ -54,7 +54,8 @@
                 </button>
                 <div x-show="open" x-transition class="absolute mt-0 pt-2 w-48 bg-white rounded-md shadow-xl z-20"
                     style="display: none;">
-                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50">Produk
+                    <a href="{{ route('produk-hukum.index') }}"
+                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50">Produk
                         Hukum</a>
                     <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50">Informasi
                         Publik</a>
@@ -75,7 +76,8 @@
 
     <!-- Mobile Menu -->
     <div x-show="mobileMenuOpen" class="lg:hidden" style="display: none;" x-transition>
-        <a href="{{ route('welcome') }}" @click="mobileMenuOpen = false" class="block py-2 px-4 text-sm hover:bg-gray-200">Home</a>
+        <a href="{{ route('welcome') }}" @click="mobileMenuOpen = false"
+            class="block py-2 px-4 text-sm hover:bg-gray-200">Home</a>
         <div x-data="{ open: false }">
             <button @click="open = !open"
                 class="w-full text-left flex justify-between items-center py-2 px-4 text-sm hover:bg-gray-200">
@@ -117,7 +119,7 @@
                     :class="{ 'rotate-180': open }"></i>
             </button>
             <div x-show="open" class="pl-4">
-                <a href="#" @click="mobileMenuOpen = false"
+                <a href="{{ route('produk-hukum.index') }}" @click="mobileMenuOpen = false"
                     class="block py-2 px-4 text-xs hover:bg-gray-100">Produk Hukum</a>
                 <a href="#" @click="mobileMenuOpen = false"
                     class="block py-2 px-4 text-xs hover:bg-gray-100">Informasi Publik</a>
