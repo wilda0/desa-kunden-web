@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Berita;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Komentar;
 
 class BeritaController extends Controller
 {
@@ -97,8 +98,23 @@ class BeritaController extends Controller
         $berita = Berita::findOrFail($id);
         $berita->increment('views');
         $latestBeritas = Berita::where('id', '!=', $id)->latest()->limit(5)->get();
+        $komentars = Komentar::where('berita_id', $id)->latest()->get();
 
-        return view('berita-detail', compact('berita', 'latestBeritas'));
+        return view('berita-detail', compact('berita', 'latestBeritas', 'komentars'));
     }
 
+    public function simpanKomentar(Request $request, $id)
+    {
+        $validated = $request->validate([
+            'nama' => 'required|string|max:100',
+            'email' => 'required|email',
+            'isi_komentar' => 'required|string|max:1000',
+        ]);
+
+        $validated['berita_id'] = $id;
+
+        Komentar::create($validated);
+
+        return back()->with('success', 'Komentar Anda berhasil dikirim!');
+    }
 }

@@ -66,10 +66,15 @@
                         <h1 class="text-3xl lg:text-4xl font-bold text-gray-800 mb-4">{{ $berita->nama_berita }}</h1>
 
                         <!-- Meta Info -->
-                        <div class="flex flex-wrap items-center text-sm text-gray-500 mb-6 space-x-4">
-                            <span class="flex items-center"><i data-lucide="calendar" class="w-4 h-4 mr-1.5"></i>{{ \Carbon\Carbon::parse($berita->tanggal)->isoFormat('dddd, D MMMM Y') }}</span>
-                            <span class="flex items-center"><i data-lucide="user" class="w-4 h-4 mr-1.5"></i>Oleh Administrator</span>
-                            <span class="flex items-center"><i data-lucide="eye" class="w-4 h-4 mr-1.5"></i>{{ $berita->views ?? 0 }} kali</span>
+                        <div class="flex flex-wrap items-center justify-between text-sm text-gray-500 mb-6">
+                            <span class="flex items-center mb-2 md:mb-0">
+                                <i data-lucide="calendar" class="w-4 h-4 mr-1.5"></i>{{ \Carbon\Carbon::parse($berita->tanggal)->isoFormat('dddd, D MMMM Y') }}
+                            </span>
+
+                            <div class="flex items-center space-x-4">
+                                <span class="flex items-center"><i data-lucide="user" class="w-4 h-4 mr-1.5"></i>Oleh Administrator</span>
+                                <span class="flex items-center"><i data-lucide="eye" class="w-4 h-4 mr-1.5"></i>Dilihat {{ $berita->views ?? 0 }} kali</span>
+                            </div>
                         </div>
 
                         <!-- Featured Image -->
@@ -78,6 +83,61 @@
                         <!-- Article Content -->
                         <div class="prose max-w-none text-gray-700 leading-relaxed">
                             {!! nl2br(e($berita->deskripsi)) !!}
+                        </div>
+
+                        <!-- Show & Form Komentar -->
+                        @if($komentars->count())
+                        <div class="mt-12">
+                            <h3 class="text-xl font-bold mb-4">Komentar</h3>
+                            <div class="space-y-6">
+                                @foreach($komentars as $komentar)
+                                    <div class="bg-gray-100 p-4 rounded-md shadow-sm">
+                                        <div class="flex justify-between items-center mb-1">
+                                            <strong>{{ $komentar->nama }}</strong>
+                                            <span class="text-xs text-gray-500">{{ $komentar->created_at->diffForHumans() }}</span>
+                                        </div>
+                                        <p class="text-sm text-gray-700">{{ $komentar->isi_komentar }}</p>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                        @endif
+
+                        <div class="mt-12 border-t pt-8">
+                            <h3 class="text-2xl font-bold mb-6 text-gray-800">Tinggalkan Komentar</h3>
+
+                            @if(session('success'))
+                            <div x-data="{ show: true }"
+                                x-init="setTimeout(() => show = false, 5000)"
+                                x-show="show"
+                                x-transition:enter="transition ease-out duration-300"
+                                x-transition:enter-start="opacity-0 transform translate-y-2"
+                                x-transition:enter-end="opacity-100 transform translate-y-0"
+                                x-transition:leave="transition ease-in duration-200"
+                                x-transition:leave-start="opacity-100"
+                                x-transition:leave-end="opacity-0"
+                                class="bg-green-100 border border-green-200 text-green-700 px-4 py-3 rounded relative mb-4"
+                                role="alert"
+                                style="display: none;">
+                                <span class="block sm:inline">{{ session('success') }}</span>
+                            </div>
+                            @endif
+
+                            <form action="{{ route('berita.komentar', $berita->id) }}" method="POST" class="space-y-4">
+                                @csrf
+                                <div>
+                                    <input type="text" name="nama" required class="w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 py-3 px-4" placeholder="Nama">
+                                </div>
+                                <div>
+                                    <input type="email" name="email" required class="w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 py-3 px-4" placeholder="Email (wajib mengandung @)">
+                                </div>
+                                <div>
+                                    <textarea name="isi_komentar" rows="5" required class="w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 py-3 px-4" placeholder="Tulis komentar Anda..."></textarea>
+                                </div>
+                                <div class="text-right">
+                                    <button type="submit" class="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">Kirim</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>

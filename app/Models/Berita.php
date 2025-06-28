@@ -15,4 +15,9 @@ class Berita extends Model
         'tanggal',
         'foto',
     ];
+
+    public function komentars()
+    {
+        return $this->hasMany(Komentar::class);
+    }
 }
