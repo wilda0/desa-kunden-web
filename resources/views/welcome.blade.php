@@ -234,12 +234,12 @@
             </div>
         </section>
 
-        <!-- Berita Section -->
         @php
             use App\Models\Berita;
             $beritaTerbaru = Berita::latest()->take(8)->get();
         @endphp
 
+        <!-- Berita Section -->
         <section id="berita" class="py-16 bg-white" x-data="slider()">
             <div class="container mx-auto px-6 lg:px-16">
                 <div class="flex justify-between items-center mb-8">
@@ -257,42 +257,42 @@
                 <div class="overflow-hidden">
                     <div x-ref="slider" @scroll.debounce.100ms="updateButtons()"
                         class="flex overflow-x-auto space-x-6 pb-4 slider-container snap-x snap-mandatory scroll-smooth">
-                        @foreach ($beritaTerbaru as $berita)
-                        <div class="flex-shrink-0 w-80 snap-start">
-                            <div class="bg-white rounded-lg shadow-md overflow-hidden h-full">
-                                <img src="{{ Storage::url($berita->foto) }}"
-                                    alt="{{ $berita->nama_berita }}" class="w-full h-40 object-cover">
-                                <div class="p-4">
-                                    <h3 class="font-bold text-lg mb-2">
-                                        {{ \Illuminate\Support\Str::limit($berita->nama_berita, 50) }}
-                                    </h3>
-                                    <p class="text-gray-600 text-sm mb-4 line-clamp-3">
-                                        {{ Str::limit($berita->deskripsi, 80) }}
-                                    </p>
-                                    <div class="flex justify-between items-center text-xs text-gray-500 border-t pt-3 mt-auto">
-                                        <div class="space-y-1">
-                                            <div class="flex items-center">
-                                                <i data-lucide="user-2" class="w-4 h-4 mr-1.5"></i>
-                                                <span>Administrator</span>
+                        @forelse ($beritaTerbaru as $berita)
+                            <div class="flex-shrink-0 w-80 snap-start">
+                                <a href="{{ route('berita.detail', $berita->id) }}" class="block h-full group">
+                                    <div class="bg-white rounded-lg shadow-md overflow-hidden h-full flex flex-col hover:shadow-xl transition-shadow duration-300">
+                                        <img src="{{ Storage::url($berita->foto) }}"
+                                            alt="{{ $berita->nama_berita }}" class="w-full h-40 object-cover">
+                                        <div class="p-4 flex flex-col flex-grow">
+                                            <h3 class="font-bold text-lg mb-2 text-gray-800 group-hover:text-blue-600 transition-colors line-clamp-2" title="{{ $berita->nama_berita }}">
+                                                {{ \Illuminate\Support\Str::limit($berita->nama_berita, 50) }}
+                                            </h3>
+                                            <p class="text-gray-600 text-sm mb-4 line-clamp-2 flex-grow">
+                                                {{ Str::limit($berita->deskripsi, 80) }}
+                                            </p>
+                                            <div class="flex justify-between items-center text-xs text-gray-500 border-t pt-3 mt-auto">
+                                                <div class="space-y-1">
+                                                    <div class="flex items-center">
+                                                        <i data-lucide="user-2" class="w-4 h-4 mr-1.5"></i>
+                                                        <span>Administrator</span>
+                                                    </div>
+                                                    <div class="flex items-center">
+                                                        <i data-lucide="eye" class="w-4 h-4 mr-1.5"></i>
+                                                        <span>Dilihat {{ $berita->views ?? 0 }} kali</span>
+                                                    </div>
+                                                </div>
+                                                <div class="bg-blue-600 text-white text-center rounded-md px-2 py-1 shadow">
+                                                    <span class="font-bold text-lg leading-none">{{ \Carbon\Carbon::parse($berita->tanggal)->format('d') }}</span>
+                                                    <span class="block text-xs leading-none">{{ \Carbon\Carbon::parse($berita->tanggal)->isoFormat('MMM Y') }}</span>
+                                                </div>
                                             </div>
-                                            <div class="flex items-center">
-                                                <i data-lucide="eye" class="w-4 h-4 mr-1.5"></i>
-                                                <span>Dilihat {{ $berita->views ?? 0 }} kali</span>
-                                            </div>
-                                        </div>
-                                        <div class="bg-blue-600 text-white text-center rounded-md px-2 py-1 shadow">
-                                            <span class="font-bold text-lg leading-none">{{ \Carbon\Carbon::parse($berita->tanggal)->format('d') }}</span>
-                                            <span class="block text-xs leading-none">{{ \Carbon\Carbon::parse($berita->tanggal)->isoFormat('MMM Y') }}</span>
                                         </div>
                                     </div>
-                                    <a href="{{ route('berita.detail', $berita->id) }}"
-                                        class="text-blue-600 hover:underline text-sm font-semibold">
-                                        Baca Selengkapnya
-                                    </a>
-                                </div>
+                                </a>
                             </div>
-                        </div>
-                        @endforeach
+                        @empty
+                            <p class="col-span-full text-center text-gray-500 py-8">Belum ada berita yang dipublikasikan.</p>
+                        @endforelse
                     </div>
                 </div>
 
