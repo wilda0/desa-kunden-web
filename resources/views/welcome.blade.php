@@ -91,7 +91,7 @@
     <main x-data="{ showMore: false }">
         <!-- Hero Section -->
         <section id="home" class="relative h-[60vh] md:h-[80vh] bg-cover bg-center"
-            style="background-image: url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=1932&auto=format&fit=crop');">
+            style="background-image: url('/images/gunung-sepikul.png');">
             <div class="absolute inset-0 bg-black/50"></div>
             <div class="relative z-10 flex flex-col items-center justify-center h-full text-white text-center px-4">
                 <h1 class="text-4xl md:text-6xl font-bold mb-4 animate-fade-in-down">Selamat Datang</h1>
