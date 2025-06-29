@@ -28,6 +28,9 @@ use App\Models\Aparatur;
 */
 Route::get('/', fn() => view('welcome'))->name('welcome');
 
+// Profil Wilayah Desa
+Route::get('/profil-wilayah', fn() => view('profil-wilayah-desa'))->name('profil-wilayah');
+
 // Berita Publik
 Route::get('/berita', [BeritaController::class, 'publik'])->name('berita.index');
 Route::get('/berita/{id}', [BeritaController::class, 'detail'])->name('berita.detail');

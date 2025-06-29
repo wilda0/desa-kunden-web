@@ -20,7 +20,7 @@
                     style="display: none;">
                     <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50">Sejarah
                         Desa</a>
-                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50">Profil Wilayah
+                    <a href="{{ route('profil-wilayah') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50">Profil Wilayah
                         Desa</a>
                     <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50">Kondisi
                         Pemerintahan</a>
@@ -88,7 +88,7 @@
             <div x-show="open" class="pl-4">
                 <a href="#" @click="mobileMenuOpen = false"
                     class="block py-2 px-4 text-xs hover:bg-gray-100">Sejarah Desa</a>
-                <a href="#" @click="mobileMenuOpen = false"
+                <a href="{{ route('profil-wilayah') }}" @click="mobileMenuOpen = false"
                     class="block py-2 px-4 text-xs hover:bg-gray-100">Profil Wilayah Desa</a>
                 <a href="#" @click="mobileMenuOpen = false"
                     class="block py-2 px-4 text-xs hover:bg-gray-100">Kondisi Pemerintahan</a>
