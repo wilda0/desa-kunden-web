@@ -96,7 +96,7 @@
                 <div class="absolute inset-0 bg-cover bg-center"
                     style="background-image: url('{{ asset('images/lahan-kunyit.png') }}');">
                 </div>
-                <div class="absolute inset-0 bg-black/50"></div>
+                <div class="absolute inset-0 bg-black/60"></div>
                 <div class="relative z-10 container mx-auto px-4">
                     <nav class="flex justify-center" aria-label="Breadcrumb">
                         <ol role="list" class="flex items-center space-x-2">

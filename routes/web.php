@@ -31,6 +31,9 @@ Route::get('/', fn() => view('welcome'))->name('welcome');
 // Profil Wilayah Desa
 Route::get('/profil-wilayah', fn() => view('profil-wilayah-desa'))->name('profil-wilayah');
 
+// Sejarah Desa
+Route::get('/sejarah-desa', fn() => view('sejarah-desa'))->name('sejarah-desa');
+
 // Berita Publik
 Route::get('/berita', [BeritaController::class, 'publik'])->name('berita.index');
 Route::get('/berita/{id}', [BeritaController::class, 'detail'])->name('berita.detail');
