@@ -133,10 +133,8 @@
 
             <div class="container mx-auto px-6 lg:px-16 py-16 sm:py-24">
 
-                {{-- 2. Bagian Peta dan Deskripsi --}}
+                {{-- Bagian Peta dan Deskripsi --}}
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
-
-                    {{-- Kolom Kiri: Peta --}}
                     <div class="reveal-on-scroll">
                         <h2 class="text-3xl font-bold tracking-tight text-gray-900 mb-4">Peta Wilayah Desa</h2>
                         <div class="aspect-w-16 aspect-h-9 rounded-lg shadow-2xl overflow-hidden border-4 border-white">
@@ -147,31 +145,12 @@
                             </iframe>
                         </div>
                     </div>
-
-                    {{-- Kolom Kanan: Deskripsi --}}
                     <div class="reveal-on-scroll delay-200">
-                        <h2 class="text-3xl font-bold tracking-tight text-gray-900 mb-4">Kondisi Geografis &
-                            Administratif</h2>
+                        <h2 class="text-3xl font-bold tracking-tight text-gray-900 mb-4">Kondisi Geografis & Administratif</h2>
                         <div class="text-gray-700 space-y-4 leading-relaxed">
-                             <p>
-                                Desa Kunden secara administratif termasuk dalam wilayah Kecamatan Bulu Kabupaten
-                                Sukoharjo. Berdasarkan penuturan dari sesepuh masyarakat secara turun temurun mengatakan
-                                bahwa desa Kunden merupakan desa yang berdiri paling akhir di kecamatan Bulu. Wilayah
-                                desa kunden saat ini merupakan pemekaran wilayah dari 3 desa. Dukuh Loji di sebelah
-                                timur merupakan bagian dari desa Bulu. Dukuh Sumberagung, dukuh Kepuh dan Dukuh
-                                Sambirejo merupakan bagian dari desa Kamal. Dukuh Ngrancang, dukuh Kunden dan dukuh
-                                Sumberejo merupakan bagian dari Desa Puron. Setelah adanya pemekaran, beberapa wilayah
-                                dukuh yang disebutkan di atas menjadi satu wilayah yang kemudian dikenal sebagai desa
-                                Kunden sejak tahun 1941 sampai dengan sekarang.
-                            </p>
-                            <p>
-                                Wilayah Desa Kunden terbagi menjadi 3 dusun dan 8 dukuh. Struktur
-                                pemerintahan desa didukung oleh 20 Rukun Tetangga (RT) dan 9 Rukun Warga (RW) yang aktif
-                                berperan dalam menjaga keharmonisan dan ketertiban masyarakat.
-                            </p>
-                            <p class="font-semibold text-gray-800">
-                                Batas wilayah Desa Kunden adalah sebagai berikut:
-                            </p>
+                            <p>Desa Kunden adalah salah satu desa yang berada di Kecamatan Bulu, Kabupaten Sukoharjo, Provinsi Jawa Tengah. Sebagai wilayah yang terletak di dataran tinggi, desa ini memiliki topografi yang miring dengan ketinggian rata-rata 693 meter di atas permukaan laut, memberikan suasana yang sejuk dan asri.</p>
+                            <p>Wilayah Desa Kunden terbagi menjadi 3 dusun dan 8 dukuh. Struktur pemerintahan desa didukung oleh 20 Rukun Tetangga (RT) dan 9 Rukun Warga (RW) yang aktif berperan dalam menjaga keharmonisan dan ketertiban masyarakat.</p>
+                            <p class="font-semibold text-gray-800">Batas wilayah Desa Kunden adalah sebagai berikut:</p>
                             <ul class="list-disc list-inside space-y-2 pl-4 text-gray-600">
                                 <li><strong>Sebelah Utara:</strong> Desa Kamal</li>
                                 <li><strong>Sebelah Timur:</strong> Desa Bulu</li>
@@ -182,60 +161,115 @@
                     </div>
                 </div>
 
-                {{-- 3. Bagian Tabel Pimpinan Desa --}}
+                <!-- BAGIAN BARU: DATA LUAS WILAYAH & ORBITASI -->
                 <div class="mt-20 sm:mt-28 reveal-on-scroll delay-400">
-                    <h2 class="text-3xl font-bold tracking-tight text-gray-900 text-center mb-8">Sejarah Kepemimpinan
-                        Desa Kunden</h2>
-                    <div class="flex flex-col">
-                        <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-                            <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-                                <div class="shadow-lg overflow-hidden border-b border-gray-200 sm:rounded-lg">
-                                    <table class="min-w-full divide-y divide-gray-200">
-                                        <thead class="bg-slate-700 text-white">
-                                            <tr>
-                                                <th scope="col" class="px-6 py-4 text-left text-xs font-medium uppercase tracking-wider">No</th>
-                                                <th scope="col" class="px-6 py-4 text-left text-xs font-medium uppercase tracking-wider">Nama Pimpinan</th>
-                                                <th scope="col" class="px-6 py-4 text-left text-xs font-medium uppercase tracking-wider">Periode Jabatan</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody class="bg-white divide-y divide-gray-200">
-                                            <tr class="hover:bg-gray-50 transition-colors duration-200">
-                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">1.</td>
-                                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Marmo Sudarmo</td>
-                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">1946 - 1953</td>
-                                            </tr>
-                                            <tr class="hover:bg-gray-50 transition-colors duration-200">
-                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2.</td>
-                                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Pawiro Sumanto</td>
-                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">1953 - 1973</td>
-                                            </tr>
-                                            <tr class="hover:bg-gray-50 transition-colors duration-200">
-                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">3.</td>
-                                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Soekidi Siswo Miharjo</td>
-                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">1973 - 1988</td>
-                                            </tr>
-                                            <tr class="hover:bg-gray-50 transition-colors duration-200">
-                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">4.</td>
-                                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Purno, B. Sc.</td>
-                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">1988 - 2006</td>
-                                            </tr>
-                                            <tr class="hover:bg-gray-50 transition-colors duration-200">
-                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">5.</td>
-                                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Lagiyo</td>
-                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2006 - 2018</td>
-                                            </tr>
-                                            <tr class="hover:bg-gray-50 transition-colors duration-200">
-                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">6.</td>
-                                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Purno, B. Sc.</td>
-                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2018 - Sekarang</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16">
+
+                        {{-- Kolom Kiri: Luas Wilayah Desa --}}
+                        <div>
+                            <h2 class="text-3xl font-bold tracking-tight text-gray-900 mb-6 text-center md:text-left">Luas Wilayah Desa</h2>
+                            <div class="space-y-4">
+                                <!-- Data Item -->
+                                <div class="bg-white p-4 rounded-lg shadow-md hover:shadow-xl transition-shadow flex items-center space-x-4">
+                                    <div class="bg-blue-100 p-3 rounded-full text-blue-600"><i data-lucide="home"></i></div>
+                                    <div class="flex-grow flex justify-between items-center">
+                                        <span class="text-gray-700">Pemukiman</span>
+                                        <span class="font-semibold text-gray-900">105 ha</span>
+                                    </div>
+                                </div>
+                                <!-- Data Item -->
+                                <div class="bg-white p-4 rounded-lg shadow-md hover:shadow-xl transition-shadow flex items-center space-x-4">
+                                    <div class="bg-green-100 p-3 rounded-full text-green-600"><i data-lucide="sprout"></i></div>
+                                    <div class="flex-grow flex justify-between items-center">
+                                        <span class="text-gray-700">Pertanian Sawah</span>
+                                        <span class="font-semibold text-gray-900">145 ha</span>
+                                    </div>
+                                </div>
+                                <!-- Data Item -->
+                                <div class="bg-white p-4 rounded-lg shadow-md hover:shadow-xl transition-shadow flex items-center space-x-4">
+                                    <div class="bg-yellow-100 p-3 rounded-full text-yellow-600"><i data-lucide="mountain"></i></div>
+                                    <div class="flex-grow flex justify-between items-center">
+                                        <span class="text-gray-700">Ladang/Tegalan</span>
+                                        <span class="font-semibold text-gray-900">49 ha</span>
+                                    </div>
+                                </div>
+                                <!-- Data Item -->
+                                <div class="bg-white p-4 rounded-lg shadow-md hover:shadow-xl transition-shadow flex items-center space-x-4">
+                                    <div class="bg-purple-100 p-3 rounded-full text-purple-600"><i data-lucide="building-2"></i></div>
+                                    <div class="flex-grow flex justify-between items-center">
+                                        <span class="text-gray-700">Perkantoran</span>
+                                        <span class="font-semibold text-gray-900">0,25 ha</span>
+                                    </div>
+                                </div>
+                                <!-- Data Item -->
+                                <div class="bg-white p-4 rounded-lg shadow-md hover:shadow-xl transition-shadow flex items-center space-x-4">
+                                    <div class="bg-pink-100 p-3 rounded-full text-pink-600"><i data-lucide="school"></i></div>
+                                    <div class="flex-grow flex justify-between items-center">
+                                        <span class="text-gray-700">Sekolah</span>
+                                        <span class="font-semibold text-gray-900">0,75 ha</span>
+                                    </div>
+                                </div>
+                                <!-- Data Item -->
+                                <div class="bg-white p-4 rounded-lg shadow-md hover:shadow-xl transition-shadow flex items-center space-x-4">
+                                    <div class="bg-gray-100 p-3 rounded-full text-gray-600"><i data-lucide="route"></i></div>
+                                    <div class="flex-grow flex justify-between items-center">
+                                        <span class="text-gray-700">Jalan</span>
+                                        <span class="font-semibold text-gray-900">14 ha</span>
+                                    </div>
+                                </div>
+                                 <!-- Data Item -->
+                                <div class="bg-white p-4 rounded-lg shadow-md hover:shadow-xl transition-shadow flex items-center space-x-4">
+                                    <div class="bg-red-100 p-3 rounded-full text-red-600"><i data-lucide="dribbble"></i></div>
+                                    <div class="flex-grow flex justify-between items-center">
+                                        <span class="text-gray-700">Lapangan Sepak Bola</span>
+                                        <span class="font-semibold text-gray-900">1 ha</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+
+                        {{-- Kolom Kanan: Orbitasi --}}
+                        <div>
+                             <h2 class="text-3xl font-bold tracking-tight text-gray-900 mb-6 text-center md:text-left">Orbitasi (Jarak dari Pusat)</h2>
+                             <div class="space-y-4">
+                                <!-- Data Item -->
+                                <div class="bg-white p-4 rounded-lg shadow-md hover:shadow-xl transition-shadow flex flex-col sm:flex-row sm:items-center sm:space-x-4">
+                                    <div class="bg-indigo-100 p-3 rounded-full text-indigo-600 self-start sm:self-center mb-3 sm:mb-0"><i data-lucide="map-pin"></i></div>
+                                    <div class="flex-grow">
+                                        <span class="text-gray-700 block">Jarak ke Ibu Kota Kecamatan</span>
+                                        <span class="font-semibold text-xl text-gray-900">0,5 KM</span>
+                                    </div>
+                                </div>
+                                <!-- Data Item -->
+                                <div class="bg-white p-4 rounded-lg shadow-md hover:shadow-xl transition-shadow flex flex-col sm:flex-row sm:items-center sm:space-x-4">
+                                    <div class="bg-teal-100 p-3 rounded-full text-teal-600 self-start sm:self-center mb-3 sm:mb-0"><i data-lucide="clock"></i></div>
+                                    <div class="flex-grow">
+                                        <span class="text-gray-700 block">Lama Tempuh ke Ibu Kota Kecamatan</span>
+                                        <span class="font-semibold text-xl text-gray-900">15 Menit</span>
+                                    </div>
+                                </div>
+                                <!-- Data Item -->
+                                <div class="bg-white p-4 rounded-lg shadow-md hover:shadow-xl transition-shadow flex flex-col sm:flex-row sm:items-center sm:space-x-4">
+                                    <div class="bg-indigo-100 p-3 rounded-full text-indigo-600 self-start sm:self-center mb-3 sm:mb-0"><i data-lucide="map-pin"></i></div>
+                                    <div class="flex-grow">
+                                        <span class="text-gray-700 block">Jarak ke Ibu Kota Kabupaten</span>
+                                        <span class="font-semibold text-xl text-gray-900">15 KM</span>
+                                    </div>
+                                </div>
+                                <!-- Data Item -->
+                                <div class="bg-white p-4 rounded-lg shadow-md hover:shadow-xl transition-shadow flex flex-col sm:flex-row sm:items-center sm:space-x-4">
+                                    <div class="bg-teal-100 p-3 rounded-full text-teal-600 self-start sm:self-center mb-3 sm:mb-0"><i data-lucide="clock"></i></div>
+                                    <div class="flex-grow">
+                                        <span class="text-gray-700 block">Lama Tempuh ke Ibu Kota Kabupaten</span>
+                                        <span class="font-semibold text-xl text-gray-900">1 Jam</span>
+                                    </div>
+                                </div>
+                             </div>
+                        </div>
+
                     </div>
                 </div>
+
             </div>
         </div>
     </main>
@@ -251,14 +285,12 @@
         document.addEventListener('DOMContentLoaded', (event) => {
             lucide.createIcons();
 
-            // Pengaturan untuk Intersection Observer
             const observerOptions = {
                 root: null,
                 rootMargin: '0px',
                 threshold: 0.1
             };
 
-            // Membuat observer baru
             const observer = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
