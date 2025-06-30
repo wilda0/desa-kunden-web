@@ -150,7 +150,7 @@
                 </div>
             </section>
 
-            <div class="container mx-auto px-6 lg:px-16 py-16 sm:py-24 space-y-24">
+            <div class="container mx-auto px-6 lg:px-16 py-14 sm:py-14 space-y-14">
 
                 <!-- Struktur Organisasi -->
                 <section class="reveal-on-scroll">

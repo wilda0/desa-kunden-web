@@ -40,6 +40,9 @@ Route::get('/kondisi-pemerintahan', fn() => view('kondisi-pemerintahan'))->name(
 // Data Jenis Kelamin
 Route::get('/data-jenis-kelamin', fn() => view('data-jenis-kelamin'))->name('data-jenis-kelamin');
 
+// Data Pendidikan
+Route::get('/data-pendidikan', fn() => view('data-pendidikan'))->name('data-pendidikan');
+
 // Berita Publik
 Route::get('/berita', [BeritaController::class, 'publik'])->name('berita.index');
 Route::get('/berita/{id}', [BeritaController::class, 'detail'])->name('berita.detail');

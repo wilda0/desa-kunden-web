@@ -142,7 +142,7 @@
                 </div>
             </section>
 
-            <div class="container mx-auto px-6 lg:px-16 py-16 sm:py-24 space-y-24">
+            <div class="container mx-auto px-6 lg:px-16 py-14 sm:py-14 space-y-14">
                 <!-- Asal Usul Desa Section -->
                 <section class="reveal-on-scroll grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16 items-center">
                     <div class="lg:col-span-3">

@@ -142,7 +142,7 @@
                 </div>
             </section>
 
-            <div class="container mx-auto px-6 lg:px-16 py-16 sm:py-24 space-y-16">
+            <div class="container mx-auto px-6 lg:px-16 py-14 sm:py-14 space-y-14">
 
                 <section class="reveal-on-scroll">
                     <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-xl border border-gray-100">

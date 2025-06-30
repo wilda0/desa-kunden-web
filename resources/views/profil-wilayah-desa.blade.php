@@ -131,7 +131,7 @@
                 </div>
             </section>
 
-            <div class="container mx-auto px-6 lg:px-16 py-16 sm:py-24">
+            <div class="container mx-auto px-6 lg:px-16 py-14 sm:py-14 space-y-14">
 
                 {{-- Bagian Peta dan Deskripsi --}}
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
