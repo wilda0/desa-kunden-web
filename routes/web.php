@@ -34,6 +34,12 @@ Route::get('/profil-wilayah', fn() => view('profil-wilayah-desa'))->name('profil
 // Sejarah Desa
 Route::get('/sejarah-desa', fn() => view('sejarah-desa'))->name('sejarah-desa');
 
+// Kondisi Pemerintahan
+Route::get('/kondisi-pemerintahan', fn() => view('kondisi-pemerintahan'))->name('kondisi-pemerintahan');
+
+// Data Jenis Kelamin
+Route::get('/data-jenis-kelamin', fn() => view('data-jenis-kelamin'))->name('data-jenis-kelamin');
+
 // Berita Publik
 Route::get('/berita', [BeritaController::class, 'publik'])->name('berita.index');
 Route::get('/berita/{id}', [BeritaController::class, 'detail'])->name('berita.detail');

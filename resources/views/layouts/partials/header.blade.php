@@ -22,7 +22,7 @@
                         Desa</a>
                     <a href="{{ route('profil-wilayah') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50">Profil Wilayah
                         Desa</a>
-                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50">Kondisi
+                    <a href="{{ route('kondisi-pemerintahan') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50">Kondisi
                         Pemerintahan</a>
                 </div>
             </div>
@@ -34,7 +34,7 @@
                 </button>
                 <div x-show="open" x-transition class="absolute mt-0 pt-2 w-48 bg-white rounded-md shadow-xl z-20"
                     style="display: none;">
-                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50">Data Jenis
+                    <a href="{{ route('data-jenis-kelamin') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50">Data Jenis
                         Kelamin</a>
                     <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50">Data
                         Pendidikan</a>
@@ -90,7 +90,7 @@
                     class="block py-2 px-4 text-xs hover:bg-gray-100">Sejarah Desa</a>
                 <a href="{{ route('profil-wilayah') }}" @click="mobileMenuOpen = false"
                     class="block py-2 px-4 text-xs hover:bg-gray-100">Profil Wilayah Desa</a>
-                <a href="#" @click="mobileMenuOpen = false"
+                <a href="{{ route('kondisi-pemerintahan') }}" @click="mobileMenuOpen = false"
                     class="block py-2 px-4 text-xs hover:bg-gray-100">Kondisi Pemerintahan</a>
             </div>
         </div>
@@ -101,7 +101,7 @@
                     :class="{ 'rotate-180': open }"></i>
             </button>
             <div x-show="open" class="pl-4">
-                <a href="#" @click="mobileMenuOpen = false"
+                <a href="{{ route('data-jenis-kelamin') }}" @click="mobileMenuOpen = false"
                     class="block py-2 px-4 text-xs hover:bg-gray-100">Data Jenis Kelamin</a>
                 <a href="#" @click="mobileMenuOpen = false"
                     class="block py-2 px-4 text-xs hover:bg-gray-100">Data Pendidikan</a>
