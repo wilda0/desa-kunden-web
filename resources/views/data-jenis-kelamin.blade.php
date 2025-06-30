@@ -144,7 +144,6 @@
 
             <div class="container mx-auto px-6 lg:px-16 py-16 sm:py-24 space-y-16">
 
-                <!-- BAGIAN BARU: Grafik Interaktif -->
                 <section class="reveal-on-scroll">
                     <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-xl border border-gray-100">
                         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6">
@@ -352,7 +351,7 @@
                 genderChart.destroy();
             }
 
-            let config = JSON.parse(JSON.stringify(commonConfig)); // Deep copy
+            let config = JSON.parse(JSON.stringify(commonConfig));
             config.type = type;
 
             if (type === 'bar') {
@@ -363,8 +362,8 @@
                     x: {}
                 };
                 config.options.plugins.legend.display = false;
-            } else { // pie atau doughnut
-                config.type = 'doughnut'; // Lebih modern dari pie
+            } else {
+                config.type = 'doughnut';
                 config.options.plugins.legend.display = true;
             }
 
@@ -378,7 +377,7 @@
 
         document.addEventListener('DOMContentLoaded', (event) => {
             lucide.createIcons();
-            createOrUpdateChart('pie'); // Tampilkan pie chart saat pertama kali dimuat
+            createOrUpdateChart('pie');
 
             const observerOptions = {
                 root: null,
