@@ -43,6 +43,9 @@ Route::get('/data-jenis-kelamin', fn() => view('data-jenis-kelamin'))->name('dat
 // Data Pendidikan
 Route::get('/data-pendidikan', fn() => view('data-pendidikan'))->name('data-pendidikan');
 
+// Data Kesehatan
+Route::get('/data-kesehatan', fn() => view('data-kesehatan'))->name('data-kesehatan');
+
 // Berita Publik
 Route::get('/berita', [BeritaController::class, 'publik'])->name('berita.index');
 Route::get('/berita/{id}', [BeritaController::class, 'detail'])->name('berita.detail');

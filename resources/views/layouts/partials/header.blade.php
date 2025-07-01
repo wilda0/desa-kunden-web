@@ -38,7 +38,7 @@
                         Kelamin</a>
                     <a href="{{ route('data-pendidikan') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50">Data
                         Pendidikan</a>
-                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50">Data
+                    <a href="{{ route('data-kesehatan') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50">Data
                         Kesehatan</a>
                     <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50">Data
                         Keagamaan</a>
@@ -105,7 +105,7 @@
                     class="block py-2 px-4 text-xs hover:bg-gray-100">Data Jenis Kelamin</a>
                 <a href="{{ route('data-pendidikan') }}" @click="mobileMenuOpen = false"
                     class="block py-2 px-4 text-xs hover:bg-gray-100">Data Pendidikan</a>
-                <a href="#" @click="mobileMenuOpen = false"
+                <a href="{{ route('data-kesehatan') }}" @click="mobileMenuOpen = false"
                     class="block py-2 px-4 text-xs hover:bg-gray-100">Data Kesehatan</a>
                 <a href="#" @click="mobileMenuOpen = false"
                     class="block py-2 px-4 text-xs hover:bg-gray-100">Data Keagamaan</a>
