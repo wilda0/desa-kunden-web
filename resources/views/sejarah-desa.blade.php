@@ -179,9 +179,9 @@
                     </div>
                 </section>
 
-                <!-- Sejarah Kepemimpinan Section - Tampilan Tabel Menarik -->
+                <!-- Sejarah Kepemimpinan Section -->
                 <section class="reveal-on-scroll">
-                    <div class="text-center mb-12">
+                    <div class="text-center mb-8">
                         <h2 class="text-3xl font-bold tracking-tight text-gray-900">Jejak Kepemimpinan Desa Kunden</h2>
                         <p class="mt-2 text-lg text-gray-600">Para pemimpin yang telah mengabdi dan membangun Desa
                             Kunden.</p>

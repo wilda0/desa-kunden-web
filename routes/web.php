@@ -46,6 +46,12 @@ Route::get('/data-pendidikan', fn() => view('data-pendidikan'))->name('data-pend
 // Data Kesehatan
 Route::get('/data-kesehatan', fn() => view('data-kesehatan'))->name('data-kesehatan');
 
+// Data Keagamaan
+Route::get('/data-keagamaan', fn() => view('data-keagamaan'))->name('data-keagamaan');
+
+// Data Ekonomi
+Route::get('/data-ekonomi', fn() => view('data-ekonomi'))->name('data-ekonomi');
+
 // Berita Publik
 Route::get('/berita', [BeritaController::class, 'publik'])->name('berita.index');
 Route::get('/berita/{id}', [BeritaController::class, 'detail'])->name('berita.detail');
