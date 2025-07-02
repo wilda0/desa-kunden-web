@@ -16,6 +16,16 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
 
+                    {{-- Link baru untuk Produk Hukum --}}
+                    <x-nav-link href="{{ route('admin.produk-hukum.index') }}" :active="request()->routeIs('admin.produk-hukum.*')">
+                        {{ __('Produk Hukum') }}
+                    </x-nav-link>
+
+                    {{-- Link baru untuk Informasi Publik --}}
+                    <x-nav-link href="{{ route('admin.informasi-publik.index') }}" :active="request()->routeIs('admin.informasi-publik.*')">
+                        {{ __('Informasi Publik') }}
+                    </x-nav-link>
+
                     {{-- Link baru untuk CRUD Dokumen --}}
                     <x-nav-link href="{{ route('admin.dokumen.index') }}" :active="request()->routeIs('admin.dokumen.*')">
                         {{ __('Dokumen') }}
@@ -39,16 +49,6 @@
                     {{-- Link baru untuk Aparatur --}}
                     <x-nav-link href="{{ route('admin.aparatur.index') }}" :active="request()->routeIs('admin.aparatur.*')">
                         {{ __('Aparatur') }}
-                    </x-nav-link>
-
-                    {{-- Link baru untuk Produk Hukum --}}
-                    <x-nav-link href="{{ route('admin.produk-hukum.index') }}" :active="request()->routeIs('admin.produk-hukum.*')">
-                        {{ __('Produk Hukum') }}
-                    </x-nav-link>
-
-                    {{-- Link baru untuk Informasi Publik --}}
-                    <x-nav-link href="{{ route('admin.informasi-publik.index') }}" :active="request()->routeIs('admin.informasi-publik.*')">
-                        {{ __('Informasi Publik') }}
                     </x-nav-link>
                 </div>
             </div>
@@ -135,6 +135,16 @@
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
 
+            {{-- Link baru untuk Produk Hukum (Mobile) --}}
+            <x-responsive-nav-link href="{{ route('admin.produk-hukum.index') }}" :active="request()->routeIs('admin.produk-hukum.*')">
+                {{ __('Produk Hukum') }}
+            </x-responsive-nav-link>
+
+            {{-- Link baru untuk Informasi Publik (Mobile) --}}
+            <x-responsive-nav-link href="{{ route('admin.informasi-publik.index') }}" :active="request()->routeIs('admin.informasi-publik.*')">
+                {{ __('Informasi Publik') }}
+            </x-responsive-nav-link>
+
             {{-- Link baru untuk CRUD Dokumen (Mobile) --}}
             <x-responsive-nav-link href="{{ route('admin.dokumen.index') }}" :active="request()->routeIs('admin.dokumen.*')">
                 {{ __('Dokumen') }}
@@ -158,16 +168,6 @@
             {{-- Link baru untuk Aparatur (Mobile) --}}
             <x-responsive-nav-link href="{{ route('admin.aparatur.index') }}" :active="request()->routeIs('admin.aparatur.*')">
                 {{ __('Aparatur') }}
-            </x-responsive-nav-link>
-
-            {{-- Link baru untuk Produk Hukum (Mobile) --}}
-            <x-responsive-nav-link href="{{ route('admin.produk-hukum.index') }}" :active="request()->routeIs('admin.produk-hukum.*')">
-                {{ __('Produk Hukum') }}
-            </x-responsive-nav-link>
-
-            {{-- Link baru untuk Informasi Publik (Mobile) --}}
-            <x-responsive-nav-link href="{{ route('admin.informasi-publik.index') }}" :active="request()->routeIs('admin.informasi-publik.*')">
-                {{ __('Informasi Publik') }}
             </x-responsive-nav-link>
         </div>
 
