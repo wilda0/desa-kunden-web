@@ -248,46 +248,60 @@
             </div>
         </section>
 
+        @php
+            use App\Models\Berita;
+            $beritaPengumuman = Berita::where('jenis', 'Pengumuman Desa')->latest()->take(3)->get();
+            $beritaPembangunan = Berita::where('jenis', 'Pembangunan Desa')->latest()->take(3)->get();
+        @endphp
+
         <!-- Pengumuman & Progress Section -->
         <section class="py-16 bg-gray-50 reveal-on-scroll">
             <div class="container mx-auto px-16 grid grid-cols-1 md:grid-cols-2 gap-12">
                 <div>
                     <h2 class="text-3xl font-bold mb-6 text-center md:text-left">Pengumuman Desa</h2>
                     <div class="space-y-4">
-                        <div class="bg-white p-4 rounded-lg shadow-sm flex items-center space-x-4">
-                            <div class="bg-blue-100 p-3 rounded-full text-blue-500"><i data-lucide="megaphone"></i>
-                            </div>
-                            <div>
-                                <p class="font-semibold">Pedagang Mie Ayam Mas Aris di Dusun Sumber Agung</p>
-                                <span class="text-xs text-gray-500">13 Agustus 2024</span>
-                            </div>
-                        </div>
-                        <div class="bg-white p-4 rounded-lg shadow-sm flex items-center space-x-4">
-                            <div class="bg-blue-100 p-3 rounded-full text-blue-500"><i data-lucide="megaphone"></i>
-                            </div>
-                            <div>
-                                <p class="font-semibold">Informasi Jadwal Posyandu Bulan Ini</p>
-                                <span class="text-xs text-gray-500">10 Agustus 2024</span>
-                            </div>
-                        </div>
+                        @forelse ($beritaPengumuman as $item)
+                            <a href="{{ route('berita.detail', $item->id) }}" class="block h-full group">
+                                <div class="bg-white p-4 rounded-lg shadow-sm flex items-center space-x-4">
+                                    <div class="bg-blue-100 p-3 rounded-full text-blue-500">
+                                        <i data-lucide="megaphone"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-semibold">{{ $item->nama_berita }}</p>
+                                        <span class="text-xs text-gray-500">{{ \Carbon\Carbon::parse($item->tanggal)->isoFormat('D MMMM Y') }}</span>
+                                    </div>
+                                </div>
+                            </a>
+                        @empty
+                            <p class="text-gray-500">Belum ada pengumuman desa.</p>
+                        @endforelse
                     </div>
                 </div>
                 <div>
-                    <h2 class="text-3xl font-bold mb-6 text-center md:text-left">Progres Pembangunan</h2>
-                    <div class="bg-white p-4 rounded-lg shadow-sm">
-                        <p class="font-semibold mb-2">Pembangunan Jalan Usaha Tani</p>
-                        <div class="w-full bg-gray-200 rounded-full h-4 mb-1">
-                            <div class="bg-green-500 h-4 rounded-full" style="width: 75%"></div>
-                        </div>
-                        <p class="text-sm text-right text-gray-600">75% Selesai</p>
+                    <h2 class="text-3xl font-bold mb-6 text-center md:text-left">Progress Pembangunan Desa</h2>
+                    <div class="space-y-4">
+                        @forelse ($beritaPembangunan as $item)
+                            <a href="{{ route('berita.detail', $item->id) }}" class="block h-full group">
+                                <div class="bg-white p-4 rounded-lg shadow-sm flex items-center space-x-4">
+                                    <div class="bg-blue-100 p-3 rounded-full text-blue-500">
+                                        <i data-lucide="pickaxe"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-semibold">{{ $item->nama_berita }}</p>
+                                        <span class="text-xs text-gray-500">{{ \Carbon\Carbon::parse($item->tanggal)->isoFormat('D MMMM Y') }}</span>
+                                    </div>
+                                </div>
+                            </a>
+                        @empty
+                            <p class="text-gray-500">Belum ada progress pembangunan desa.</p>
+                        @endforelse
                     </div>
                 </div>
             </div>
         </section>
 
         @php
-            use App\Models\Berita;
-            $beritaTerbaru = Berita::latest()->take(8)->get();
+            $beritaTerbaru = Berita::where('jenis', 'Berita Desa')->latest()->take(8)->get();
         @endphp
 
         <!-- Berita Section -->
@@ -319,6 +333,9 @@
                                                 title="{{ $berita->nama_berita }}">
                                                 {{ \Illuminate\Support\Str::limit($berita->nama_berita, 50) }}
                                             </h3>
+                                            <div class="text-xs font-semibold text-blue-600 mb-2 uppercase">
+                                                {{ $berita->jenis }}
+                                            </div>
                                             <p class="text-gray-600 text-sm mb-4 line-clamp-2 flex-grow">
                                                 {{ Str::limit($berita->deskripsi, 80) }}
                                             </p>

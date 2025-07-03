@@ -24,6 +24,7 @@
             position: relative;
             padding-bottom: 0.5rem;
         }
+
         .nav-link::after {
             content: '';
             position: absolute;
@@ -36,6 +37,7 @@
             transform-origin: bottom right;
             transition: transform 0.3s ease-out;
         }
+
         .nav-link:hover::after {
             transform: scaleX(1);
             transform-origin: bottom left;
@@ -59,7 +61,8 @@
                     <span class="text-gray-700">Berita Desa</span>
                 </nav>
                 <h1 class="text-4xl font-bold text-gray-800">Berita Desa</h1>
-                <p class="text-gray-500 mt-2">Menyajikan informasi terbaru tentang peristiwa, berita terkini, dan artikel-artikel jurnalistik dari Desa Kunden.</p>
+                <p class="text-gray-500 mt-2">Menyajikan informasi terbaru tentang peristiwa, berita terkini, dan
+                    artikel-artikel jurnalistik dari Desa Kunden.</p>
             </div>
 
             @php use Illuminate\Support\Str; @endphp
@@ -67,14 +70,19 @@
                 @foreach ($beritas as $berita)
                     <div class="bg-white rounded-lg shadow-md overflow-hidden group">
                         <a href="{{ route('berita.detail', $berita->id) }}">
-                            <img src="{{ Storage::url($berita->foto) }}" alt="{{ $berita->nama_berita }}" class="w-full h-48 object-cover group-hover:opacity-80 transition-opacity">
+                            <img src="{{ Storage::url($berita->foto) }}" alt="{{ $berita->nama_berita }}"
+                                class="w-full h-48 object-cover group-hover:opacity-80 transition-opacity">
                         </a>
                         <div class="p-5">
                             <h3 class="font-bold text-xl mb-2">
-                                <a href="{{ route('berita.detail', $berita->id) }}" class="hover:text-blue-600 transition-colors">
+                                <a href="{{ route('berita.detail', $berita->id) }}"
+                                    class="hover:text-blue-600 transition-colors">
                                     {{ $berita->nama_berita }}
                                 </a>
                             </h3>
+                            <div class="text-xs font-semibold text-blue-600 mb-2 uppercase">
+                                {{ $berita->jenis }}
+                            </div>
                             <p class="text-gray-600 text-sm mb-4 line-clamp-3">
                                 {{ Str::limit($berita->deskripsi, 150) }}
                             </p>

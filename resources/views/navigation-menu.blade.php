@@ -36,9 +36,9 @@
                         {{ __('Permohonan Informasi') }}
                     </x-nav-link>
 
-                    {{-- Link baru untuk Berita Desa --}}
+                    {{-- Link baru untuk Artikel --}}
                     <x-nav-link href="{{ route('admin.berita.index') }}" :active="request()->routeIs('admin.berita.*')">
-                        {{ __('Berita Desa') }}
+                        {{ __('Artikel') }}
                     </x-nav-link>
 
                     {{-- Link baru untuk Galeri Desa --}}
@@ -155,9 +155,9 @@
                 {{ __('Permohonan Informasi') }}
             </x-responsive-nav-link>
 
-            {{-- Link baru untuk Berita Desa (Mobile) --}}
+            {{-- Link baru untuk Artikel (Mobile) --}}
             <x-responsive-nav-link href="{{ route('admin.berita.index') }}" :active="request()->routeIs('admin.berita.*')">
-                {{ __('Berita Desa') }}
+                {{ __('Artikel') }}
             </x-responsive-nav-link>
 
             {{-- Link baru untuk Galeri Desa (Mobile) --}}

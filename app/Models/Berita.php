@@ -8,12 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Berita extends Model
 {
     use HasFactory;
-
     protected $fillable = [
         'nama_berita',
         'deskripsi',
         'tanggal',
         'foto',
+        'jenis',
     ];
 
     public function komentars()

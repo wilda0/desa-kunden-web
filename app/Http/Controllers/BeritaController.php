@@ -34,6 +34,7 @@ class BeritaController extends Controller
         $validated = $request->validate([
             'nama_berita' => 'required|string|max:255',
             'tanggal' => 'required|date',
+            'jenis' => 'required|string|in:Berita Desa,Pengumuman Desa,Pembangunan Desa,Kegiatan Desa',
             'deskripsi' => 'required|string',
             'foto' => 'required|image|max:2048',
         ]);
@@ -117,4 +118,14 @@ class BeritaController extends Controller
 
         return back()->with('success', 'Komentar Anda berhasil dikirim!');
     }
+
+    public function welcome()
+    {
+        $beritaDesa = Berita::where('jenis', 'Berita Desa')->latest()->limit(6)->get();
+        $pengumumanDesa = Berita::where('jenis', 'Pengumuman Desa')->latest()->limit(6)->get();
+        $pembangunanDesa = Berita::where('jenis', 'Pembangunan Desa')->latest()->limit(6)->get();
+
+        return view('welcome', compact('beritaDesa', 'pengumumanDesa'));
+    }
+
 }
