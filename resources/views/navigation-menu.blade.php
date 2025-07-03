@@ -50,6 +50,11 @@
                     <x-nav-link href="{{ route('admin.aparatur.index') }}" :active="request()->routeIs('admin.aparatur.*')">
                         {{ __('Aparatur') }}
                     </x-nav-link>
+
+                    {{-- Link baru untuk UMKM --}}
+                    <x-nav-link href="{{ route('admin.produk-umkm.index') }}" :active="request()->routeIs('admin.produk-umkm.*')">
+                        {{ __('Produk UMKM') }}
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -168,6 +173,11 @@
             {{-- Link baru untuk Aparatur (Mobile) --}}
             <x-responsive-nav-link href="{{ route('admin.aparatur.index') }}" :active="request()->routeIs('admin.aparatur.*')">
                 {{ __('Aparatur') }}
+            </x-responsive-nav-link>
+
+            {{-- Link baru untuk UMKM (Mobile) --}}
+            <x-responsive-nav-link href="{{ route('admin.produk-umkm.index') }}" :active="request()->routeIs('admin.produk-umkm.*')">
+                {{ __('Produk UMKM') }}
             </x-responsive-nav-link>
         </div>
 

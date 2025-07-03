@@ -8,6 +8,7 @@ use App\Http\Controllers\GaleriController;
 use App\Http\Controllers\AparaturController;
 use App\Http\Controllers\ProdukHukumController;
 use App\Http\Controllers\InformasiPublikController;
+use App\Http\Controllers\ProdukUmkmController;
 use App\Models\Berita;
 use App\Models\Aparatur;
 
@@ -77,6 +78,11 @@ Route::get('/produk-hukum', [ProdukHukumController::class, 'publik'])->name('pro
 // Informasi Publik
 Route::get('/informasi-publik', [InformasiPublikController::class, 'publik'])->name('informasi-publik.index');
 
+// Produk UMKM
+Route::get('/produk-umkm', [ProdukUmkmController::class, 'publik'])->name('produk-umkm.index');
+Route::get('/produk-umkm/{produkUmkm}', [ProdukUmkmController::class, 'showPublik'])->name('produk-umkm.show');
+Route::post('/produk-umkm/{id}/komentar', [ProdukUmkmController::class, 'simpanKomentar'])->name('produk-umkm.komentar.store');
+
 /*
 |--------------------------------------------------------------------------
 | HALAMAN ADMIN
@@ -110,4 +116,7 @@ Route::middleware([
 
     // Informasi Publik
     Route::resource('/admin/informasi-publik', InformasiPublikController::class)->names('admin.informasi-publik');
+
+    // Produk UMKM
+    Route::resource('/admin/produk-umkm', ProdukUmkmController::class)->names('admin.produk-umkm');
 });

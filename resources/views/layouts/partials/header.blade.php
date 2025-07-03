@@ -65,6 +65,7 @@
             <a href="{{ route('dokumen.index') }}" class="text-gray-600 hover:text-blue-600 nav-link">Dokumen Desa</a>
             <a href="{{ route('galeri.index') }}" class="text-gray-600 hover:text-blue-600 nav-link">Galeri</a>
             <a href="{{ route('berita.index') }}" class="text-gray-600 hover:text-blue-600 nav-link">Berita</a>
+            <a href="{{ route('produk-umkm.index') }}" class="text-gray-600 hover:text-blue-600 nav-link">Belanja</a>
         </div>
 
         <!-- Mobile Menu Button -->
@@ -132,5 +133,7 @@
             class="block py-2 px-4 text-sm hover:bg-gray-200">Galeri</a>
         <a href="{{ route('berita.index') }}" @click="mobileMenuOpen = false"
             class="block py-2 px-4 text-sm hover:bg-gray-200">Berita</a>
+        <a href="{{ route('produk-umkm.index') }}" @click="mobileMenuOpen = false"
+            class="block py-2 px-4 text-sm hover:bg-gray-200">Belanja</a>
     </div>
 </header>
