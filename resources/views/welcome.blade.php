@@ -379,25 +379,36 @@
             </div>
         </section>
 
+        <!-- Berita Section -->
         @php
             use App\Models\Galeri;
             $galeriTerbaru = Galeri::latest()->take(4)->get();
         @endphp
-        <section id="galeri" class="py-16 bg-gray-50 reveal-on-scroll">
+        <section id="galeri" class="py-16 bg-gray-50">
             <div class="container mx-auto px-6 lg:px-16">
                 <h2 class="text-3xl font-bold mb-8 text-center">Galeri Desa</h2>
+
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                     @forelse ($galeriTerbaru as $item)
-                        <img src="{{ Storage::url($item->gambar) }}"
-                            class="rounded-lg shadow-md w-full h-full object-cover aspect-square hover:scale-105 transition-transform duration-300"
-                            alt="{{ $item->judul }}">
+                        <div class="group relative block w-full rounded-lg shadow-md overflow-hidden aspect-square">
+                            <img src="{{ Storage::url($item->gambar) }}"
+                                class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                                alt="{{ $item->judul }}">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                            <div class="absolute bottom-0 left-0 w-full p-3">
+                                <h3 class="text-white font-semibold text-lg truncate" title="{{ $item->judul }}">
+                                    {{ $item->judul }}
+                                </h3>
+                            </div>
+                        </div>
                     @empty
-                        <p class="col-span-4 text-center text-gray-500">Belum ada foto galeri tersedia.</p>
+                        <p class="col-span-full text-center text-gray-500 py-8">Belum ada foto galeri tersedia.</p>
                     @endforelse
                 </div>
+
                 <div class="text-center mt-8">
                     <a href="{{ route('galeri.index') }}"
-                        class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full transition duration-300">
+                       class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full transition duration-300 inline-block">
                         Lihat Semua Galeri
                     </a>
                 </div>

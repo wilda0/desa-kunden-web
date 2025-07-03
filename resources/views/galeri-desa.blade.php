@@ -26,6 +26,7 @@
             position: relative;
             padding-bottom: 0.5rem;
         }
+
         .nav-link::after {
             content: '';
             position: absolute;
@@ -38,16 +39,34 @@
             transform-origin: bottom right;
             transition: transform 0.3s ease-out;
         }
+
         .nav-link:hover::after {
             transform: scaleX(1);
             transform-origin: bottom left;
         }
+
         /* Styling untuk filmstrip di lightbox */
-        .filmstrip::-webkit-scrollbar { height: 8px; }
-        .filmstrip::-webkit-scrollbar-track { background: #444; border-radius: 4px; }
-        .filmstrip::-webkit-scrollbar-thumb { background: #888; border-radius: 4px; }
-        .filmstrip::-webkit-scrollbar-thumb:hover { background: #bbb; }
-        [x-cloak] { display: none !important; }
+        .filmstrip::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .filmstrip::-webkit-scrollbar-track {
+            background: #444;
+            border-radius: 4px;
+        }
+
+        .filmstrip::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+        }
+
+        .filmstrip::-webkit-scrollbar-thumb:hover {
+            background: #bbb;
+        }
+
+        [x-cloak] {
+            display: none !important;
+        }
     </style>
 </head>
 
@@ -63,7 +82,8 @@
     <main x-data="{
         showModal: false,
         currentIndex: 0,
-        images: {{ json_encode($galleryItems->map(fn($item) => ['src' => Storage::url($item->gambar), 'title' => $item->judul])) }},
+        // PERBAIKAN: ->values() dipanggil sebelum json_encode()
+        images: {{ json_encode($galleryItems->map(fn($item) => ['src' => Storage::url($item->gambar), 'title' => $item->judul])->values()) }},
         openModal(index) {
             this.currentIndex = index;
             this.showModal = true;
@@ -97,18 +117,24 @@
                     <span class="text-gray-700">Galeri Desa</span>
                 </nav>
                 <h1 class="text-4xl font-bold text-gray-800">Galeri Desa</h1>
-                <p class="text-gray-500 mt-2">Menampilkan kegiatan-kegiatan yang berlangsung di desa.</p>
+                <p class="text-gray-500 mt-2">Menampilkan dokumentasi gambar yang ada di desa.</p>
             </div>
 
             <!-- Photo Grid -->
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                 @forelse ($galleryItems as $index => $item)
-                    <div>
-                        <img @click="openModal({{ $index }})" src="{{ Storage::url($item->gambar) }}" alt="{{ $item->judul }}"
-                            class="w-full h-full object-cover rounded-lg shadow-md aspect-square cursor-pointer transition-transform duration-300 hover:scale-105">
+                    <div @click="openModal({{ $index }})"
+                        class="group relative block w-full rounded-lg shadow-md overflow-hidden cursor-pointer aspect-square">
+                        <img src="{{ Storage::url($item->gambar) }}" alt="{{ $item->judul }}"
+                            class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 w-full p-3">
+                            <h3 class="text-white font-semibold text-lg truncate" title="{{ $item->judul }}">
+                                {{ $item->judul }}</h3>
+                        </div>
                     </div>
                 @empty
-                    <p class="col-span-full text-gray-500">Belum ada gambar galeri.</p>
+                    <p class="col-span-full text-gray-500 text-center py-8">Belum ada gambar galeri.</p>
                 @endforelse
             </div>
 
@@ -119,29 +145,34 @@
         </div>
 
         <!-- Lightbox Modal -->
-        <div x-show="showModal"
-             x-transition
-             @keydown.escape.window="closeModal()"
-             @keydown.arrow-right.window="nextImage()"
-             @keydown.arrow-left.window="prevImage()"
-             class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black bg-opacity-90"
-             x-cloak>
+        <div x-show="showModal" x-transition @keydown.escape.window="closeModal()"
+            @keydown.arrow-right.window="nextImage()" @keydown.arrow-left.window="prevImage()"
+            class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black bg-opacity-90" x-cloak>
 
             <!-- Top Bar -->
             <div class="w-full flex justify-between items-center p-4 text-white absolute top-0 left-0 z-10">
-                <span x-text="`${currentIndex + 1} / ${images.length}`" class="text-lg font-mono"></span>
+                <span x-text="images[currentIndex]?.title" class="text-lg font-semibold"></span>
                 <button @click="closeModal()" class="text-white hover:opacity-75 text-3xl">&times;</button>
             </div>
 
             <!-- Main Image and Navigation -->
             <div class="flex items-center justify-center h-full w-full">
-                <button @click.stop="prevImage()" class="absolute left-4 p-2 text-white bg-black/30 rounded-full hover:bg-black/50 transition-colors z-10">
+                <button @click.stop="prevImage()"
+                    class="absolute left-4 p-2 text-white bg-black/30 rounded-full hover:bg-black/50 transition-colors z-10">
                     <i data-lucide="chevron-left" class="w-8 h-8"></i>
                 </button>
 
-                <img :src="images[currentIndex]?.src" class="object-contain max-h-[70vh] max-w-[90vw] shadow-lg rounded-md">
+                <div class="relative flex flex-col items-center justify-center text-center">
+                    <img :src="images[currentIndex]?.src"
+                        class="object-contain max-h-[70vh] max-w-[90vw] shadow-lg rounded-md">
+                    <div class="mt-4">
+                        <p x-text="`${currentIndex + 1} / ${images.length}`" class="text-white/70 font-mono text-sm">
+                        </p>
+                    </div>
+                </div>
 
-                <button @click.stop="nextImage()" class="absolute right-4 p-2 text-white bg-black/30 rounded-full hover:bg-black/50 transition-colors z-10">
+                <button @click.stop="nextImage()"
+                    class="absolute right-4 p-2 text-white bg-black/30 rounded-full hover:bg-black/50 transition-colors z-10">
                     <i data-lucide="chevron-right" class="w-8 h-8"></i>
                 </button>
             </div>
@@ -150,10 +181,11 @@
             <div class="absolute bottom-0 left-0 w-full p-4 overflow-hidden">
                 <div x-ref="filmstrip" class="flex justify-center space-x-2 overflow-x-auto filmstrip pb-2">
                     <template x-for="(image, index) in images" :key="index">
-                        <img @click="currentIndex = index"
-                            :src="image.src"
+                        <img @click="currentIndex = index" :src="image.src"
                             class="w-20 h-14 object-cover rounded-md cursor-pointer transition-opacity"
-                            :class="{ 'border-2 border-white opacity-100': currentIndex === index, 'opacity-50 hover:opacity-100': currentIndex !== index, 'active-thumbnail': currentIndex === index }">
+                            :class="{ 'border-2 border-white opacity-100': currentIndex ===
+                                index, 'opacity-50 hover:opacity-100': currentIndex !==
+                                index, 'active-thumbnail': currentIndex === index }">
                     </template>
                 </div>
             </div>
@@ -166,4 +198,5 @@
         lucide.createIcons();
     </script>
 </body>
+
 </html>
