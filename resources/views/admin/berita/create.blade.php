@@ -33,7 +33,7 @@
                             <div>
                                 <x-label for="nama_berita" value="{{ __('Nama Artikel') }}" />
                                 <x-input id="nama_berita" class="block mt-1 w-full" type="text" name="nama_berita"
-                                    :value="old('nama_berita')" required autofocus placeholder="Masukkan Nama Berita" />
+                                    :value="old('nama_berita')" required autofocus placeholder="Masukkan Nama Artikel" />
                             </div>
 
                             <!-- Tanggal -->
@@ -48,7 +48,7 @@
                                 <x-label for="jenis" value="{{ __('Jenis Artikel') }}" />
                                 <select name="jenis" id="jenis"
                                     class="block mt-1 w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm">
-                                    <option disabled selected>Pilih Jenis Dokumen</option>
+                                    <option disabled selected>Pilih Jenis Artikel</option>
                                     <option value="Berita Desa"
                                         {{ old('jenis', $berita->jenis ?? '') == 'Berita Desa' ? 'selected' : '' }}>
                                         Berita Desa</option>

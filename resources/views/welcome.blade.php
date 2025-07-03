@@ -179,7 +179,7 @@
         <section id="info-cards" class="py-16 bg-white reveal-on-scroll">
             <div class="container mx-auto px-16">
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <a href="#" class="block rounded-lg transition-shadow hover:shadow-lg">
+                    <a href="{{ route('profil-wilayah') }}" class="block rounded-lg transition-shadow hover:shadow-lg">
                         <div class="flex items-start space-x-4 p-6 border border-gray-200 rounded-lg h-full">
                             <div class="bg-blue-100 text-blue-600 p-3 rounded-full flex-shrink-0"><i
                                     data-lucide="user-circle"></i></div>
@@ -190,7 +190,7 @@
                             </div>
                         </div>
                     </a>
-                    <a href="#" class="block rounded-lg transition-shadow hover:shadow-lg">
+                    <a href="{{ route('data-jenis-kelamin') }}" class="block rounded-lg transition-shadow hover:shadow-lg">
                         <div class="flex items-start space-x-4 p-6 border border-gray-200 rounded-lg h-full">
                             <div class="bg-green-100 text-green-600 p-3 rounded-full flex-shrink-0"><i
                                     data-lucide="database"></i></div>
@@ -201,7 +201,7 @@
                             </div>
                         </div>
                     </a>
-                    <a href="#" class="block rounded-lg transition-shadow hover:shadow-lg">
+                    <a href="{{ route('produk-hukum.index') }}" class="block rounded-lg transition-shadow hover:shadow-lg">
                         <div class="flex items-start space-x-4 p-6 border border-gray-200 rounded-lg h-full">
                             <div class="bg-yellow-100 text-yellow-600 p-3 rounded-full flex-shrink-0"><i
                                     data-lucide="gavel"></i></div>
@@ -301,8 +301,9 @@
         </section>
 
         @php
-            $beritaTerbaru = Berita::where('jenis', 'Berita Desa')->latest()->take(8)->get();
+            $beritaTerbaru = Berita::latest()->take(8)->get();
         @endphp
+
 
         <!-- Berita Section -->
         <section id="berita" class="py-16 bg-white reveal-on-scroll" x-data="slider()">

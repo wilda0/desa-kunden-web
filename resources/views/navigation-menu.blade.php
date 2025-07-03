@@ -16,6 +16,11 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
 
+                    {{-- Link baru untuk Artikel --}}
+                    <x-nav-link href="{{ route('admin.berita.index') }}" :active="request()->routeIs('admin.berita.*')">
+                        {{ __('Artikel') }}
+                    </x-nav-link>
+
                     {{-- Link baru untuk Produk Hukum --}}
                     <x-nav-link href="{{ route('admin.produk-hukum.index') }}" :active="request()->routeIs('admin.produk-hukum.*')">
                         {{ __('Produk Hukum') }}
@@ -34,11 +39,6 @@
                     {{-- Link baru untuk Permohonan Informasi --}}
                     <x-nav-link href="{{ route('admin.permohonan.index') }}" :active="request()->routeIs('admin.permohonan.*')">
                         {{ __('Permohonan Informasi') }}
-                    </x-nav-link>
-
-                    {{-- Link baru untuk Artikel --}}
-                    <x-nav-link href="{{ route('admin.berita.index') }}" :active="request()->routeIs('admin.berita.*')">
-                        {{ __('Artikel') }}
                     </x-nav-link>
 
                     {{-- Link baru untuk Galeri Desa --}}
@@ -135,6 +135,11 @@
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
 
+            {{-- Link baru untuk Artikel (Mobile) --}}
+            <x-responsive-nav-link href="{{ route('admin.berita.index') }}" :active="request()->routeIs('admin.berita.*')">
+                {{ __('Artikel') }}
+            </x-responsive-nav-link>
+
             {{-- Link baru untuk Produk Hukum (Mobile) --}}
             <x-responsive-nav-link href="{{ route('admin.produk-hukum.index') }}" :active="request()->routeIs('admin.produk-hukum.*')">
                 {{ __('Produk Hukum') }}
@@ -153,11 +158,6 @@
             {{-- Link baru untuk Permohonan (Mobile) --}}
             <x-responsive-nav-link href="{{ route('admin.permohonan.index') }}" :active="request()->routeIs('admin.permohonan.*')">
                 {{ __('Permohonan Informasi') }}
-            </x-responsive-nav-link>
-
-            {{-- Link baru untuk Artikel (Mobile) --}}
-            <x-responsive-nav-link href="{{ route('admin.berita.index') }}" :active="request()->routeIs('admin.berita.*')">
-                {{ __('Artikel') }}
             </x-responsive-nav-link>
 
             {{-- Link baru untuk Galeri Desa (Mobile) --}}
