@@ -145,20 +145,35 @@
                 </div>
 
                 <!-- Sidebar -->
+                @php
+                    use App\Models\Berita;
+                    $latestBeritas = Berita::latest()->take(6)->get();
+                @endphp
+
                 <aside class="lg:col-span-1 mt-12 lg:mt-0">
                     <div class="sticky top-24">
                         <div class="bg-white p-6 rounded-lg shadow-md">
-                            <h3 class="text-xl font-bold border-b pb-3 mb-4">Berita Terbaru</h3>
+                            <h3 class="text-xl font-bold border-b pb-3 mb-4">Artikel Terbaru</h3>
                             <div class="space-y-4">
-                                {{-- Loop untuk berita terbaru --}}
+                                {{-- Loop untuk Artikel terbaru --}}
                                 @foreach ($latestBeritas as $item)
-                                <a href="{{ route('berita.detail', $item) }}" class="flex items-center space-x-3 group">
-                                    <img src="{{ Storage::url($item->foto) }}" alt="{{ $item->nama_berita }}" class="w-20 h-20 object-cover rounded-md flex-shrink-0">
-                                    <div>
-                                        <h4 class="font-semibold text-gray-800 group-hover:text-blue-600 transition-colors line-clamp-2">{{ $item->nama_berita }}</h4>
-                                        <p class="text-xs text-gray-500 mt-1">{{ \Carbon\Carbon::parse($item->tanggal)->isoFormat('D MMM Y') }}</p>
-                                    </div>
-                                </a>
+                                    @if ($item->id === $berita->id)
+                                        @continue
+                                    @endif
+                                    <a href="{{ route('berita.detail', $item) }}" class="flex items-center space-x-3 group">
+                                        <img src="{{ Storage::url($item->foto) }}" alt="{{ $item->nama_berita }}" class="w-20 h-20 object-cover rounded-md flex-shrink-0">
+                                        <div>
+                                            <h4 class="font-semibold text-gray-800 group-hover:text-blue-600 transition-colors line-clamp-2" title="{{ $item->nama_berita }}">
+                                                {{ $item->nama_berita }}
+                                            </h4>
+                                            <div class="text-xs font-semibold text-blue-600 mb-2 uppercase">
+                                                {{ $item->jenis }}
+                                            </div>
+                                            <p class="text-xs text-gray-500 mt-1">
+                                                {{ \Carbon\Carbon::parse($item->tanggal)->isoFormat('D MMM Y') }}
+                                            </p>
+                                        </div>
+                                    </a>
                                 @endforeach
                             </div>
                         </div>
