@@ -87,6 +87,30 @@
                             {!! nl2br(e($berita->deskripsi)) !!}
                         </div>
 
+                        @if ($berita->id == 15)
+                            <div class="mt-12 space-y-6">
+                                <h3 class="text-xl font-bold text-gray-800">Produk UMKM Terkait</h3>
+                                @foreach ($produkUmkms as $produk)
+                                    <div class="flex items-start border p-4 rounded-md shadow-sm bg-white">
+                                        <img src="{{ asset('storage/' . $produk->foto) }}" alt="{{ $produk->nama_produk }}" class="w-24 h-24 object-cover rounded mr-4">
+
+                                        <div class="flex-1">
+                                            <h4 class="text-lg font-semibold">{{ $produk->nama_produk }}</h4>
+                                            <p class="text-sm text-gray-600 mb-1">{{ $produk->format_harga }}</p>
+                                            <p class="text-sm text-gray-700">{{ $produk->deskripsi }}</p>
+
+                                            @if ($produk->nomor_wa)
+                                                <a href="https://wa.me/{{ $produk->nomor_wa }}" target="_blank"
+                                                class="inline-block mt-2 px-3 py-1 bg-green-500 text-white text-xs font-semibold rounded hover:bg-green-700">
+                                                    Hubungi Penjual
+                                                </a>
+                                            @endif
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        @endif
+
                         <!-- Show & Form Komentar -->
                         @if($komentars->count())
                         <div class="mt-12">

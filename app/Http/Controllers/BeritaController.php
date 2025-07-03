@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Berita;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Komentar;
+use App\Models\ProdukUmkm;
 
 class BeritaController extends Controller
 {
@@ -100,8 +101,9 @@ class BeritaController extends Controller
         $berita->increment('views');
         $latestBeritas = Berita::where('id', '!=', $id)->latest()->limit(5)->get();
         $komentars = Komentar::where('berita_id', $id)->latest()->get();
+        $produkUmkms = $berita->id == 15 ? ProdukUmkm::oldest()->get() : collect();
 
-        return view('berita-detail', compact('berita', 'latestBeritas', 'komentars'));
+        return view('berita-detail', compact('berita', 'latestBeritas', 'komentars', 'produkUmkms'));
     }
 
     public function simpanKomentar(Request $request, $id)
