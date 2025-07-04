@@ -33,22 +33,22 @@
             </div>
 
             <div class="flex items-center justify-between mt-4">
-                @if (Route::has('register'))
+                {{-- @if (Route::has('register'))
                     <a href="{{ route('register') }}"
                         class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">
                         {{ __('Register') }}
                     </a>
-                @endif
+                @endif --}}
 
-                <div class="flex items-center">
-                    @if (Route::has('password.request'))
+                <div class="w-full flex justify-center">
+                    {{-- @if (Route::has('password.request'))
                         <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('password.request') }}">
                             {{ __('Forgot your password?') }}
                         </a>
-                    @endif
+                    @endif --}}
 
-                    <x-button class="ms-4">
-                        {{ __('Log in') }}
+                    <x-button class="w-1/2 items-center justify-center">
+                        {{ __('Login') }}
                     </x-button>
                 </div>
             </div>

@@ -42,8 +42,11 @@
                                 <a href="{{ url('/dashboard') }}"
                                     class="text-gray-300 hover:text-white hover:underline transition">Dashboard</a>
                             @else
-                                <a href="{{ route('login') }}"
-                                    class="text-gray-300 hover:text-white hover:underline transition">Log in</a>
+                            <a href="{{ route('login') }}"
+                            class="flex items-center text-gray-300 hover:text-white hover:underline transition">
+                                <i data-lucide="user-round" class="w-4 h-4 mr-2"></i>
+                                Login Admin
+                         </a>
                             @endauth
                         </div>
                     </div>

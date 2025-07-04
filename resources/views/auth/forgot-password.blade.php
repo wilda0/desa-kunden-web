@@ -1,11 +1,11 @@
 <x-guest-layout>
     <x-authentication-card>
         <x-slot name="logo">
-            <x-authentication-card-logo />
+            <img src="{{ asset('images/logo-kunden.png') }}" alt="Logo Desa Kunden" class="h-10 w-auto">
         </x-slot>
 
-        <div class="mb-4 text-sm text-gray-600 dark:text-gray-400">
-            {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
+        <div class="mb-4 text-sm text-gray-600 dark:text-gray-400 text-center">
+            {{ __('Lupa kata sandi? Masukkan email Anda, dan kami akan mengirimkan link untuk mengatur ulang kata sandi.') }}
         </div>
 
         @session('status')
