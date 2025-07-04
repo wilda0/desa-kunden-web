@@ -64,11 +64,10 @@
                                 </select>
                             </div>
 
-                            <!-- Deskripsi -->
+                            <!-- Deskripsi CKEditor 5 -->
                             <div>
                                 <x-label for="deskripsi" value="{{ __('Deskripsi') }}" />
-                                <textarea id="deskripsi" name="deskripsi" required placeholder="Masukkan Deskripsi" rows="8"
-                                    class="block mt-1 w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm">{{ old('deskripsi') }}</textarea>
+                                <textarea id="deskripsi" name="deskripsi" rows="10" class="block mt-1 w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">{{ old('deskripsi') }}</textarea>
                             </div>
 
                             <!-- Masukkan Foto -->
@@ -97,26 +96,32 @@
     </div>
 
     @push('scripts')
+        <!-- Flatpickr -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
         <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+        <!-- CKEditor 5 -->
+        <script src="https://cdn.ckeditor.com/ckeditor5/39.0.0/classic/ckeditor.js"></script>
         <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                // Inisialisasi Flatpickr
+            document.addEventListener('DOMContentLoaded', function () {
                 flatpickr("#tanggal", {
                     dateFormat: "Y-m-d",
                     allowInput: true
                 });
 
-                // Script untuk Preview Foto
+                ClassicEditor
+                    .create(document.querySelector('#deskripsi'))
+                    .catch(error => console.error(error));
+
                 const fotoInput = document.getElementById('foto');
                 const previewFoto = document.getElementById('preview-foto');
 
                 if (fotoInput) {
-                    fotoInput.addEventListener('change', function(e) {
+                    fotoInput.addEventListener('change', function (e) {
                         const file = e.target.files[0];
                         if (file) {
                             const reader = new FileReader();
-                            reader.onload = function(evt) {
+                            reader.onload = function (evt) {
                                 previewFoto.src = evt.target.result;
                                 previewFoto.style.display = 'block';
                             }

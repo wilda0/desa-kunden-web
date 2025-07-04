@@ -41,6 +41,15 @@
             transform: scaleX(1);
             transform-origin: bottom left;
         }
+
+        .prose a {
+            color: #2563eb;
+            text-decoration: underline;
+        }
+
+        .prose a:hover {
+            color: #1d4ed8;
+        }
     </style>
 </head>
 
@@ -84,7 +93,7 @@
 
                         <!-- Article Content -->
                         <div class="prose max-w-none text-gray-700 leading-relaxed">
-                            {!! nl2br(e($berita->deskripsi)) !!}
+                            {!! $berita->deskripsi !!}
                         </div>
 
                         @if ($berita->id == 15)

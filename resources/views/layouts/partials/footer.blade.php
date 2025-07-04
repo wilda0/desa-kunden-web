@@ -18,8 +18,8 @@
                             Sukoharjo, Jawa Tengah</span></li>
                     <li class="flex items-center"><i data-lucide="mail"
                             class="w-4 h-4 mr-2"></i><span>desakunden5@gmail.com</span></li>
-                    <li class="flex items-center"><i data-lucide="phone" class="w-4 h-4 mr-2"></i><span>(0271)
-                            XXXXXX</span></li>
+                    <li class="flex items-center"><i data-lucide="phone" class="w-4 h-4 mr-2"></i><span>081225625334 (Info Pelayanan)</span></li>
+                    <li class="flex items-center"><i data-lucide="phone" class="w-4 h-4 mr-2"></i><span>082137002505 (Info Desa, Pemerintah, dan Perkembangan Desa)</span></li>
                     <li class="flex items-center"><i data-lucide="clock" class="w-4 h-4 mr-2"></i><span>Senin -
                             Jumat: 08.00-15.00 WIB</span></li>
                 </ul>

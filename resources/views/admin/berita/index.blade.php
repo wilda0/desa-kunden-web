@@ -59,7 +59,7 @@
                                             {{ $berita->jenis }}
                                         </td>
                                         <td class="px-6 py-4">
-                                            {{ \Illuminate\Support\Str::limit($berita->deskripsi, 50, '...') }}
+                                            {{ \Illuminate\Support\Str::limit(strip_tags($berita->deskripsi), 50, '...') }}
                                         </td>
                                         <td class="px-6 py-4">
                                             {{ \Carbon\Carbon::parse($berita->tanggal)->isoFormat('D MMMM YYYY') }}
@@ -91,7 +91,7 @@
                                                                     class="w-full h-64 object-cover rounded-md mb-4">
                                                                 <p
                                                                     class="text-gray-600 dark:text-gray-300 whitespace-pre-wrap">
-                                                                    {{ $berita->deskripsi }}</p>
+                                                                    {!! $berita->deskripsi !!}</p>
                                                             </div>
                                                         </div>
                                                     </div>

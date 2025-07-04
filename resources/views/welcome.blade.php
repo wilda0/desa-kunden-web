@@ -134,11 +134,12 @@
         <section id="home" class="relative h-[60vh] md:h-[80vh] bg-cover bg-center"
             style="background-image: url('/images/kantor-kunden.png');">
             <div class="absolute inset-0 bg-black/50"></div>
-            <div class="relative z-10 flex flex-col items-center justify-center h-full text-white text-center px-4">
+            <div class="relative z-10 flex flex-col items-center justify-center h-full text-white text-center px-4 animate-fade-in-up">
 
                 <div x-data="typingEffect()" class="min-h-[60px] md:min-h-[72px] mb-4">
                     <h1 class="text-4xl md:text-6xl font-bold flex items-center justify-center">
-                        <span x-text="displayText"></span><span class="typing-cursor"></span>
+                        {{-- <span x-text="displayText"></span><span class="typing-cursor"></span> --}}
+                        Selamat Datang
                     </h1>
                 </div>
 
@@ -338,7 +339,9 @@
                                                 {{ $berita->jenis }}
                                             </div>
                                             <p class="text-gray-600 text-sm mb-4 line-clamp-2 flex-grow">
-                                                {{ Str::limit($berita->deskripsi, 80) }}
+                                                <p class="text-gray-600 text-sm mb-4 line-clamp-3">
+                                                    {{ Str::limit(strip_tags($berita->deskripsi), 80) }}
+                                                </p>
                                             </p>
                                             <div
                                                 class="flex justify-between items-center text-xs text-gray-500 border-t pt-3 mt-auto">

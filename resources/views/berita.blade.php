@@ -84,7 +84,7 @@
                                 {{ $berita->jenis }}
                             </div>
                             <p class="text-gray-600 text-sm mb-4 line-clamp-3">
-                                {{ Str::limit($berita->deskripsi, 150) }}
+                                {{ Str::limit(strip_tags($berita->deskripsi), 150) }}
                             </p>
                             <div class="flex justify-between items-center text-xs text-gray-500 border-t pt-3">
                                 <div class="flex items-center space-x-4">
