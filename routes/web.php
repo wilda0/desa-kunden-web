@@ -12,8 +12,10 @@ use App\Http\Controllers\ProdukUmkmController;
 use App\Http\Controllers\DemografiKelaminController;
 use App\Http\Controllers\DataPendidikanController;
 use App\Http\Controllers\DataKesehatanController;
+use App\Http\Controllers\DataKeagamaanController;
 use App\Models\Berita;
 use App\Models\Aparatur;
+use App\Models\DataKeagamaan;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,7 +53,7 @@ Route::get('/data-pendidikan', [DataPendidikanController::class, 'showPublic'])-
 Route::get('/data-kesehatan', [DataKesehatanController::class, 'showPublic'])->name('data-kesehatan');
 
 // Data Keagamaan
-Route::get('/data-keagamaan', fn() => view('data-keagamaan'))->name('data-keagamaan');
+Route::get('/data-keagamaan', [DataKeagamaanController::class, 'showPublic'])->name('data-keagamaan');
 
 // Data Ekonomi
 Route::get('/data-ekonomi', fn() => view('data-ekonomi'))->name('data-ekonomi');
@@ -109,6 +111,10 @@ Route::middleware([
     // Data Kesehatan
     Route::get('/admin/data-kesehatan', [DataKesehatanController::class, 'index'])->name('admin.data-kesehatan.index');
     Route::post('/admin/data-kesehatan', [DataKesehatanController::class, 'store'])->name('admin.data-kesehatan.store');
+
+    // Data Keagamaan
+    Route::get('/admin/data-keagamaan', [DataKeagamaanController::class, 'index'])->name('admin.data-keagamaan.index');
+    Route::post('/admin/data-keagamaan', [DataKeagamaanController::class, 'store'])->name('admin.data-keagamaan.store');
 
     // Dokumen Admin
     Route::resource('/admin/dokumen', DokumenController::class)->names('admin.dokumen');

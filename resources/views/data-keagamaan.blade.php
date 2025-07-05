@@ -166,27 +166,27 @@
                                 <tbody class="divide-y divide-gray-100">
                                     <tr>
                                         <td class="px-4 py-3 text-gray-700">Islam</td>
-                                        <td class="px-4 py-3 text-gray-800 text-right font-medium">3.197 Orang</td>
+                                        <td class="px-4 py-3 text-gray-800 text-right font-medium">{{ number_format($data->islam) }} Orang</td>
                                     </tr>
                                     <tr>
                                         <td class="px-4 py-3 text-gray-700">Katolik</td>
-                                        <td class="px-4 py-3 text-gray-800 text-right font-medium">1 Orang</td>
+                                        <td class="px-4 py-3 text-gray-800 text-right font-medium">{{ number_format($data->katolik) }} Orang</td>
                                     </tr>
                                     <tr>
                                         <td class="px-4 py-3 text-gray-700">Kristen</td>
-                                        <td class="px-4 py-3 text-gray-800 text-right font-medium">34 Orang</td>
+                                        <td class="px-4 py-3 text-gray-800 text-right font-medium">{{ number_format($data->kristen) }} Orang</td>
                                     </tr>
                                     <tr>
                                         <td class="px-4 py-3 text-gray-700">Hindu</td>
-                                        <td class="px-4 py-3 text-gray-800 text-right font-medium">1 Orang</td>
+                                        <td class="px-4 py-3 text-gray-800 text-right font-medium">{{ number_format($data->hindu) }} Orang</td>
                                     </tr>
                                     <tr>
                                         <td class="px-4 py-3 text-gray-700">Budha</td>
-                                        <td class="px-4 py-3 text-gray-800 text-right font-medium">0 Orang</td>
+                                        <td class="px-4 py-3 text-gray-800 text-right font-medium">{{ number_format($data->budha) }} Orang</td>
                                     </tr>
                                     <tr>
                                         <td class="px-4 py-3 text-gray-700">Aliran Kepercayaan Lainnya</td>
-                                        <td class="px-4 py-3 text-gray-800 text-right font-medium">0 Orang</td>
+                                        <td class="px-4 py-3 text-gray-800 text-right font-medium">{{ number_format($data->kepercayaan) }} Orang</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -211,7 +211,7 @@
                                 <i data-lucide="moon" class="w-10 h-10"></i>
                             </div>
                             <h3 class="text-xl font-bold text-gray-800">Masjid / Musholla</h3>
-                            <p class="text-3xl font-extrabold text-green-600 mt-2">22</p>
+                            <p class="text-3xl font-extrabold text-green-600 mt-2">{{ number_format($data->masjid) }}</p>
                             <p class="text-sm text-gray-500">Buah</p>
                         </div>
                         <div
@@ -221,7 +221,7 @@
                                 <i data-lucide="church" class="w-10 h-10"></i>
                             </div>
                             <h3 class="text-xl font-bold text-gray-800">Gereja</h3>
-                            <p class="text-3xl font-extrabold text-blue-600 mt-2">0</p>
+                            <p class="text-3xl font-extrabold text-blue-600 mt-2">{{ number_format($data->gereja) }}</p>
                             <p class="text-sm text-gray-500">Buah</p>
                         </div>
                         <div
@@ -231,7 +231,7 @@
                                 <i data-lucide="castle" class="w-10 h-10"></i>
                             </div>
                             <h3 class="text-xl font-bold text-gray-800">Pura</h3>
-                            <p class="text-3xl font-extrabold text-red-600 mt-2">0</p>
+                            <p class="text-3xl font-extrabold text-red-600 mt-2">{{ number_format($data->pura) }}</p>
                             <p class="text-sm text-gray-500">Buah</p>
                         </div>
                         <div
@@ -241,7 +241,7 @@
                                 <i data-lucide="tent" class="w-10 h-10"></i>
                             </div>
                             <h3 class="text-xl font-bold text-gray-800">Vihara</h3>
-                            <p class="text-3xl font-extrabold text-purple-600 mt-2">0</p>
+                            <p class="text-3xl font-extrabold text-purple-600 mt-2">{{ number_format($data->vihara) }}</p>
                             <p class="text-sm text-gray-500">Buah</p>
                         </div>
                     </div>
@@ -266,7 +266,14 @@
                     labels: ['Islam', 'Katolik', 'Kristen', 'Hindu', 'Budha', 'Lainnya'],
                     datasets: [{
                         label: 'Jumlah Pemeluk',
-                        data: [3197, 1, 34, 1, 0, 0],
+                        data: [
+                            @json($data->islam),
+                            @json($data->katolik),
+                            @json($data->kristen),
+                            @json($data->hindu),
+                            @json($data->budha),
+                            @json($data->kepercayaan)
+                        ],
                         backgroundColor: [
                             'rgba(16, 185, 129, 0.7)',
                             'rgba(168, 85, 247, 0.7)',
