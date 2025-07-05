@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ $berita->nama_berita }} - Berita Desa Kunden</title>
 
-    <link rel="icon" type="image/png" href="{{ asset('images/logo-kunden.png') }}">
+    <link rel="icon" type="image/png" href="/public/images/logo-kunden.png">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">

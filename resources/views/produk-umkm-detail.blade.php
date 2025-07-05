@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ $produkUmkm->nama_produk }} - Produk UMKM Desa Kunden</title>
 
+    <link rel="icon" type="image/png" href="/public/images/logo-kunden.png">
+
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="{{ asset('images/logo-kunden.png') }}">
 
