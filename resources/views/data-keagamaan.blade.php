@@ -228,7 +228,7 @@
                             class="bg-white p-6 rounded-xl shadow-lg border hover:border-red-500 hover:shadow-xl transition-all duration-300 text-center">
                             <div
                                 class="mx-auto bg-red-100 text-red-600 w-20 h-20 rounded-full flex items-center justify-center mb-4">
-                                <i data-lucide="gem" class="w-10 h-10"></i>
+                                <i data-lucide="castle" class="w-10 h-10"></i>
                             </div>
                             <h3 class="text-xl font-bold text-gray-800">Pura</h3>
                             <p class="text-3xl font-extrabold text-red-600 mt-2">0</p>

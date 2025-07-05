@@ -183,42 +183,42 @@
                                             MI</td>
                                         <td
                                             class="px-6 py-4 whitespace-nowrap text-sm text-gray-600 font-semibold text-center">
-                                            970 Orang</td>
+                                            {{ number_format($data->sd_mi) }} Orang</td>
                                     </tr>
                                     <tr class="bg-gray-50/50 hover:bg-gray-100 transition-colors">
                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">SLTP /
                                             MTs</td>
                                         <td
                                             class="px-6 py-4 whitespace-nowrap text-sm text-gray-600 font-semibold text-center">
-                                            523 Orang</td>
+                                            {{ number_format($data->sltp_mts) }}</td>
                                     </tr>
                                     <tr class="hover:bg-gray-50 transition-colors">
                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">SLTA /
                                             MA</td>
                                         <td
                                             class="px-6 py-4 whitespace-nowrap text-sm text-gray-600 font-semibold text-center">
-                                            640 Orang</td>
+                                            {{ number_format($data->slta_ma) }}</td>
                                     </tr>
                                     <tr class="bg-gray-50/50 hover:bg-gray-100 transition-colors">
                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">S1 /
                                             Diploma</td>
                                         <td
                                             class="px-6 py-4 whitespace-nowrap text-sm text-gray-600 font-semibold text-center">
-                                            46 Orang</td>
+                                            {{ number_format($data->s1_diploma) }}</td>
                                     </tr>
                                     <tr class="hover:bg-gray-50 transition-colors">
                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Putus
                                             Sekolah</td>
                                         <td
                                             class="px-6 py-4 whitespace-nowrap text-sm text-gray-600 font-semibold text-center">
-                                            959 Orang</td>
+                                            {{ number_format($data->putus_sekolah) }}</td>
                                     </tr>
                                     <tr class="bg-gray-50/50 hover:bg-gray-100 transition-colors">
                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Buta
                                             Huruf</td>
                                         <td
                                             class="px-6 py-4 whitespace-nowrap text-sm text-gray-600 font-semibold text-center">
-                                            501 Orang</td>
+                                            {{ number_format($data->buta_huruf) }}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -242,7 +242,7 @@
                                         data-lucide="building"></i></div>
                                 <div>
                                     <h3 class="font-bold text-lg mb-1">Gedung TK/PAUD</h3>
-                                    <p class="text-gray-600 text-sm"><span class="font-bold">3 Buah</span> di Dusun
+                                    <p class="text-gray-600 text-sm"><span class="font-bold">{{ $data->gedung_tk_paud }} Buah</span> di Dusun
                                         Ngrancang, Ngutran, dan Kepuh.</p>
                                 </div>
                             </div>
@@ -254,7 +254,7 @@
                                         data-lucide="book-open"></i></div>
                                 <div>
                                     <h3 class="font-bold text-lg mb-1">SD / MI</h3>
-                                    <p class="text-gray-600 text-sm"><span class="font-bold">2 Buah</span> di Dusun
+                                    <p class="text-gray-600 text-sm"><span class="font-bold">{{ $data->gedung_sd_mi }} Buah</span> di Dusun
                                         Ngrancang dan Sumberagung.</p>
                                 </div>
                             </div>
@@ -266,7 +266,7 @@
                                         data-lucide="graduation-cap"></i></div>
                                 <div>
                                     <h3 class="font-bold text-lg mb-1">SLTP / MTs</h3>
-                                    <p class="text-gray-600 text-sm"><span class="font-bold">1 Buah</span> di Dukuh
+                                    <p class="text-gray-600 text-sm"><span class="font-bold">{{ $data->gedung_sltp_mts }} Buah</span> di Dukuh
                                         Sumberejo.</p>
                                 </div>
                             </div>
@@ -288,7 +288,15 @@
             // Data untuk Bar Chart
             const pendidikanData = {
                 labels: ['SD/MI', 'SLTP/MTs', 'SLTA/MA', 'S1/Diploma', 'Putus Sekolah', 'Buta Huruf'],
-                values: [970, 523, 640, 46, 959, 501]
+                values: [
+                    {{ $data->sd_mi }},
+                    {{ $data->sltp_mts }},
+                    {{ $data->slta_ma }},
+                    {{ $data->s1_diploma }},
+                    {{ $data->putus_sekolah }},
+                    {{ $data->buta_huruf }}
+                ]
+
             };
 
             const ctx = document.getElementById('pendidikanChart').getContext('2d');

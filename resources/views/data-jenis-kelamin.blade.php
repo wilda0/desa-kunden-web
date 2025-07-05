@@ -181,7 +181,7 @@
                             <div class="flex items-center justify-between">
                                 <div>
                                     <p class="text-lg font-medium text-blue-100">Laki-laki</p>
-                                    <p class="text-4xl font-extrabold">1,618</p>
+                                    <p class="text-4xl font-extrabold">{{ number_format($data->laki_laki) }}</p>
                                 </div>
                                 <div class="bg-white/20 p-4 rounded-full">
                                     <i data-lucide="male" class="w-8 h-8"></i>
@@ -193,7 +193,7 @@
                             <div class="flex items-center justify-between">
                                 <div>
                                     <p class="text-lg font-medium text-pink-100">Perempuan</p>
-                                    <p class="text-4xl font-extrabold">1,615</p>
+                                    <p class="text-4xl font-extrabold">{{ number_format($data->perempuan) }}</p>
                                 </div>
                                 <div class="bg-white/20 p-4 rounded-full">
                                     <i data-lucide="female" class="w-8 h-8"></i>
@@ -205,7 +205,7 @@
                             <div class="flex items-center justify-between">
                                 <div>
                                     <p class="text-lg font-medium text-slate-300">Total Penduduk</p>
-                                    <p class="text-4xl font-extrabold">3,233</p>
+                                    <p class="text-4xl font-extrabold">{{ number_format($data->laki_laki + $data->perempuan) }}</p>
                                 </div>
                                 <div class="bg-white/20 p-4 rounded-full">
                                     <i data-lucide="users" class="w-8 h-8"></i>
@@ -241,7 +241,7 @@
                                         </td>
                                         <td
                                             class="px-6 py-4 whitespace-nowrap text-sm text-gray-600 font-semibold text-center">
-                                            973 KK</td>
+                                            {{ number_format($data->kepala_keluarga) }} KK</td>
                                     </tr>
                                     <tr class="hover:bg-gray-50 transition-colors">
                                         <td
@@ -250,7 +250,7 @@
                                         </td>
                                         <td
                                             class="px-6 py-4 whitespace-nowrap text-sm text-gray-600 font-semibold text-center">
-                                            1,618 Orang</td>
+                                            {{ number_format($data->laki_laki) }} Orang</td>
                                     </tr>
                                     <tr class="hover:bg-gray-50 transition-colors">
                                         <td
@@ -259,7 +259,7 @@
                                         </td>
                                         <td
                                             class="px-6 py-4 whitespace-nowrap text-sm text-gray-600 font-semibold text-center">
-                                            1,615 Orang</td>
+                                            {{ number_format($data->perempuan) }} Orang</td>
                                     </tr>
                                     <tr class="bg-gray-100">
                                         <td
@@ -268,7 +268,7 @@
                                         </td>
                                         <td
                                             class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-bold text-center">
-                                            3,233 Orang</td>
+                                            {{ number_format($data->laki_laki + $data->perempuan) }} Orang</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -287,7 +287,7 @@
         // Data untuk chart
         const genderData = {
             labels: ['Laki-laki', 'Perempuan'],
-            values: [1618, 1615],
+            values: [{{ $data->laki_laki }}, {{ $data->perempuan }}],
             colors: ['#3b82f6', '#ec4899'] // blue-500, pink-500
         };
 

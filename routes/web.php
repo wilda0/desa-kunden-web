@@ -9,6 +9,8 @@ use App\Http\Controllers\AparaturController;
 use App\Http\Controllers\ProdukHukumController;
 use App\Http\Controllers\InformasiPublikController;
 use App\Http\Controllers\ProdukUmkmController;
+use App\Http\Controllers\DemografiKelaminController;
+use App\Http\Controllers\DataPendidikanController;
 use App\Models\Berita;
 use App\Models\Aparatur;
 
@@ -39,10 +41,10 @@ Route::get('/sejarah-desa', fn() => view('sejarah-desa'))->name('sejarah-desa');
 Route::get('/kondisi-pemerintahan', fn() => view('kondisi-pemerintahan'))->name('kondisi-pemerintahan');
 
 // Data Jenis Kelamin
-Route::get('/data-jenis-kelamin', fn() => view('data-jenis-kelamin'))->name('data-jenis-kelamin');
+Route::get('/data-jenis-kelamin', [DemografiKelaminController::class, 'showPublic'])->name('data-jenis-kelamin');
 
 // Data Pendidikan
-Route::get('/data-pendidikan', fn() => view('data-pendidikan'))->name('data-pendidikan');
+Route::get('/data-pendidikan', [DataPendidikanController::class, 'showPublic'])->name('data-pendidikan');
 
 // Data Kesehatan
 Route::get('/data-kesehatan', fn() => view('data-kesehatan'))->name('data-kesehatan');
@@ -94,6 +96,14 @@ Route::middleware([
     'verified',
 ])->group(function () {
     Route::get('/dashboard', fn() => view('dashboard'))->name('dashboard');
+
+    // Data Jenis Kelamin
+    Route::get('/admin/demografi-kelamin', [DemografiKelaminController::class, 'index'])->name('admin.demografi-kelamin.index');
+    Route::post('/admin/demografi-kelamin', [DemografiKelaminController::class, 'store'])->name('admin.demografi-kelamin.store');
+
+    // Data Pendidikan
+    Route::get('/admin/data-pendidikan', [DataPendidikanController::class, 'index'])->name('admin.data-pendidikan.index');
+    Route::post('/admin/data-pendidikan', [DataPendidikanController::class, 'store'])->name('admin.data-pendidikan.store');
 
     // Dokumen Admin
     Route::resource('/admin/dokumen', DokumenController::class)->names('admin.dokumen');

@@ -46,7 +46,7 @@
                             class="flex items-center text-gray-300 hover:text-white hover:underline transition">
                                 <i data-lucide="user-round" class="w-4 h-4 mr-2"></i>
                                 Login Admin
-                         </a>
+                            </a>
                             @endauth
                         </div>
                     </div>
