@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Apa iya - Website Desa Kunden</title>
+    <title>Dashboard - Website Desa Kunden</title>
 
     <link rel="icon" type="image/png" href="/public/images/logo-kunden.png">
 
