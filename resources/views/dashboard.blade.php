@@ -45,7 +45,7 @@
                         </a>
 
                         <!-- Data Kesehatan -->
-                        <a href="#" class="block p-6 bg-white dark:bg-gray-700 rounded-lg shadow-md hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+                        <a href="{{ route('admin.data-kesehatan.index') }}" class="block p-6 bg-white dark:bg-gray-700 rounded-lg shadow-md hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
                             <div class="flex items-center">
                                 <div class="p-3 bg-red-100 dark:bg-red-900/50 rounded-full">
                                     <i data-lucide="heart-pulse" class="w-6 h-6 text-red-600 dark:text-red-400"></i>

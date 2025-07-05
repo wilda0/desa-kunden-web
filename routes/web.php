@@ -11,6 +11,7 @@ use App\Http\Controllers\InformasiPublikController;
 use App\Http\Controllers\ProdukUmkmController;
 use App\Http\Controllers\DemografiKelaminController;
 use App\Http\Controllers\DataPendidikanController;
+use App\Http\Controllers\DataKesehatanController;
 use App\Models\Berita;
 use App\Models\Aparatur;
 
@@ -47,7 +48,7 @@ Route::get('/data-jenis-kelamin', [DemografiKelaminController::class, 'showPubli
 Route::get('/data-pendidikan', [DataPendidikanController::class, 'showPublic'])->name('data-pendidikan');
 
 // Data Kesehatan
-Route::get('/data-kesehatan', fn() => view('data-kesehatan'))->name('data-kesehatan');
+Route::get('/data-kesehatan', [DataKesehatanController::class, 'showPublic'])->name('data-kesehatan');
 
 // Data Keagamaan
 Route::get('/data-keagamaan', fn() => view('data-keagamaan'))->name('data-keagamaan');
@@ -104,6 +105,10 @@ Route::middleware([
     // Data Pendidikan
     Route::get('/admin/data-pendidikan', [DataPendidikanController::class, 'index'])->name('admin.data-pendidikan.index');
     Route::post('/admin/data-pendidikan', [DataPendidikanController::class, 'store'])->name('admin.data-pendidikan.store');
+
+    // Data Kesehatan
+    Route::get('/admin/data-kesehatan', [DataKesehatanController::class, 'index'])->name('admin.data-kesehatan.index');
+    Route::post('/admin/data-kesehatan', [DataKesehatanController::class, 'store'])->name('admin.data-kesehatan.store');
 
     // Dokumen Admin
     Route::resource('/admin/dokumen', DokumenController::class)->names('admin.dokumen');

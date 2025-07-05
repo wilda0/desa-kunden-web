@@ -158,11 +158,11 @@
                                 <tbody class="divide-y divide-gray-200">
                                     <tr class="hover:bg-gray-50">
                                         <td class="py-3 px-2 text-gray-600">Jumlah Bayi Lahir</td>
-                                        <td class="py-3 px-2 font-semibold text-gray-800 text-right">55 Orang</td>
+                                        <td class="py-3 px-2 font-semibold text-gray-800 text-right">{{ number_format($data->bayi_lahir) }} Orang</td>
                                     </tr>
                                     <tr class="hover:bg-gray-50">
                                         <td class="py-3 px-2 text-gray-600">Jumlah Bayi Meninggal</td>
-                                        <td class="py-3 px-2 font-semibold text-gray-800 text-right">0 Orang</td>
+                                        <td class="py-3 px-2 font-semibold text-gray-800 text-right">{{ number_format($data->bayi_meninggal) }} Orang</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -182,11 +182,11 @@
                                 <tbody class="divide-y divide-gray-200">
                                     <tr class="hover:bg-gray-50">
                                         <td class="py-3 px-2 text-gray-600">Jumlah Ibu Melahirkan</td>
-                                        <td class="py-3 px-2 font-semibold text-gray-800 text-right">55 Orang</td>
+                                        <td class="py-3 px-2 font-semibold text-gray-800 text-right">{{ number_format($data->ibu_melahirkan) }} Orang</td>
                                     </tr>
                                     <tr class="hover:bg-gray-50">
                                         <td class="py-3 px-2 text-gray-600">Jumlah Ibu Melahirkan Meninggal</td>
-                                        <td class="py-3 px-2 font-semibold text-gray-800 text-right">0 Orang</td>
+                                        <td class="py-3 px-2 font-semibold text-gray-800 text-right">{{ number_format($data->ibu_meninggal) }} Orang</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -206,22 +206,22 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                         <div class="bg-blue-500 text-white p-6 rounded-xl shadow-lg">
                             <i data-lucide="users" class="w-8 h-8 mb-3 opacity-70"></i>
-                            <p class="text-3xl font-bold">467</p>
+                            <p class="text-3xl font-bold">{{ number_format($data->jumlah_balita) }}</p>
                             <p class="text-blue-100">Jumlah Balita</p>
                         </div>
                         <div class="bg-green-500 text-white p-6 rounded-xl shadow-lg">
                             <i data-lucide="smile" class="w-8 h-8 mb-3 opacity-70"></i>
-                            <p class="text-3xl font-bold">467</p>
+                            <p class="text-3xl font-bold">{{ number_format($data->gizi_baik) }}</p>
                             <p class="text-green-100">Balita Gizi Baik</p>
                         </div>
                         <div class="bg-yellow-500 text-white p-6 rounded-xl shadow-lg">
                             <i data-lucide="frown" class="w-8 h-8 mb-3 opacity-70"></i>
-                            <p class="text-3xl font-bold">0</p>
+                            <p class="text-3xl font-bold">{{ number_format($data->gizi_kurang) }}</p>
                             <p class="text-yellow-100">Balita Gizi Kurang</p>
                         </div>
                         <div class="bg-red-500 text-white p-6 rounded-xl shadow-lg">
                             <i data-lucide="alert-triangle" class="w-8 h-8 mb-3 opacity-70"></i>
-                            <p class="text-3xl font-bold">0</p>
+                            <p class="text-3xl font-bold">{{ number_format($data->gizi_buruk) }}</p>
                             <p class="text-red-100">Balita Gizi Buruk</p>
                         </div>
                     </div>
@@ -239,15 +239,15 @@
                                 <tbody class="divide-y divide-gray-200">
                                     <tr class="hover:bg-gray-50">
                                         <td class="py-3 px-2 text-gray-600">Cakupan Imunisasi Polio 3</td>
-                                        <td class="py-3 px-2 font-semibold text-gray-800 text-right">105 Orang</td>
+                                        <td class="py-3 px-2 font-semibold text-gray-800 text-right">{{ number_format($data->imunisasi_polio) }} Orang</td>
                                     </tr>
                                     <tr class="hover:bg-gray-50">
                                         <td class="py-3 px-2 text-gray-600">Cakupan Imunisasi DPT-1</td>
-                                        <td class="py-3 px-2 font-semibold text-gray-800 text-right">95 Orang</td>
+                                        <td class="py-3 px-2 font-semibold text-gray-800 text-right">{{ number_format($data->imunisasi_dpt1) }} Orang</td>
                                     </tr>
                                     <tr class="hover:bg-gray-50">
                                         <td class="py-3 px-2 text-gray-600">Cakupan Imunisasi Cacar</td>
-                                        <td class="py-3 px-2 font-semibold text-gray-800 text-right">0 Orang</td>
+                                        <td class="py-3 px-2 font-semibold text-gray-800 text-right">{{ number_format($data->imunisasi_cacar) }} Orang</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -266,23 +266,23 @@
                                 <tbody class="divide-y divide-gray-200">
                                     <tr class="hover:bg-gray-50">
                                         <td class="py-3 px-2 text-gray-600">Pengguna Sumur Galian</td>
-                                        <td class="py-3 px-2 font-semibold text-gray-800 text-right">1.383 KK</td>
+                                        <td class="py-3 px-2 font-semibold text-gray-800 text-right">{{ number_format($data->sumur_galian) }} KK</td>
                                     </tr>
                                     <tr class="hover:bg-gray-50">
                                         <td class="py-3 px-2 text-gray-600">Pengguna Air PAH</td>
-                                        <td class="py-3 px-2 font-semibold text-gray-800 text-right">0 KK</td>
+                                        <td class="py-3 px-2 font-semibold text-gray-800 text-right">{{ number_format($data->air_pah) }} KK</td>
                                     </tr>
                                     <tr class="hover:bg-gray-50">
                                         <td class="py-3 px-2 text-gray-600">Pengguna Sumur Pompa</td>
-                                        <td class="py-3 px-2 font-semibold text-gray-800 text-right">67 KK</td>
+                                        <td class="py-3 px-2 font-semibold text-gray-800 text-right">{{ number_format($data->sumur_pompa) }} KK</td>
                                     </tr>
                                     <tr class="hover:bg-gray-50">
                                         <td class="py-3 px-2 text-gray-600">Pengguna Sumur Hidran Umum</td>
-                                        <td class="py-3 px-2 font-semibold text-gray-800 text-right">0 KK</td>
+                                        <td class="py-3 px-2 font-semibold text-gray-800 text-right">{{ number_format($data->hidran_umum) }} KK</td>
                                     </tr>
                                     <tr class="hover:bg-gray-50">
                                         <td class="py-3 px-2 text-gray-600">Pengguna Air Sungai</td>
-                                        <td class="py-3 px-2 font-semibold text-gray-800 text-right">0 KK</td>
+                                        <td class="py-3 px-2 font-semibold text-gray-800 text-right">{{ number_format($data->air_sungai) }} KK</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -301,7 +301,7 @@
 
     <script src="//unpkg.com/alpinejs" defer></script>
     <script>
-        document.addEventListener('DOMContentLoaded', (event) => {
+        document.addEventListener('DOMContentLoaded', () => {
             lucide.createIcons();
 
             function createBarChart(canvasId, labels, data, colors, title) {
@@ -349,24 +349,25 @@
                 });
             }
 
-            createBarChart('bayiChart', ['Jumlah Bayi Lahir', 'Jumlah Bayi Meninggal'], [55, 0], ['#3b82f6',
-                '#ef4444'
-            ], 'Jumlah');
-            createBarChart('ibuChart', ['Jumlah Ibu Melahirkan', 'Jumlah Ibu Meninggal'], [55, 0], ['#ec4899',
-                '#ef4444'
-            ], 'Jumlah');
-            createBarChart('imunisasiChart', ['Polio 3', 'DPT-1', 'Cacar'], [105, 95, 0], ['#8b5cf6', '#10b981',
-                '#f97316'
-            ], 'Jumlah Anak');
-            createBarChart('airChart', ['Sumur Galian', 'Air PAH', 'Sumur Pompa', 'Hidran Umum', 'Air Sungai'], [
-                1383, 0, 67, 0, 0
-            ], ['#06b6d4', '#0891b2', '#6366f1', '#4f46e5', '#a855f7'], 'Jumlah KK');
+            const bayiLahir = @json($data->bayi_lahir);
+            const bayiMeninggal = @json($data->bayi_meninggal);
+            const ibuMelahirkan = @json($data->ibu_melahirkan);
+            const ibuMeninggal = @json($data->ibu_meninggal);
+            const imunisasiPolio = @json($data->imunisasi_polio);
+            const imunisasiDpt1 = @json($data->imunisasi_dpt1);
+            const imunisasiCacar = @json($data->imunisasi_cacar);
+            const sumurGalian = @json($data->sumur_galian);
+            const airPah = @json($data->air_pah);
+            const sumurPompa = @json($data->sumur_pompa);
+            const hidranUmum = @json($data->hidran_umum);
+            const airSungai = @json($data->air_sungai);
 
-            const observerOptions = {
-                root: null,
-                rootMargin: '0px',
-                threshold: 0.1
-            };
+            createBarChart('bayiChart', ['Jumlah Bayi Lahir', 'Jumlah Bayi Meninggal'], [bayiLahir, bayiMeninggal], ['#3b82f6', '#ef4444'], 'Jumlah');
+            createBarChart('ibuChart', ['Jumlah Ibu Melahirkan', 'Jumlah Ibu Meninggal'], [ibuMelahirkan, ibuMeninggal], ['#ec4899', '#ef4444'], 'Jumlah');
+            createBarChart('imunisasiChart', ['Polio 3', 'DPT-1', 'Cacar'], [imunisasiPolio, imunisasiDpt1, imunisasiCacar], ['#8b5cf6', '#10b981', '#f97316'], 'Jumlah Anak');
+            createBarChart('airChart', ['Sumur Galian', 'Air PAH', 'Sumur Pompa', 'Hidran Umum', 'Air Sungai'], [sumurGalian, airPah, sumurPompa, hidranUmum, airSungai], ['#06b6d4', '#0891b2', '#6366f1', '#4f46e5', '#a855f7'], 'Jumlah KK');
+
+            const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
             const observer = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -377,9 +378,7 @@
             }, observerOptions);
 
             const targets = document.querySelectorAll('.reveal-on-scroll');
-            targets.forEach(target => {
-                observer.observe(target);
-            });
+            targets.forEach(target => observer.observe(target));
         });
     </script>
 </body>

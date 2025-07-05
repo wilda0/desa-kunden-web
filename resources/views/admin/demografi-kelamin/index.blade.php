@@ -35,19 +35,19 @@
                         <!-- Jumlah Laki-laki -->
                         <div>
                             <x-label for="laki_laki" value="{{ __('Jumlah Laki-laki') }}" />
-                            <x-input id="laki_laki" class="block mt-1 w-full" type="number" name="laki_laki" :value="old('laki_laki', $data->laki_laki ?? '')" required autofocus />
+                            <x-input id="laki_laki" class="block mt-1 w-full" type="number" name="laki_laki" :value="old('laki_laki', $data->laki_laki ?? 0)" required min="0" />
                         </div>
 
                         <!-- Jumlah Perempuan -->
                         <div>
                             <x-label for="perempuan" value="{{ __('Jumlah Perempuan') }}" />
-                            <x-input id="perempuan" class="block mt-1 w-full" type="number" name="perempuan" :value="old('perempuan', $data->perempuan ?? '')" required />
+                            <x-input id="perempuan" class="block mt-1 w-full" type="number" name="perempuan" :value="old('perempuan', $data->perempuan ?? 0)" required min="0" />
                         </div>
 
                         <!-- Jumlah Kepala Keluarga -->
                         <div>
                             <x-label for="kepala_keluarga" value="{{ __('Jumlah Kepala Keluarga') }}" />
-                            <x-input id="kepala_keluarga" class="block mt-1 w-full" type="number" name="kepala_keluarga" :value="old('kepala_keluarga', $data->kepala_keluarga ?? '')" required />
+                            <x-input id="kepala_keluarga" class="block mt-1 w-full" type="number" name="kepala_keluarga" :value="old('kepala_keluarga', $data->kepala_keluarga ?? 0)" required min="0" />
                         </div>
 
                         <div class="flex items-center justify-end mt-4">
