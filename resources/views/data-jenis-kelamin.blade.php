@@ -87,6 +87,16 @@
 
     @include('layouts.partials.header')
 
+    @php
+        use App\Models\DemografiKelamin;
+
+        $data = DemografiKelamin::latest()->first() ?? (object)[
+            'laki_laki' => 0,
+            'perempuan' => 0,
+            'kepala_keluarga' => 0
+        ];
+    @endphp
+
     <main>
         <div class="bg-gray-50">
 

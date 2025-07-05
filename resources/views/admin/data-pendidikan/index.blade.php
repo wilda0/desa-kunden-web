@@ -32,30 +32,50 @@
                     <form method="POST" action="{{ route('admin.data-pendidikan.store') }}">
                         @csrf
 
-                        @php
-                            $fields = [
-                                'sd_mi' => 'SD / MI',
-                                'sltp_mts' => 'SLTP / MTs',
-                                'slta_ma' => 'SLTA / MA',
-                                's1_diploma' => 'S1 / Diploma',
-                                'putus_sekolah' => 'Putus Sekolah',
-                                'buta_huruf' => 'Buta Huruf',
-                                'gedung_tk_paud' => 'Gedung TK / PAUD',
-                                'gedung_sd_mi' => 'Gedung SD / MI',
-                                'gedung_sltp_mts' => 'Gedung SLTP / MTs'
-                            ];
-                        @endphp
-
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            @foreach ($fields as $key => $label)
-                            <div>
-                                <x-label for="{{ $key }}" value="{{ $label }}" />
-                                <x-input id="{{ $key }}" class="block mt-1 w-full" type="number" name="{{ $key }}" :value="old($key, $data->$key ?? 0)" required min="0" />
+                        {{-- Tingkat Pendidikan --}}
+                        <div class="mb-8">
+                            <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 border-b border-gray-200 dark:border-gray-700 pb-2 mb-4">Tingkat Pendidikan (jiwa)</h3>
+                            @php
+                                $pendidikanFields = [
+                                    'sd_mi' => 'SD / MI',
+                                    'sltp_mts' => 'SLTP / MTs',
+                                    'slta_ma' => 'SLTA / MA',
+                                    's1_diploma' => 'S1 / Diploma',
+                                    'putus_sekolah' => 'Putus Sekolah',
+                                    'buta_huruf' => 'Buta Huruf',
+                                ];
+                            @endphp
+                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                @foreach ($pendidikanFields as $key => $label)
+                                <div>
+                                    <x-label for="{{ $key }}" value="{{ $label }}" />
+                                    <x-input id="{{ $key }}" class="block mt-1 w-full" type="number" name="{{ $key }}" :value="old($key, $data->$key ?? 0)" required min="0" />
+                                </div>
+                                @endforeach
                             </div>
-                            @endforeach
                         </div>
 
-                        <div class="flex items-center justify-end mt-8">
+                        {{-- Sarana Pendidikan --}}
+                        <div class="mb-8">
+                            <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 border-b border-gray-200 dark:border-gray-700 pb-2 mb-4">Sarana Pendidikan (unit)</h3>
+                            @php
+                                $saranaFields = [
+                                    'gedung_tk_paud' => 'Gedung TK / PAUD',
+                                    'gedung_sd_mi' => 'Gedung SD / MI',
+                                    'gedung_sltp_mts' => 'Gedung SLTP / MTs'
+                                ];
+                            @endphp
+                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                @foreach ($saranaFields as $key => $label)
+                                <div>
+                                    <x-label for="{{ $key }}" value="{{ $label }}" />
+                                    <x-input id="{{ $key }}" class="block mt-1 w-full" type="number" name="{{ $key }}" :value="old($key, $data->$key ?? 0)" required min="0" />
+                                </div>
+                                @endforeach
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-end mt-8 border-t border-gray-200 dark:border-gray-700 pt-6">
                             <x-button>
                                 {{ __('Simpan Data') }}
                             </x-button>

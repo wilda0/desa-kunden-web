@@ -88,6 +88,23 @@
 
     @include('layouts.partials.header')
 
+    @php
+        use App\Models\DataKeagamaan;
+
+        $data = DataKeagamaan::latest()->first() ?? (object)[
+            'islam' => 0,
+            'katolik' => 0,
+            'kristen' => 0,
+            'hindu' => 0,
+            'budha' => 0,
+            'kepercayaan' => 0,
+            'masjid' => 0,
+            'gereja' => 0,
+            'pura' => 0,
+            'vihara' => 0,
+        ];
+    @endphp
+
     <main>
         <div class="bg-gray-50">
 

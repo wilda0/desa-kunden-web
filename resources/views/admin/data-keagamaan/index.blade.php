@@ -12,7 +12,8 @@
 
                     {{-- Notifikasi Sukses --}}
                     @if (session('success'))
-                        <div class="mb-6 p-4 bg-green-100 dark:bg-green-800 border border-green-200 dark:border-green-600 text-green-700 dark:text-green-200 rounded-lg">
+                        <div
+                            class="mb-6 p-4 bg-green-100 dark:bg-green-800 border border-green-200 dark:border-green-600 text-green-700 dark:text-green-200 rounded-lg">
                             {{ session('success') }}
                         </div>
                     @endif
@@ -20,7 +21,8 @@
                     {{-- Menampilkan Error Validasi --}}
                     @if ($errors->any())
                         <div class="mb-4">
-                            <div class="font-medium text-red-600 dark:text-red-400">{{ __('Whoops! Something went wrong.') }}</div>
+                            <div class="font-medium text-red-600 dark:text-red-400">
+                                {{ __('Whoops! Something went wrong.') }}</div>
                             <ul class="mt-3 list-disc list-inside text-sm text-red-600 dark:text-red-400">
                                 @foreach ($errors->all() as $error)
                                     <li>{{ $error }}</li>
@@ -29,34 +31,61 @@
                         </div>
                     @endif
 
-                    <form method="POST" action="{{ route('admin.keagamaan.store') }}">
+                    <form method="POST" action="{{ route('admin.data-keagamaan.store') }}">
                         @csrf
 
-                        @php
-                            $fields = [
-                                'islam' => 'Islam',
-                                'katolik' => 'Katolik',
-                                'kristen' => 'Kristen',
-                                'hindu' => 'Hindu',
-                                'budha' => 'Budha',
-                                'kepercayaan' => 'Aliran Kepercayaan',
-                                'masjid' => 'Masjid/Mushola',
-                                'gereja' => 'Gereja',
-                                'pura' => 'Pura',
-                                'vihara' => 'Vihara',
-                            ];
-                        @endphp
-
-                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            @foreach ($fields as $key => $label)
-                            <div>
-                                <x-label for="{{ $key }}" value="{{ $label }}" />
-                                <x-input id="{{ $key }}" class="block mt-1 w-full" type="number" name="{{ $key }}" :value="old($key, $data->$key ?? 0)" required min="0" />
+                        {{-- Data Pemeluk Agama --}}
+                        <div class="mb-8">
+                            <h3
+                                class="text-lg font-semibold text-gray-800 dark:text-gray-200 border-b border-gray-200 dark:border-gray-700 pb-2 mb-4">
+                                Jumlah Pemeluk Agama (jiwa)</h3>
+                            @php
+                                $pemelukAgamaFields = [
+                                    'islam' => 'Islam',
+                                    'katolik' => 'Katolik',
+                                    'kristen' => 'Kristen',
+                                    'hindu' => 'Hindu',
+                                    'budha' => 'Budha',
+                                    'kepercayaan' => 'Aliran Kepercayaan',
+                                ];
+                            @endphp
+                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                @foreach ($pemelukAgamaFields as $key => $label)
+                                    <div>
+                                        <x-label for="{{ $key }}" value="{{ $label }}" />
+                                        <x-input id="{{ $key }}" class="block mt-1 w-full" type="number"
+                                            name="{{ $key }}" :value="old($key, $data->$key ?? 0)" required min="0" />
+                                    </div>
+                                @endforeach
                             </div>
-                            @endforeach
                         </div>
 
-                        <div class="flex items-center justify-end mt-8 border-t border-gray-200 dark:border-gray-700 pt-6">
+                        {{-- Data Sarana Ibadah --}}
+                        <div class="mb-8">
+                            <h3
+                                class="text-lg font-semibold text-gray-800 dark:text-gray-200 border-b border-gray-200 dark:border-gray-700 pb-2 mb-4">
+                                Jumlah Sarana Ibadah (unit)</h3>
+                            @php
+                                $saranaIbadahFields = [
+                                    'masjid' => 'Masjid/Mushola',
+                                    'gereja' => 'Gereja',
+                                    'pura' => 'Pura',
+                                    'vihara' => 'Vihara',
+                                ];
+                            @endphp
+                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                @foreach ($saranaIbadahFields as $key => $label)
+                                    <div>
+                                        <x-label for="{{ $key }}" value="{{ $label }}" />
+                                        <x-input id="{{ $key }}" class="block mt-1 w-full" type="number"
+                                            name="{{ $key }}" :value="old($key, $data->$key ?? 0)" required min="0" />
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+
+                        <div
+                            class="flex items-center justify-end mt-8 border-t border-gray-200 dark:border-gray-700 pt-6">
                             <x-button>
                                 {{ __('Simpan Data') }}
                             </x-button>

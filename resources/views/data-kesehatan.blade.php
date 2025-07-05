@@ -88,6 +88,29 @@
 
     @include('layouts.partials.header')
 
+    @php
+        use App\Models\DataKesehatan;
+
+        $data = DataKesehatan::latest()->first() ?? (object)[
+            'bayi_lahir' => 0,
+            'bayi_meninggal' => 0,
+            'ibu_melahirkan' => 0,
+            'ibu_meninggal' => 0,
+            'jumlah_balita' => 0,
+            'gizi_baik' => 0,
+            'gizi_kurang' => 0,
+            'gizi_buruk' => 0,
+            'imunisasi_polio' => 0,
+            'imunisasi_dpt1' => 0,
+            'imunisasi_cacar' => 0,
+            'sumur_galian' => 0,
+            'air_pah' => 0,
+            'sumur_pompa' => 0,
+            'hidran_umum' => 0,
+            'air_sungai' => 0,
+        ];
+    @endphp
+
     <main>
         <div class="bg-gray-50">
 

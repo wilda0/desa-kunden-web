@@ -88,6 +88,22 @@
 
     @include('layouts.partials.header')
 
+    @php
+        use App\Models\DataPendidikan;
+
+        $data = DataPendidikan::latest()->first() ?? (object)[
+            'sd_mi' => 0,
+            'sltp_mts' => 0,
+            'slta_ma' => 0,
+            's1_diploma' => 0,
+            'putus_sekolah' => 0,
+            'buta_huruf' => 0,
+            'gedung_tk_paud' => 0,
+            'gedung_sd_mi' => 0,
+            'gedung_sltp_mts' => 0,
+        ];
+    @endphp
+
     <main>
         <div class="bg-gray-50">
 
