@@ -3,7 +3,7 @@
     <nav class="container mx-auto px-6 lg:px-16 py-3 flex justify-between items-center">
         <!-- Logo -->
         <a href="{{ route('welcome') }}" class="flex items-center space-x-2">
-            <img src="/images/logo-kunden.png" alt="Logo Desa Kunden" class="h-10 w-auto">
+            <img src="/public/images/logo-kunden.png" alt="Logo Desa Kunden" class="h-10 w-auto">
             <span class="text-xl font-bold text-gray-700">Desa Kunden</span>
         </a>
 
