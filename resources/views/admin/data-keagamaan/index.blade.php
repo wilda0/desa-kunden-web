@@ -29,7 +29,7 @@
                         </div>
                     @endif
 
-                    <form method="POST" action="{{-- route('admin.keagamaan.store') --}}">
+                    <form method="POST" action="{{ route('admin.keagamaan.store') }}">
                         @csrf
 
                         @php

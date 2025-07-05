@@ -65,7 +65,7 @@
                         </a>
 
                         <!-- Data Ekonomi -->
-                        <a href="#" class="block p-6 bg-white dark:bg-gray-700 rounded-lg shadow-md hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+                        <a href="{{ route('admin.data-ekonomi.index') }}" class="block p-6 bg-white dark:bg-gray-700 rounded-lg shadow-md hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
                             <div class="flex items-center">
                                 <div class="p-3 bg-purple-100 dark:bg-purple-900/50 rounded-full">
                                     <i data-lucide="briefcase" class="w-6 h-6 text-purple-600 dark:text-purple-400"></i>

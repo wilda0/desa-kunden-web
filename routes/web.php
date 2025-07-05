@@ -13,8 +13,10 @@ use App\Http\Controllers\DemografiKelaminController;
 use App\Http\Controllers\DataPendidikanController;
 use App\Http\Controllers\DataKesehatanController;
 use App\Http\Controllers\DataKeagamaanController;
+use App\Http\Controllers\DataEkonomiController;
 use App\Models\Berita;
 use App\Models\Aparatur;
+use App\Models\DataEkonomi;
 use App\Models\DataKeagamaan;
 
 /*
@@ -56,7 +58,7 @@ Route::get('/data-kesehatan', [DataKesehatanController::class, 'showPublic'])->n
 Route::get('/data-keagamaan', [DataKeagamaanController::class, 'showPublic'])->name('data-keagamaan');
 
 // Data Ekonomi
-Route::get('/data-ekonomi', fn() => view('data-ekonomi'))->name('data-ekonomi');
+Route::get('/data-ekonomi', [DataEkonomiController::class, 'showPublic'])->name('data-ekonomi');
 
 // Berita Publik
 Route::get('/berita', [BeritaController::class, 'publik'])->name('berita.index');
@@ -115,6 +117,10 @@ Route::middleware([
     // Data Keagamaan
     Route::get('/admin/data-keagamaan', [DataKeagamaanController::class, 'index'])->name('admin.data-keagamaan.index');
     Route::post('/admin/data-keagamaan', [DataKeagamaanController::class, 'store'])->name('admin.data-keagamaan.store');
+
+    // Data Ekonomi
+    Route::get('/admin/data-ekonomi', [DataEkonomiController::class, 'index'])->name('admin.data-ekonomi.index');
+    Route::post('/admin/data-ekonomi', [DataEkonomiController::class, 'store'])->name('admin.data-ekonomi.store');
 
     // Dokumen Admin
     Route::resource('/admin/dokumen', DokumenController::class)->names('admin.dokumen');
