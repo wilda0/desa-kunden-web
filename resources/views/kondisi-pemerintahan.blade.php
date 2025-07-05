@@ -100,7 +100,7 @@
             {{-- Bagian Judul dan Breadcrumb --}}
             <section class="bg-slate-800 relative text-white text-center py-20 sm:py-28">
                 <div class="absolute inset-0 bg-cover bg-center"
-                    style="background-image: url('{{ asset('images/lahan-kunyit.png') }}');">
+                    style="background-image: url('/public/images/lahan-kunyit.png');">
                 </div>
                 <div class="absolute inset-0 bg-black/60"></div>
                 <div class="relative z-10 container mx-auto px-4">
