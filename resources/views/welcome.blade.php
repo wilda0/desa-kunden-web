@@ -132,7 +132,7 @@
     <main x-data="{ showMore: false }">
         <!-- Hero Section -->
         <section id="home" class="relative h-[60vh] md:h-[80vh] bg-cover bg-center"
-            style="background-image: url('/images/kantor-kunden.png');">
+            style="background-image: url('/public/images/kantor-kunden.png');">
             <div class="absolute inset-0 bg-black/50"></div>
             <div class="relative z-10 flex flex-col items-center justify-center h-full text-white text-center px-4 animate-fade-in-up">
 
