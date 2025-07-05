@@ -101,8 +101,8 @@ Route::middleware([
     Route::get('/dashboard', fn() => view('dashboard'))->name('dashboard');
 
     // Data Jenis Kelamin
-    Route::get('/admin/demografi-kelamin', [DemografiKelaminController::class, 'index'])->name('admin.demografi-kelamin.index');
-    Route::post('/admin/demografi-kelamin', [DemografiKelaminController::class, 'store'])->name('admin.demografi-kelamin.store');
+    Route::get('/admin/data-kelamin', [DemografiKelaminController::class, 'index'])->name('admin.data-kelamin.index');
+    Route::post('/admin/data-kelamin', [DemografiKelaminController::class, 'store'])->name('admin.data-kelamin.store');
 
     // Data Pendidikan
     Route::get('/admin/data-pendidikan', [DataPendidikanController::class, 'index'])->name('admin.data-pendidikan.index');

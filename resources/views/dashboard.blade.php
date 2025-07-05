@@ -25,7 +25,7 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
                         <!-- Data Jenis Kelamin -->
-                        <a href="{{ route('admin.demografi-kelamin.index') }}" class="block p-6 bg-white dark:bg-gray-700 rounded-lg shadow-md hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+                        <a href="{{ route('admin.data-kelamin.index') }}" class="block p-6 bg-white dark:bg-gray-700 rounded-lg shadow-md hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
                             <div class="flex items-center">
                                 <div class="p-3 bg-blue-100 dark:bg-blue-900/50 rounded-full">
                                     <i data-lucide="users" class="w-6 h-6 text-blue-600 dark:text-blue-400"></i>

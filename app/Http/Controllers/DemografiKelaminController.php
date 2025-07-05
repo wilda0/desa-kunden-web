@@ -10,7 +10,7 @@ class DemografiKelaminController extends Controller
     public function index()
     {
         $data = DemografiKelamin::latest()->first();
-        return view('admin.demografi-kelamin.index', compact('data'));
+        return view('admin.data-kelamin.index', compact('data'));
     }
 
     public function store(Request $request)

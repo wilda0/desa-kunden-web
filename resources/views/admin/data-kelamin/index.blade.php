@@ -29,7 +29,7 @@
                         </div>
                     @endif
 
-                    <form method="POST" action="{{ route('admin.demografi-kelamin.store') }}" class="space-y-6">
+                    <form method="POST" action="{{ route('admin.data-kelamin.store') }}" class="space-y-6">
                         @csrf
 
                         <!-- Jumlah Laki-laki -->
