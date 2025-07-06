@@ -26,8 +26,23 @@ class GaleriController extends Controller
             'gambar' => 'required|image|max:2048',
         ]);
 
-        $validated['gambar'] = $request->file('gambar')->store('galeri', 'public');
+        // Simpan file ke storage/app/public/galeri
+        $path = $request->file('gambar')->store('galeri', 'public');
 
+        // Copy manual ke public/storage/galeri biar langsung bisa diakses
+        $source = storage_path('app/public/' . basename($path));
+        $destination = public_path('storage/galeri/' . basename($path));
+
+        // Buat folder tujuan kalau belum ada
+        if (!file_exists(public_path('storage/galeri'))) {
+            mkdir(public_path('storage/galeri'), 0755, true);
+        }
+
+        // Copy file
+        copy($source, $destination);
+
+        // Simpan path ke database
+        $validated['gambar'] = 'galeri/' . basename($path);
         Galeri::create($validated);
 
         return redirect()->route('admin.galeri.index')->with('success', 'Foto galeri berhasil ditambahkan.');
@@ -49,8 +64,25 @@ class GaleriController extends Controller
         ]);
 
         if ($request->hasFile('gambar')) {
+            // Hapus gambar lama dari storage
             Storage::disk('public')->delete($galeri->gambar);
-            $validated['gambar'] = $request->file('gambar')->store('galeri', 'public');
+
+            // Simpan gambar baru ke storage/app/public/galeri
+            $path = $request->file('gambar')->store('galeri', 'public');
+
+            // Copy manual ke public/storage/galeri biar langsung bisa diakses
+            $source = storage_path('app/public/' . basename($path));
+            $destination = public_path('storage/galeri/' . basename($path));
+
+            // Pastikan folder tujuan ada
+            if (!file_exists(public_path('storage/galeri'))) {
+                mkdir(public_path('storage/galeri'), 0755, true);
+            }
+
+            copy($source, $destination);
+
+            // Simpan path ke database
+            $validated['gambar'] = 'galeri/' . basename($path);
         }
 
         $galeri->update($validated);
