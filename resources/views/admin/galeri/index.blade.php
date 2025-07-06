@@ -30,7 +30,7 @@
                     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                         @forelse ($galeris as $galeri)
                             <div class="bg-gray-50 dark:bg-gray-900/50 rounded-lg shadow-md overflow-hidden group">
-                                <img src="{{ Storage::url($galeri->gambar) }}" alt="{{ $galeri->judul }}" class="w-full h-48 object-cover">
+                                <img src="{{ asset('public/storage/' . $galeri->gambar) }}" alt="{{ $galeri->judul }}" class="w-full h-48 object-cover">
                                 <div class="p-4">
                                     <h3 class="font-bold text-gray-900 dark:text-white truncate" title="{{ $galeri->judul }}">{{ $galeri->judul }}</h3>
                                     <div class="mt-3 flex justify-between items-center">

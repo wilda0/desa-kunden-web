@@ -37,7 +37,7 @@
                             <div>
                                 <x-label for="gambar" value="{{ __('Ganti Gambar (Opsional, Maks 2MB)') }}" />
                                 <div class="mt-2">
-                                    <img id="gambar-lama" src="{{ Storage::url($galeri->gambar) }}" alt="Gambar saat ini" class="h-48 rounded-md object-cover shadow mb-2">
+                                    <img id="gambar-lama" src="{{ asset('public/storage/' . $galeri->gambar) }}" alt="Gambar saat ini" class="h-48 rounded-md object-cover shadow mb-2">
                                     <img id="preview-gambar" class="h-48 rounded-md object-cover shadow" style="display: none;" alt="Preview Gambar Baru">
                                 </div>
                                 <input id="gambar" class="block mt-2 w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600" type="file" name="gambar" accept="image/*">

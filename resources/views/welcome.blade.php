@@ -382,7 +382,7 @@
             </div>
         </section>
 
-        <!-- Berita Section -->
+        <!-- Galeri Section -->
         @php
             use App\Models\Galeri;
             $galeriTerbaru = Galeri::latest()->take(4)->get();
@@ -394,7 +394,7 @@
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                     @forelse ($galeriTerbaru as $item)
                         <div class="group relative block w-full rounded-lg shadow-md overflow-hidden aspect-square">
-                            <img src="{{ Storage::url($item->gambar) }}"
+                            <img src="{{ asset('public/storage/' . $item->gambar) }}"
                                 class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                                 alt="{{ $item->judul }}">
                             <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>

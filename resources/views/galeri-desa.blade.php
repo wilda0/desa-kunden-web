@@ -83,7 +83,7 @@
         showModal: false,
         currentIndex: 0,
         // PERBAIKAN: ->values() dipanggil sebelum json_encode()
-        images: {{ json_encode($galleryItems->map(fn($item) => ['src' => Storage::url($item->gambar), 'title' => $item->judul])->values()) }},
+        images: {{ json_encode($galleryItems->map(fn($item) => ['src' => asset('public/storage/' . $item->gambar), 'title' => $item->judul])->values()) }},
         openModal(index) {
             this.currentIndex = index;
             this.showModal = true;
@@ -125,7 +125,7 @@
                 @forelse ($galleryItems as $index => $item)
                     <div @click="openModal({{ $index }})"
                         class="group relative block w-full rounded-lg shadow-md overflow-hidden cursor-pointer aspect-square">
-                        <img src="{{ Storage::url($item->gambar) }}" alt="{{ $item->judul }}"
+                        <img src="{{ asset('public/storage/' . $item->gambar) }}" alt="{{ $item->judul }}"
                             class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
                         <div class="absolute bottom-0 left-0 w-full p-3">

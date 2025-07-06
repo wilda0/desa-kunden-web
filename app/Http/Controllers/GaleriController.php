@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Galeri;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 
 class GaleriController extends Controller
 {
@@ -26,7 +27,16 @@ class GaleriController extends Controller
             'gambar' => 'required|image|max:2048',
         ]);
 
-        $validated['gambar'] = $request->file('gambar')->store('galeri', 'public');
+        // Simpan ke storage/app/public/galeri
+        $path = $request->file('gambar')->store('galeri', 'public');
+
+        // Salin ke public/storage/galeri agar bisa diakses publik
+        $from = storage_path('app/public/' . $path);
+        $to = public_path('storage/' . $path);
+        File::ensureDirectoryExists(dirname($to));
+        File::copy($from, $to);
+
+        $validated['gambar'] = $path;
 
         Galeri::create($validated);
 
@@ -49,8 +59,20 @@ class GaleriController extends Controller
         ]);
 
         if ($request->hasFile('gambar')) {
+            // Hapus gambar lama
             Storage::disk('public')->delete($galeri->gambar);
-            $validated['gambar'] = $request->file('gambar')->store('galeri', 'public');
+            File::delete(public_path('storage/' . $galeri->gambar));
+
+            // Simpan gambar baru
+            $path = $request->file('gambar')->store('galeri', 'public');
+
+            // Salin ke public
+            $from = storage_path('app/public/' . $path);
+            $to = public_path('storage/' . $path);
+            File::ensureDirectoryExists(dirname($to));
+            File::copy($from, $to);
+
+            $validated['gambar'] = $path;
         }
 
         $galeri->update($validated);
