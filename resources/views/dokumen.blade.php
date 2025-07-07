@@ -89,7 +89,6 @@
             <section id="informasi-publik">
                 <div class="border-t-2 border-gray-200 pt-8">
                     <h2 class="text-3xl font-bold text-gray-800 mb-2">Informasi Publik Terbaru</h2>
-                    <p class="text-gray-500 mb-8">Update terakhir 2 tahun yang lalu</p>
                 </div>
 
                 <!-- Daftar Dokumen -->
