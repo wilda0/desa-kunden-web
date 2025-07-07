@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Aparatur;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 
 class AparaturController extends Controller
 {
@@ -27,7 +28,15 @@ class AparaturController extends Controller
             'foto' => 'required|image|max:2048',
         ]);
 
-        $validated['foto'] = $request->file('foto')->store('aparatur', 'public');
+        $path = $request->file('foto')->store('aparatur', 'public');
+
+        // Copy ke public/storage/aparatur/
+        $source = storage_path('app/public/' . $path);
+        $destination = public_path('storage/' . $path);
+        File::ensureDirectoryExists(dirname($destination));
+        File::copy($source, $destination);
+
+        $validated['foto'] = $path;
 
         Aparatur::create($validated);
 
@@ -51,8 +60,20 @@ class AparaturController extends Controller
         ]);
 
         if ($request->hasFile('foto')) {
-            Storage::disk('public')->delete($aparatur->foto);
-            $validated['foto'] = $request->file('foto')->store('aparatur', 'public');
+            if ($aparatur->foto && Storage::disk('public')->exists($aparatur->foto)) {
+                Storage::disk('public')->delete($aparatur->foto);
+                File::delete(public_path('storage/' . $aparatur->foto));
+            }
+
+            $path = $request->file('foto')->store('aparatur', 'public');
+
+            // Copy ke public/storage/aparatur/
+            $source = storage_path('app/public/' . $path);
+            $destination = public_path('storage/' . $path);
+            File::ensureDirectoryExists(dirname($destination));
+            File::copy($source, $destination);
+
+            $validated['foto'] = $path;
         }
 
         $aparatur->update($validated);

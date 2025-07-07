@@ -43,7 +43,7 @@
                             <div>
                                 <x-label for="foto" value="{{ __('Ganti Foto (Opsional, Maks 2MB)') }}" />
                                 <div class="mt-2">
-                                    <img id="foto-lama" src="{{ Storage::url($aparatur->foto) }}" alt="Foto saat ini" class="h-48 rounded-md object-cover shadow mb-2">
+                                    <img id="foto-lama" src="{{ asset('public/storage/' . $aparatur->foto) }}" alt="Foto saat ini" class="h-48 rounded-md object-cover shadow mb-2">
                                     <img id="preview-foto" class="h-48 rounded-md object-cover shadow" style="display: none;" alt="Preview Foto Baru">
                                 </div>
                                 <input id="foto" class="block mt-2 w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600" type="file" name="foto" accept="image/*">

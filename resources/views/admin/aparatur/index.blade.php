@@ -30,7 +30,7 @@
                     <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
                         @forelse ($aparatur as $item)
                             <div class="bg-gray-50 dark:bg-gray-900/50 rounded-lg shadow-md overflow-hidden text-center">
-                                <img src="{{ Storage::url($item->foto) }}" alt="{{ $item->nama }}" class="w-full h-48 object-cover object-center">
+                                <img src="{{ asset('public/storage/' . $item->foto) }}" alt="{{ $item->nama }}" class="w-full h-48 object-cover object-center">
                                 <div class="p-4">
                                     <h3 class="font-bold text-gray-900 dark:text-white truncate">{{ $item->nama }}</h3>
                                     <p class="text-gray-600 dark:text-gray-400 text-sm truncate">{{ $item->jabatan }}</p>

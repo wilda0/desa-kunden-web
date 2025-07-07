@@ -443,7 +443,7 @@
                             <div class="flex-shrink-0 w-52 snap-start">
                                 <div
                                     class="bg-gray-50 rounded-lg shadow-md overflow-hidden h-full group transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-xl">
-                                    <img src="{{ Storage::url($aparatur->foto) }}" alt="{{ $aparatur->nama }}"
+                                    <img src="{{ asset('public/storage/' . $aparatur->foto) }}" alt="{{ $aparatur->nama }}"
                                         class="w-full h-56 object-cover object-center">
                                     <div class="p-3 text-center">
                                         <h4 class="font-bold text-md">{{ $aparatur->nama }}</h4>
