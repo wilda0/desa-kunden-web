@@ -79,7 +79,7 @@
                             <div>
                                 <x-label for="foto" value="{{ __('Ganti Foto (Opsional, Maks 2MB)') }}" />
                                 <div class="mt-2">
-                                    <img id="foto-lama" src="{{ Storage::url($berita->foto) }}" alt="Foto saat ini"
+                                    <img id="foto-lama" src="{{ asset('public/storage/' . $berita->foto) }}" alt="Foto saat ini"
                                         class="h-40 rounded-md object-cover mb-2">
                                     <img id="preview-foto" class="h-40 rounded-md object-cover" style="display: none;">
                                 </div>

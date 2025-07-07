@@ -7,6 +7,7 @@ use App\Models\Berita;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Komentar;
 use App\Models\ProdukUmkm;
+use Illuminate\Support\Facades\File;
 
 class BeritaController extends Controller
 {
@@ -32,7 +33,7 @@ class BeritaController extends Controller
 
     public function store(Request $request)
     {
-        $validated = $request->validate([
+        $request->validate([
             'nama_berita' => 'required|string|max:255',
             'tanggal' => 'required|date',
             'jenis' => 'required|string|in:Berita Desa,Pengumuman Desa,Pembangunan Desa,Kegiatan Desa',
@@ -40,9 +41,19 @@ class BeritaController extends Controller
             'foto' => 'required|image|max:2048',
         ]);
 
-        $validated['foto'] = $request->file('foto')->store('berita', 'public');
+        $path = $request->file('foto')->store('berita', 'public');
+        $source = storage_path('app/public/' . $path);
+        $destination = public_path('storage/' . $path);
+        File::ensureDirectoryExists(dirname($destination));
+        File::copy($source, $destination);
 
-        Berita::create($validated);
+        Berita::create([
+            'nama_berita' => $request->nama_berita,
+            'tanggal' => $request->tanggal,
+            'jenis' => $request->jenis,
+            'deskripsi' => $request->deskripsi,
+            'foto' => $path,
+        ]);
 
         return redirect()->route('admin.berita.index')->with('success', 'Berita berhasil ditambahkan.');
     }
@@ -57,19 +68,29 @@ class BeritaController extends Controller
     {
         $berita = Berita::findOrFail($id);
 
-        $validated = $request->validate([
+        $request->validate([
             'nama_berita' => 'required|string|max:255',
             'tanggal' => 'required|date',
             'deskripsi' => 'required|string',
             'foto' => 'nullable|image|max:2048',
         ]);
 
+        $data = $request->only(['nama_berita', 'tanggal', 'deskripsi']);
+
         if ($request->hasFile('foto')) {
             Storage::disk('public')->delete($berita->foto);
-            $validated['foto'] = $request->file('foto')->store('berita', 'public');
+            File::delete(public_path('storage/' . $berita->foto));
+
+            $path = $request->file('foto')->store('berita', 'public');
+            $source = storage_path('app/public/' . $path);
+            $destination = public_path('storage/' . $path);
+            File::ensureDirectoryExists(dirname($destination));
+            File::copy($source, $destination);
+
+            $data['foto'] = $path;
         }
 
-        $berita->update($validated);
+        $berita->update($data);
 
         return redirect()->route('admin.berita.index')->with('success', 'Berita berhasil diperbarui.');
     }
@@ -77,7 +98,12 @@ class BeritaController extends Controller
     public function destroy($id)
     {
         $berita = Berita::findOrFail($id);
-        Storage::disk('public')->delete($berita->foto);
+
+        if ($berita->foto) {
+            Storage::disk('public')->delete($berita->foto);
+            File::delete(public_path('storage/' . $berita->foto));
+        }
+
         $berita->delete();
 
         return redirect()->route('admin.berita.index')->with('success', 'Berita berhasil dihapus.');
@@ -101,7 +127,7 @@ class BeritaController extends Controller
         $berita->increment('views');
         $latestBeritas = Berita::where('id', '!=', $id)->latest()->limit(5)->get();
         $komentars = Komentar::where('berita_id', $id)->latest()->get();
-        $produkUmkms = $berita->id == 15 ? ProdukUmkm::oldest()->get() : collect();
+        $produkUmkms = $berita->id == 6 ? ProdukUmkm::oldest()->get() : collect();
 
         return view('berita-detail', compact('berita', 'latestBeritas', 'komentars', 'produkUmkms'));
     }

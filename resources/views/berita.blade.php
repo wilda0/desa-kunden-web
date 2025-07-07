@@ -70,7 +70,7 @@
                 @foreach ($beritas as $berita)
                     <div class="bg-white rounded-lg shadow-md overflow-hidden group">
                         <a href="{{ route('berita.detail', $berita->id) }}">
-                            <img src="{{ Storage::url($berita->foto) }}" alt="{{ $berita->nama_berita }}"
+                            <img src="{{ asset('public/storage/' . $berita->foto) }}" alt="{{ $berita->nama_berita }}"
                                 class="w-full h-48 object-cover group-hover:opacity-80 transition-opacity">
                         </a>
                         <div class="p-5">

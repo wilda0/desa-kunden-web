@@ -89,19 +89,19 @@
                         </div>
 
                         <!-- Featured Image -->
-                        <img src="{{ Storage::url($berita->foto) }}" alt="{{ $berita->nama_berita }}" class="w-full aspect-video object-cover rounded-lg mb-8 shadow">
+                        <img src="{{ asset('public/storage/' . $berita->foto) }}" alt="{{ $berita->nama_berita }}" class="w-full aspect-video object-cover rounded-lg mb-8 shadow">
 
                         <!-- Article Content -->
                         <div class="prose max-w-none text-gray-700 leading-relaxed">
                             {!! $berita->deskripsi !!}
                         </div>
 
-                        @if ($berita->id == 15)
+                        @if ($berita->id == 6)
                             <div class="mt-12 space-y-6">
                                 <h3 class="text-xl font-bold text-gray-800">Produk UMKM Terkait</h3>
                                 @foreach ($produkUmkms as $produk)
                                     <div class="flex items-start border p-4 rounded-md shadow-sm bg-white">
-                                        <img src="{{ asset('storage/' . $produk->foto) }}" alt="{{ $produk->nama_produk }}" class="w-24 h-24 object-cover rounded mr-4">
+                                        <img src="{{ asset('public/storage/' . $produk->foto) }}" alt="{{ $produk->nama_produk }}" class="w-24 h-24 object-cover rounded mr-4">
 
                                         <div class="flex-1">
                                             <h4 class="text-lg font-semibold">{{ $produk->nama_produk }}</h4>
@@ -194,7 +194,7 @@
                                         @continue
                                     @endif
                                     <a href="{{ route('berita.detail', $item) }}" class="flex items-center space-x-3 group">
-                                        <img src="{{ Storage::url($item->foto) }}" alt="{{ $item->nama_berita }}" class="w-20 h-20 object-cover rounded-md flex-shrink-0">
+                                        <img src="{{ asset('public/storage/' . $item->foto) }}" alt="{{ $item->nama_berita }}" class="w-20 h-20 object-cover rounded-md flex-shrink-0">
                                         <div>
                                             <h4 class="font-semibold text-gray-800 group-hover:text-blue-600 transition-colors line-clamp-2" title="{{ $item->nama_berita }}">
                                                 {{ $item->nama_berita }}

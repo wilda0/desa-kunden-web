@@ -48,7 +48,7 @@
                                     <tr
                                         class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                         <td class="px-6 py-4">
-                                            <img src="{{ Storage::url($berita->foto) }}"
+                                            <img src="{{ asset('public/storage/' . $berita->foto) }}"
                                                 alt="{{ $berita->nama_berita }}" class="w-20 h-16 object-cover rounded">
                                         </td>
                                         <th scope="row"
@@ -86,7 +86,7 @@
                                                                     class="text-gray-500 hover:text-gray-700 dark:hover:text-white text-2xl">&times;</button>
                                                             </div>
                                                             <div class="space-y-4 text-left">
-                                                                <img src="{{ Storage::url($berita->foto) }}"
+                                                                <img src="{{ asset('public/storage/' . $berita->foto) }}"
                                                                     alt="{{ $berita->nama_berita }}"
                                                                     class="w-full h-64 object-cover rounded-md mb-4">
                                                                 <p
