@@ -328,7 +328,7 @@
                                 <a href="{{ route('berita.detail', $berita->id) }}" class="block h-full group">
                                     <div
                                         class="bg-white rounded-lg shadow-md overflow-hidden h-full flex flex-col hover:shadow-xl transition-shadow duration-300">
-                                        <img src="{{ Storage::url($berita->foto) }}" alt="{{ $berita->nama_berita }}"
+                                        <img src="{{ asset('public/storage/' . $berita->foto) }}" alt="{{ $berita->nama_berita }}"
                                             class="w-full h-40 object-cover">
                                         <div class="p-4 flex flex-col flex-grow">
                                             <h3 class="font-bold text-lg mb-2 text-gray-800 group-hover:text-blue-600 transition-colors line-clamp-2"
