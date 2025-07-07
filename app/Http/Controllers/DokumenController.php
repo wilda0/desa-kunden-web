@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Dokumen;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Response;
 use Barryvdh\DomPDF\Facade\Pdf;
 
@@ -32,21 +33,25 @@ class DokumenController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $validated = $request->validate([
             'judul' => 'required|string|max:255',
             'jenis_dokumen' => 'required|in:Daftar Informasi Publik,Dokumen Keuangan,Dokumen Arsip',
             'tanggal_input' => 'required|date',
             'file_dokumen' => 'required|file|mimes:pdf|max:5120',
         ]);
 
-        $filePath = $request->file('file_dokumen')->store('dokumen', 'public');
+        // Simpan ke storage/app/public/dokumen
+        $path = $request->file('file_dokumen')->store('dokumen', 'public');
 
-        Dokumen::create([
-            'judul' => $request->judul,
-            'jenis_dokumen' => $request->jenis_dokumen,
-            'tanggal_input' => $request->tanggal_input,
-            'file_path' => $filePath,
-        ]);
+        // Salin ke public/storage/dokumen
+        $from = storage_path('app/public/' . $path);
+        $to = public_path('storage/' . $path);
+        File::ensureDirectoryExists(dirname($to));
+        File::copy($from, $to);
+
+        $validated['file_path'] = $path;
+
+        Dokumen::create($validated);
 
         return redirect()->route('admin.dokumen.index')->with('success', 'Dokumen berhasil ditambahkan.');
     }
@@ -74,26 +79,32 @@ class DokumenController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
+        $dokumen = Dokumen::findOrFail($id);
+
+        $validated = $request->validate([
             'judul' => 'required|string|max:255',
             'jenis_dokumen' => 'required|in:Daftar Informasi Publik,Dokumen Keuangan,Dokumen Arsip',
             'tanggal_input' => 'required|date',
             'file_dokumen' => 'nullable|file|mimes:pdf|max:5120',
         ]);
 
-        $dokumen = Dokumen::findOrFail($id);
-
-        $data = $request->except('file_dokumen');
-
         if ($request->hasFile('file_dokumen')) {
-            if ($dokumen->file_path && Storage::exists($dokumen->file_path)) {
-                Storage::delete($dokumen->file_path);
-            }
+            // Hapus file lama dari dua lokasi
+            Storage::disk('public')->delete($dokumen->file_path);
+            File::delete(public_path('storage/' . $dokumen->file_path));
 
-            $data['file_path'] = $request->file('file_dokumen')->store('public/dokumen');
+            // Upload file baru
+            $path = $request->file('file_dokumen')->store('dokumen', 'public');
+
+            $from = storage_path('app/public/' . $path);
+            $to = public_path('storage/' . $path);
+            File::ensureDirectoryExists(dirname($to));
+            File::copy($from, $to);
+
+            $validated['file_path'] = $path;
         }
 
-        $dokumen->update($data);
+        $dokumen->update($validated);
 
         return redirect()->route('admin.dokumen.index')->with('success', 'Dokumen berhasil diperbarui.');
     }

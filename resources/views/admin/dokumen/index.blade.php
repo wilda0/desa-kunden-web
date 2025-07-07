@@ -70,7 +70,7 @@
                                                             <h3 class="text-lg font-semibold text-gray-800 dark:text-white">Lihat Dokumen: {{ $dokumen->judul }}</h3>
                                                             <button @click="showModal = false" class="text-gray-500 hover:text-gray-700 dark:hover:text-white text-2xl">&times;</button>
                                                         </div>
-                                                        <iframe src="{{ Storage::url($dokumen->file_path) }}" class="w-full h-full"></iframe>
+                                                        <iframe src="{{ asset('public/storage/' . $dokumen->file_path) }}" class="w-full h-full"></iframe>
                                                     </div>
                                                 </div>
                                             </div>
