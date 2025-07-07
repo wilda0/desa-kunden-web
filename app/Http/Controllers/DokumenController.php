@@ -116,8 +116,9 @@ class DokumenController extends Controller
     {
         $dokumen = Dokumen::findOrFail($id);
 
-        if ($dokumen->file_path && Storage::exists($dokumen->file_path)) {
+        if ($dokumen->file_path) {
             Storage::delete($dokumen->file_path);
+            File::delete(public_path('storage/' . $dokumen->file_path));
         }
 
         $dokumen->delete();

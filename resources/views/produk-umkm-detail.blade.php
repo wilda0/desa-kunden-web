@@ -68,7 +68,7 @@
                 <div class="flex flex-col md:flex-row gap-4 items-start">
                     <!-- Image Gallery -->
                     <div>
-                        <img src="{{ Storage::url($produkUmkm->foto) }}" alt="{{ $produkUmkm->nama_produk }}"
+                        <img src="{{ asset('public/storage/' . $produkUmkm->foto) }}" alt="{{ $produkUmkm->nama_produk }}"
                             class="w-[300px] h-[300px] object-cover rounded-lg shadow-sm">
                     </div>
 

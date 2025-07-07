@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ProdukUmkm;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 use App\Models\KomentarProdukUmkm;
 
 class ProdukUmkmController extends Controller
@@ -24,7 +25,6 @@ class ProdukUmkmController extends Controller
     {
         $request->validate([
             'nama_produk' => 'required|string|max:255',
-            // 'harga' => 'required|numeric',
             'deskripsi' => 'required|string',
             'foto' => 'required|image|max:2048',
             'format_harga' => 'required|string|max:100',
@@ -33,9 +33,13 @@ class ProdukUmkmController extends Controller
 
         $path = $request->file('foto')->store('produk-umkm', 'public');
 
+        $source = storage_path('app/public/' . $path);
+        $destination = public_path('storage/' . $path);
+        File::ensureDirectoryExists(dirname($destination));
+        File::copy($source, $destination);
+
         ProdukUmkm::create([
             'nama_produk' => $request->nama_produk,
-            // 'harga' => $request->harga,
             'deskripsi' => $request->deskripsi,
             'foto' => $path,
             'format_harga' => $request->format_harga,
@@ -54,7 +58,6 @@ class ProdukUmkmController extends Controller
     {
         $request->validate([
             'nama_produk' => 'required|string|max:255',
-            // 'harga' => 'required|numeric',
             'deskripsi' => 'required|string',
             'foto' => 'nullable|image|max:2048',
             'format_harga' => 'required|string|max:100',
@@ -65,7 +68,15 @@ class ProdukUmkmController extends Controller
 
         if ($request->hasFile('foto')) {
             Storage::disk('public')->delete($produkUmkm->foto);
-            $data['foto'] = $request->file('foto')->store('produk-umkm', 'public');
+            File::delete(public_path('storage/' . $produkUmkm->foto));
+
+            $path = $request->file('foto')->store('produk-umkm', 'public');
+            $source = storage_path('app/public/' . $path);
+            $destination = public_path('storage/' . $path);
+            File::ensureDirectoryExists(dirname($destination));
+            File::copy($source, $destination);
+
+            $data['foto'] = $path;
         }
 
         $produkUmkm->update($data);
@@ -75,7 +86,11 @@ class ProdukUmkmController extends Controller
 
     public function destroy(ProdukUmkm $produkUmkm)
     {
-        Storage::disk('public')->delete($produkUmkm->foto);
+        if ($produkUmkm->foto) {
+            Storage::disk('public')->delete($produkUmkm->foto);
+            File::delete(public_path('storage/' . $produkUmkm->foto));
+        }
+
         $produkUmkm->delete();
         return redirect()->route('admin.produk-umkm.index')->with('success', 'Produk UMKM berhasil dihapus.');
     }

@@ -85,7 +85,7 @@
                 @forelse ($produkUmkms as $produk)
                     <a href="{{ route('produk-umkm.show', $produk) }}"
                         class="bg-white rounded-lg shadow-md overflow-hidden group">
-                        <img src="{{ Storage::url($produk->foto) }}" alt="{{ $produk->nama_produk }}"
+                        <img src="{{ asset('public/storage/' . $produk->foto) }}" alt="{{ $produk->nama_produk }}"
                             class="w-full h-48 object-cover group-hover:opacity-80 transition-opacity">
                         <div class="p-4">
                             <h3 class="font-semibold text-gray-800 truncate">{{ $produk->nama_produk }}</h3>

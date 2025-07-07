@@ -55,7 +55,7 @@
                             <div>
                                 <x-label for="foto" value="{{ __('Ganti Foto Produk (Opsional)') }}" />
                                 <div class="mt-2">
-                                    <img src="{{ asset('storage/' . $produkUmkm->foto) }}" alt="{{ $produkUmkm->nama_produk }}" class="w-24 h-24 object-cover rounded-md shadow-sm mb-2">
+                                    <img src="{{ asset('public/storage/' . $produkUmkm->foto) }}" alt="{{ $produkUmkm->nama_produk }}" class="w-24 h-24 object-cover rounded-md shadow-sm mb-2">
                                     <p class="text-sm text-gray-500 dark:text-gray-400">Foto saat ini</p>
                                 </div>
                                 <input id="foto"

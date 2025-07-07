@@ -84,7 +84,12 @@ class AparaturController extends Controller
     public function destroy($id)
     {
         $aparatur = Aparatur::findOrFail($id);
-        Storage::disk('public')->delete($aparatur->foto);
+
+        if ($aparatur->foto && Storage::disk('public')->exists($aparatur->foto)) {
+            Storage::disk('public')->delete($aparatur->foto);
+            File::delete(public_path('storage/' . $aparatur->foto));
+        }
+
         $aparatur->delete();
 
         return redirect()->route('admin.aparatur.index')->with('success', 'Data aparatur berhasil dihapus.');
