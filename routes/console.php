@@ -11,11 +11,11 @@ Artisan::command('inspire', function () {
 
 Artisan::command('generate:sitemap', function () {
     Sitemap::create()
-        ->add(Url::create('/'))
-        ->add(Url::create('/profil-desa'))
-        ->add(Url::create('/berita'))
-        ->add(Url::create('/galeri'))
-        ->add(Url::create('/kontak'))
+        ->add(Url::create('https://kunden.id/'))
+        ->add(Url::create('https://kunden.id/profil-desa'))
+        ->add(Url::create('https://kunden.id/berita'))
+        ->add(Url::create('https://kunden.id/galeri'))
+        ->add(Url::create('https://kunden.id/kontak'))
         ->writeToFile(public_path('sitemap.xml'));
 
     $this->info('✅ Sitemap berhasil dibuat di public/sitemap.xml');
