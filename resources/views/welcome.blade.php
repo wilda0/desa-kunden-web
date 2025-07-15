@@ -4,7 +4,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Dashboard - Website Desa Kunden</title>
+
+    <title>Desa Kunden | Website Resmi</title>
+    <meta name="description" content="Website resmi Desa Kunden Kecamatan Bulu, Sukoharjo. Berisi informasi desa, profil, berita, kegiatan, dan layanan publik.">
+
+    <link rel="canonical" href="https://kunden.id/" />
 
     <link rel="icon" type="image/png" href="/public/images/logo-kunden.png">
 
