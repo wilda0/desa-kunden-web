@@ -159,7 +159,7 @@
                         <p class="mt-2 text-lg text-gray-600">Bagan Struktur Organisasi Pemerintahan Desa Kunden.</p>
                     </div>
                     <div class="max-w-5xl mx-auto bg-white p-4 sm:p-6 rounded-2xl shadow-2xl border">
-                        <img src="{{ asset('images/struktur-organisasi.png') }}" alt="Struktur Organisasi Desa Kunden"
+                        <img src="{{ asset('public/images/struktur-organisasi.png') }}" alt="Struktur Organisasi Desa Kunden"
                             class="w-full h-auto rounded-lg">
                     </div>
                 </section>
