@@ -3,7 +3,7 @@
     <nav class="container mx-auto px-6 lg:px-16 py-3 flex justify-between items-center">
         <!-- Logo -->
         <a href="{{ route('welcome') }}" class="flex items-center space-x-2">
-            <img src="/public/images/logo-kunden.png" alt="Logo Desa Kunden" class="h-10 w-auto">
+            <img src="/images/logo-kunden.png" alt="Logo Desa Kunden" class="h-10 w-auto">
             <span class="text-xl font-bold text-gray-700">Desa Kunden</span>
         </a>
 
@@ -18,14 +18,19 @@
                 </button>
                 <div x-show="open" x-transition class="absolute mt-0 pt-2 w-48 bg-white rounded-md shadow-xl z-20"
                     style="display: none;">
-                    <a href="{{ route('sejarah-desa') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50">Sejarah
+                    <a href="{{ route('sejarah-desa') }}"
+                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50">Sejarah
                         Desa</a>
-                    <a href="{{ route('profil-wilayah') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50">Profil Wilayah
+                    <a href="{{ route('profil-wilayah') }}"
+                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50">Profil Wilayah
                         Desa</a>
-                    <a href="{{ route('kondisi-pemerintahan') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50">Kondisi
+                    <a href="{{ route('kondisi-pemerintahan') }}"
+                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50">Kondisi
                         Pemerintahan</a>
                 </div>
             </div>
+            <a href="{{ route('layanan-desa') }}" class="text-gray-600 hover:text-blue-600 nav-link">Layanan Desa</a>
+            <a href="{{ route('lembaga-desa') }}" class="text-gray-600 hover:text-blue-600 nav-link">Lembaga</a>
             <!-- Data Desa Dropdown -->
             <div class="relative" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
                 <button class="flex items-center text-gray-600 hover:text-blue-600 nav-link">
@@ -34,15 +39,20 @@
                 </button>
                 <div x-show="open" x-transition class="absolute mt-0 pt-2 w-48 bg-white rounded-md shadow-xl z-20"
                     style="display: none;">
-                    <a href="{{ route('data-jenis-kelamin') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50">Data Jenis
+                    <a href="{{ route('data-jenis-kelamin') }}"
+                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50">Data Jenis
                         Kelamin</a>
-                    <a href="{{ route('data-pendidikan') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50">Data
+                    <a href="{{ route('data-pendidikan') }}"
+                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50">Data
                         Pendidikan</a>
-                    <a href="{{ route('data-kesehatan') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50">Data
+                    <a href="{{ route('data-kesehatan') }}"
+                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50">Data
                         Kesehatan</a>
-                    <a href="{{ route('data-keagamaan') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50">Data
+                    <a href="{{ route('data-keagamaan') }}"
+                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50">Data
                         Keagamaan</a>
-                    <a href="{{ route('data-ekonomi') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50">Data
+                    <a href="{{ route('data-ekonomi') }}"
+                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50">Data
                         Ekonomi</a>
                 </div>
             </div>
@@ -95,6 +105,8 @@
                     class="block py-2 px-4 text-xs hover:bg-gray-100">Kondisi Pemerintahan</a>
             </div>
         </div>
+        <a href="{{ route('layanan-desa') }}" class="block py-2 px-4 text-sm hover:bg-gray-200">Layanan Desa</a>
+        <a href="{{ route('lembaga-desa') }}" class="block py-2 px-4 text-sm hover:bg-gray-200">Lembaga</a>
         <div x-data="{ open: false }">
             <button @click="open = !open"
                 class="w-full text-left flex justify-between items-center py-2 px-4 text-sm hover:bg-gray-200">

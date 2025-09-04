@@ -6,14 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Form Permohonan Informasi - Website Desa Kunden</title>
 
-    <link rel="icon" type="image/png" href="/public/images/logo-kunden.png">
+    <link rel="icon" type="image/png" href="/images/logo-kunden.png">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600,700" rel="stylesheet" />
 
     <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    @vite(['resources/css/app.css', 'resources/js/app.js','resources/js/quillInit.js'])
 
     <!-- Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -45,7 +45,7 @@
     </style>
 </head>
 
-<body class="bg-gray-100 font-sans text-gray-800">
+<body class="  bg-gray-100 font-sans text-gray-800">
 
     {{-- Memanggil file header --}}
     @include('layouts.partials.header')
@@ -135,7 +135,7 @@
                     <!-- Submit Button -->
                     <div class="mt-8 text-right">
                         <button type="submit"
-                            class="bg-blue-600 text-white font-bold py-2 px-8 rounded-lg hover:bg-blue-700 transition-colors duration-300 flex items-center ml-auto">
+                            class=" bg-blue-600 text-white font-bold py-2 px-8 rounded-lg hover:bg-blue-700 transition-colors duration-300 flex items-center ml-auto">
                             <i data-lucide="send" class="w-5 h-5 mr-2"></i>
                             <span>Kirim</span>
                         </button>
@@ -153,7 +153,7 @@
             x-transition:enter-end="opacity-100 transform translate-y-0 sm:translate-x-0"
             x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100"
             x-transition:leave-end="opacity-0"
-            class="fixed top-5 right-5 z-50 bg-green-500 text-white py-3 px-5 rounded-lg shadow-lg flex items-center"
+            class="fixed top-5 right-5 z-50  bg-green-500 text-white py-3 px-5 rounded-lg shadow-lg flex items-center"
             style="display: none;">
             <i data-lucide="check-circle" class="w-6 h-6 mr-3"></i>
             <span>{{ session('success') }}</span>

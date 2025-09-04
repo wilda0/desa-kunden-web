@@ -6,18 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Desa Kunden | Website Resmi</title>
-    <meta name="description" content="Website resmi Desa Kunden Kecamatan Bulu, Sukoharjo. Berisi informasi desa, profil, berita, kegiatan, dan layanan publik.">
+    <meta name="description"
+        content="Website resmi Desa Kunden Kecamatan Bulu, Sukoharjo. Berisi informasi desa, profil, berita, kegiatan, dan layanan publik.">
 
     <link rel="canonical" href="https://kunden.id/" />
 
-    <link rel="icon" type="image/png" href="/public/images/logo-kunden.png">
+    <link rel="icon" type="image/png" href="/images/logo-kunden.png">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600,700" rel="stylesheet" />
 
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    {{-- Jangan inject tailwind pakai cdn, pakai vite --}}
+    @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/quillInit.js'])
 
     <!-- Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -120,10 +121,10 @@
     </style>
 </head>
 
-<body class="bg-gray-50 font-sans text-gray-800">
+<body class="  bg-gray-50 font-sans text-gray-800">
 
     <!-- Top Marquee -->
-    <div class="bg-blue-800 text-white py-2 overflow-hidden">
+    <div class=" bg-blue-800 text-white py-2 overflow-hidden">
         <div class="marquee-content whitespace-nowrap">
             <p>Selamat Datang di Website Resmi Pemerintah Desa Kunden, Kecamatan Bulu, Kabupaten Sukoharjo, Jawa Tengah
             </p>
@@ -136,9 +137,10 @@
     <main x-data="{ showMore: false }">
         <!-- Hero Section -->
         <section id="home" class="relative h-[60vh] md:h-[80vh] bg-cover bg-center"
-            style="background-image: url('/public/images/kantor-kunden.png');">
-            <div class="absolute inset-0 bg-black/50"></div>
-            <div class="relative z-10 flex flex-col items-center justify-center h-full text-white text-center px-4 animate-fade-in-up">
+            style="background-image: url('/images/kantor-kunden.png');">
+            <div class="absolute inset-0 bg-[rgba(0,0,0,0.25)]/50"></div>
+            <div
+                class="relative z-10 flex flex-col items-center justify-center h-full text-white text-center px-4 animate-fade-in-up">
 
                 <div x-data="typingEffect()" class="min-h-[60px] md:min-h-[72px] mb-4">
                     <h1 class="text-4xl md:text-6xl font-bold flex items-center justify-center">
@@ -173,7 +175,7 @@
                         </p>
                     </div>
                     <button @click="showMore = !showMore"
-                        class="mt-8 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full transition duration-300">
+                        class="mt-8  bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full transition duration-300">
                         <span x-text="showMore ? 'Tutup' : 'Lihat Selengkapnya'"></span>
                     </button>
                 </div>
@@ -186,7 +188,7 @@
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                     <a href="{{ route('profil-wilayah') }}" class="block rounded-lg transition-shadow hover:shadow-lg">
                         <div class="flex items-start space-x-4 p-6 border border-gray-200 rounded-lg h-full">
-                            <div class="bg-blue-100 text-blue-600 p-3 rounded-full flex-shrink-0"><i
+                            <div class=" bg-blue-100 text-blue-600 p-3 rounded-full flex-shrink-0"><i
                                     data-lucide="user-circle"></i></div>
                             <div>
                                 <h3 class="font-bold text-lg mb-1">Profil Desa</h3>
@@ -195,9 +197,10 @@
                             </div>
                         </div>
                     </a>
-                    <a href="{{ route('data-jenis-kelamin') }}" class="block rounded-lg transition-shadow hover:shadow-lg">
+                    <a href="{{ route('data-jenis-kelamin') }}"
+                        class="block rounded-lg transition-shadow hover:shadow-lg">
                         <div class="flex items-start space-x-4 p-6 border border-gray-200 rounded-lg h-full">
-                            <div class="bg-green-100 text-green-600 p-3 rounded-full flex-shrink-0"><i
+                            <div class=" bg-green-100 text-green-600 p-3 rounded-full flex-shrink-0"><i
                                     data-lucide="database"></i></div>
                             <div>
                                 <h3 class="font-bold text-lg mb-1">Data Desa</h3>
@@ -206,7 +209,8 @@
                             </div>
                         </div>
                     </a>
-                    <a href="{{ route('produk-hukum.index') }}" class="block rounded-lg transition-shadow hover:shadow-lg">
+                    <a href="{{ route('produk-hukum.index') }}"
+                        class="block rounded-lg transition-shadow hover:shadow-lg">
                         <div class="flex items-start space-x-4 p-6 border border-gray-200 rounded-lg h-full">
                             <div class="bg-yellow-100 text-yellow-600 p-3 rounded-full flex-shrink-0"><i
                                     data-lucide="gavel"></i></div>
@@ -260,7 +264,7 @@
         @endphp
 
         <!-- Pengumuman & Progress Section -->
-        <section class="py-16 bg-gray-50 reveal-on-scroll">
+        <section class="py-16   bg-gray-50 reveal-on-scroll">
             <div class="container mx-auto px-16 grid grid-cols-1 md:grid-cols-2 gap-12">
                 <div>
                     <h2 class="text-3xl font-bold mb-6 text-center md:text-left">Pengumuman Desa</h2>
@@ -268,12 +272,13 @@
                         @forelse ($beritaPengumuman as $item)
                             <a href="{{ route('berita.detail', $item->id) }}" class="block h-full group">
                                 <div class="bg-white p-4 rounded-lg shadow-sm flex items-center space-x-4">
-                                    <div class="bg-blue-100 p-3 rounded-full text-blue-500">
+                                    <div class=" bg-blue-100 p-3 rounded-full text-blue-500">
                                         <i data-lucide="megaphone"></i>
                                     </div>
                                     <div>
                                         <p class="font-semibold">{{ $item->nama_berita }}</p>
-                                        <span class="text-xs text-gray-500">{{ \Carbon\Carbon::parse($item->tanggal)->isoFormat('D MMMM Y') }}</span>
+                                        <span
+                                            class="text-xs text-gray-500">{{ \Carbon\Carbon::parse($item->tanggal)->isoFormat('D MMMM Y') }}</span>
                                     </div>
                                 </div>
                             </a>
@@ -288,12 +293,13 @@
                         @forelse ($beritaPembangunan as $item)
                             <a href="{{ route('berita.detail', $item->id) }}" class="block h-full group">
                                 <div class="bg-white p-4 rounded-lg shadow-sm flex items-center space-x-4">
-                                    <div class="bg-blue-100 p-3 rounded-full text-blue-500">
+                                    <div class=" bg-blue-100 p-3 rounded-full text-blue-500">
                                         <i data-lucide="pickaxe"></i>
                                     </div>
                                     <div>
                                         <p class="font-semibold">{{ $item->nama_berita }}</p>
-                                        <span class="text-xs text-gray-500">{{ \Carbon\Carbon::parse($item->tanggal)->isoFormat('D MMMM Y') }}</span>
+                                        <span
+                                            class="text-xs text-gray-500">{{ \Carbon\Carbon::parse($item->tanggal)->isoFormat('D MMMM Y') }}</span>
                                     </div>
                                 </div>
                             </a>
@@ -317,10 +323,10 @@
                     <h2 class="text-3xl font-bold text-center sm:text-left">Berita Desa</h2>
                     <div class="hidden sm:flex space-x-2">
                         <button @click="scroll('left')"
-                            class="p-2 rounded-full bg-gray-200 hover:bg-gray-300 transition-colors disabled:opacity-50"
+                            class="p-2 rounded-full   bg-gray-200 hover:bg-gray-300 transition-colors disabled:opacity-50"
                             :disabled="atStart"><i data-lucide="arrow-left" class="w-5 h-5"></i></button>
                         <button @click="scroll('right')"
-                            class="p-2 rounded-full bg-gray-200 hover:bg-gray-300 transition-colors disabled:opacity-50"
+                            class="p-2 rounded-full   bg-gray-200 hover:bg-gray-300 transition-colors disabled:opacity-50"
                             :disabled="atEnd"><i data-lucide="arrow-right" class="w-5 h-5"></i></button>
                     </div>
                 </div>
@@ -332,8 +338,7 @@
                                 <a href="{{ route('berita.detail', $berita->id) }}" class="block h-full group">
                                     <div
                                         class="bg-white rounded-lg shadow-md overflow-hidden h-full flex flex-col hover:shadow-xl transition-shadow duration-300">
-                                        <img src="{{ asset('public/storage/' . $berita->foto) }}" alt="{{ $berita->nama_berita }}"
-                                            class="w-full h-40 object-cover">
+
                                         <div class="p-4 flex flex-col flex-grow">
                                             <h3 class="font-bold text-lg mb-2 text-gray-800 group-hover:text-blue-600 transition-colors line-clamp-2"
                                                 title="{{ $berita->nama_berita }}">
@@ -342,11 +347,24 @@
                                             <div class="text-xs font-semibold text-blue-600 mb-2 uppercase">
                                                 {{ $berita->jenis }}
                                             </div>
-                                            <p class="text-gray-600 text-sm mb-4 line-clamp-2 flex-grow">
-                                                <p class="text-gray-600 text-sm mb-4 line-clamp-3">
-                                                    {{ Str::limit(strip_tags($berita->deskripsi), 80) }}
-                                                </p>
-                                            </p>
+                                            <div class="text-gray-600 text-sm mb-4 line-clamp-2 flex-grow">
+                                                <div id="deskripsi-berita-{{$berita->id}}" class="p-2"></div>
+                                                <script>
+                                                    window.document.addEventListener("DOMContentLoaded", () => {
+                                                        const container = document.querySelector("#deskripsi-berita-{{$berita->id}}");
+                                                        const content = new Quill(container, {
+                                                            theme: "bubble",
+                                                            readOnly: true,
+                                                            modules: {
+                                                                toolbar: false
+                                                            }
+                                                        });
+                                                        const delta = JSON.parse(@json($berita->deskripsi));
+                                                        content.updateContents(delta);
+                                                        container.innerHTML = content.getText().substring(0, 50) + (content.getLength() > 50 ? "..." : "");
+                                                    });
+                                                </script>
+                                            </div>
                                             <div
                                                 class="flex justify-between items-center text-xs text-gray-500 border-t pt-3 mt-auto">
                                                 <div class="space-y-1">
@@ -359,8 +377,7 @@
                                                         <span>Dilihat {{ $berita->views ?? 0 }} kali</span>
                                                     </div>
                                                 </div>
-                                                <div
-                                                    class="bg-blue-600 text-white text-center rounded-md px-2 py-1 shadow">
+                                                <div class=" bg-blue-600 text-white text-center rounded-md px-2 py-1 shadow">
                                                     <span
                                                         class="font-bold text-lg leading-none">{{ \Carbon\Carbon::parse($berita->tanggal)->format('d') }}</span>
                                                     <span
@@ -379,7 +396,7 @@
                 </div>
                 <div class="text-center mt-8">
                     <a href="{{ route('berita.index') }}"
-                        class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full transition duration-300">
+                        class=" bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full transition duration-300">
                         Lihat Semua Berita
                     </a>
                 </div>
@@ -390,21 +407,71 @@
         @php
             use App\Models\Galeri;
             $galeriTerbaru = Galeri::latest()->take(4)->get();
+            $images = [];
+            foreach ($galeriTerbaru as $item) {
+                $extension = strtolower(pathinfo($item->gambar, PATHINFO_EXTENSION));
+                $images[] = [
+                    'thumbnail' => '',
+                    'src' => asset('storage/' . $item->gambar),
+                    'judul' => $item->judul,
+                    'isVideo' => in_array($extension, ['mp4', 'webm', 'ogg'])
+                ];
+            }
         @endphp
-        <section id="galeri" class="py-16 bg-gray-50">
+        <section id="galeri" class="py-16   bg-gray-50">
             <div class="container mx-auto px-6 lg:px-16">
                 <h2 class="text-3xl font-bold mb-8 text-center">Galeri Desa</h2>
 
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    @forelse ($galeriTerbaru as $item)
+                    @forelse ($images as $index => $item)
                         <div class="group relative block w-full rounded-lg shadow-md overflow-hidden aspect-square">
-                            <img src="{{ asset('public/storage/' . $item->gambar) }}"
-                                class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                                alt="{{ $item->judul }}">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                            @if ($item["isVideo"])
+                                <img id="img-{{$index}}" src=""
+                                    class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                                    alt="{{ $item["judul"] }}">
+                                <script>
+                                    window.document.addEventListener("DOMContentLoaded",_=>{
+                                        fetch("{{ $item["src"] }}")
+                                            .then(res => res.blob())
+                                            .then(blob => {
+                                                const thumbnail = document.querySelector("#img-{{$index}}");
+                                                const sizeKB = (blob.size / 1024).toFixed(1);
+                                                const video = document.createElement('video');
+                                                video.src = URL.createObjectURL(blob);
+                                                video.preload = 'metadata';
+                                                video.muted = true;
+                                                video.onloadedmetadata = () => {
+                                                    // info.innerHTML = `${video.videoWidth}x${video.videoHeight}px, ${sizeKB} KB, ${video.duration.toFixed(1)}s`;
+                                                    video.currentTime = Math.min(1, video.duration / 2);
+                                                };
+    
+                                                video.onseeked = () => {
+                                                    // Create canvas and draw the video frame
+                                                    const canvas = document.createElement('canvas');
+                                                    canvas.width = video.videoWidth;
+                                                    canvas.height = video.videoHeight;
+                                                    const ctx = canvas.getContext('2d');
+                                                    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+    
+                                                    // Convert canvas to image
+                                                    const thumbnailURL = canvas.toDataURL('image/jpeg');
+                                                    thumbnail.src = thumbnailURL;
+    
+                                                };
+                                            })
+                                            .catch(console.error);
+                                    });
+                                </script>
+
+                            @else
+                                <img src="{{ asset($item["src"]) }}"
+                                    class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                                    alt="{{ $item["judul"] }}">
+                            @endif
+                            <div class="absolute inset-0   radient-to-t from-black/70 to-transparent"></div>
                             <div class="absolute bottom-0 left-0 w-full p-3">
-                                <h3 class="text-white font-semibold text-lg truncate" title="{{ $item->judul }}">
-                                    {{ $item->judul }}
+                                <h3 class="text-white font-semibold text-lg truncate" title="{{ $item["judul"] }}">
+                                    {{ $item["judul"] }}
                                 </h3>
                             </div>
                         </div>
@@ -415,7 +482,7 @@
 
                 <div class="text-center mt-8">
                     <a href="{{ route('galeri.index') }}"
-                       class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full transition duration-300 inline-block">
+                        class=" bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full transition duration-300 inline-block">
                         Lihat Semua Galeri
                     </a>
                 </div>
@@ -433,10 +500,10 @@
                     <h2 class="text-3xl font-bold text-center sm:text-left">Aparatur Desa</h2>
                     <div class="hidden sm:flex space-x-2">
                         <button @click="scroll('left')"
-                            class="p-2 rounded-full bg-gray-200 hover:bg-gray-300 transition-colors disabled:opacity-50"
+                            class="p-2 rounded-full   bg-gray-200 hover:bg-gray-300 transition-colors disabled:opacity-50"
                             :disabled="atStart"><i data-lucide="arrow-left" class="w-5 h-5"></i></button>
                         <button @click="scroll('right')"
-                            class="p-2 rounded-full bg-gray-200 hover:bg-gray-300 transition-colors disabled:opacity-50"
+                            class="p-2 rounded-full   bg-gray-200 hover:bg-gray-300 transition-colors disabled:opacity-50"
                             :disabled="atEnd"><i data-lucide="arrow-right" class="w-5 h-5"></i></button>
                     </div>
                 </div>
@@ -446,8 +513,8 @@
                         @forelse ($aparaturs as $aparatur)
                             <div class="flex-shrink-0 w-52 snap-start">
                                 <div
-                                    class="bg-gray-50 rounded-lg shadow-md overflow-hidden h-full group transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-xl">
-                                    <img src="{{ asset('public/storage/' . $aparatur->foto) }}" alt="{{ $aparatur->nama }}"
+                                    class="  bg-gray-50 rounded-lg shadow-md overflow-hidden h-full group transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-xl">
+                                    <img src="{{ asset('storage/' . $aparatur->foto) }}" alt="{{ $aparatur->nama }}"
                                         class="w-full h-56 object-cover object-center">
                                     <div class="p-3 text-center">
                                         <h4 class="font-bold text-md">{{ $aparatur->nama }}</h4>

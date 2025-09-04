@@ -6,14 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Data Jenis Kelamin - Website Desa Kunden</title>
 
-    <link rel="icon" type="image/png" href="/public/images/logo-kunden.png">
+    <link rel="icon" type="image/png" href="/images/logo-kunden.png">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600,700" rel="stylesheet" />
 
     <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    @vite(['resources/css/app.css', 'resources/js/app.js','resources/js/quillInit.js'])
 
     <!-- Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -83,7 +83,7 @@
     </style>
 </head>
 
-<body class="bg-gray-50 font-sans text-gray-800">
+<body class="  bg-gray-50 font-sans text-gray-800">
 
     @include('layouts.partials.header')
 
@@ -98,13 +98,13 @@
     @endphp
 
     <main>
-        <div class="bg-gray-50">
+        <div class="  bg-gray-50">
 
             {{-- Bagian Judul dan Breadcrumb --}}
             <section class="bg-slate-800 relative text-white text-center py-20 sm:py-28">
                 <div class="absolute inset-0 bg-cover bg-center"
-                    style="background-image: url('/public/images/lahan-kunyit.png');"></div>
-                <div class="absolute inset-0 bg-black/60"></div>
+                    style="background-image: url('/images/lahan-kunyit.png');"></div>
+                <div class="absolute inset-0 bg-[rgba(0,0,0,0.25)]/60"></div>
                 <div class="relative z-10 container mx-auto px-4">
                     <nav class="flex justify-center" aria-label="Breadcrumb">
                         <ol role="list" class="flex items-center space-x-2">
@@ -164,7 +164,7 @@
                                 </p>
                             </div>
                             <div x-data="{ chartType: 'pie' }"
-                                class="flex items-center space-x-2 mt-4 sm:mt-0 p-1 bg-gray-100 rounded-lg">
+                                class="flex items-center space-x-2 mt-4 sm:mt-0 p-1   bg-gray-100 rounded-lg">
                                 <button @click="chartType = 'pie'; toggleChartType('pie');"
                                     :class="{ 'bg-white text-blue-600 shadow': chartType === 'pie', 'text-gray-600': chartType !== 'pie' }"
                                     class="px-3 py-1.5 text-sm font-semibold rounded-md transition-all">
@@ -187,7 +187,7 @@
                 <section class="reveal-on-scroll">
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                         <div
-                            class="bg-blue-500 text-white p-8 rounded-2xl shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
+                            class=" bg-blue-500 text-white p-8 rounded-2xl shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
                             <div class="flex items-center justify-between">
                                 <div>
                                     <p class="text-lg font-medium text-blue-100">Laki-laki</p>
@@ -271,7 +271,7 @@
                                             class="px-6 py-4 whitespace-nowrap text-sm text-gray-600 font-semibold text-center">
                                             {{ number_format($data->perempuan) }} Orang</td>
                                     </tr>
-                                    <tr class="bg-gray-100">
+                                    <tr class="  bg-gray-100">
                                         <td
                                             class="px-6 py-4 whitespace-nowrap text-sm font-bold text-gray-900 flex items-center">
                                             <i data-lucide="users" class="w-5 h-5 mr-3 text-slate-600"></i> Total

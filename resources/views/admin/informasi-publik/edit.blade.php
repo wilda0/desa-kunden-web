@@ -1,6 +1,7 @@
 @section('title', content: 'Admin - Informasi Publik')
 
 <x-app-layout>
+    @vite(['resources/js/quillInit.js'])
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
             {{ __('Edit Informasi Publik') }}
@@ -13,7 +14,7 @@
                 <div class="p-6 lg:p-8 bg-white dark:bg-gray-800">
 
                     @if ($errors->any())
-                        <div class="mb-4 p-4 bg-red-100 text-red-700 border border-red-200 rounded-lg">
+                        <div class="mb-4 p-4  bg-red-100 text-red-700 border border-red-200 rounded-lg">
                             <div class="font-medium">{{ __('Whoops! Something went wrong.') }}</div>
                             <ul class="mt-3 list-disc list-inside text-sm">
                                 @foreach ($errors->all() as $error)
@@ -76,4 +77,5 @@
             </div>
         </div>
     </div>
+    @vite(['resources/js/customEditor.js'])
 </x-app-layout>

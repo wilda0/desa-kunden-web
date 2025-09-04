@@ -40,14 +40,10 @@ class DokumenController extends Controller
             'file_dokumen' => 'required|file|mimes:pdf|max:5120',
         ]);
 
-        // Simpan ke storage/app/public/dokumen
+        // Simpan ke storage/app/dokumen
         $path = $request->file('file_dokumen')->store('dokumen', 'public');
 
-        // Salin ke public/storage/dokumen
-        $from = storage_path('app/public/' . $path);
-        $to = public_path('storage/' . $path);
-        File::ensureDirectoryExists(dirname($to));
-        File::copy($from, $to);
+        
 
         $validated['file_path'] = $path;
 
@@ -96,7 +92,7 @@ class DokumenController extends Controller
             // Upload file baru
             $path = $request->file('file_dokumen')->store('dokumen', 'public');
 
-            $from = storage_path('app/public/' . $path);
+            $from = storage_path('app/' . $path);
             $to = public_path('storage/' . $path);
             File::ensureDirectoryExists(dirname($to));
             File::copy($from, $to);
@@ -133,7 +129,7 @@ class DokumenController extends Controller
         // Increment counter
         $dokumen->increment('download_count');
 
-        $pathToFile = storage_path('app/public/' . $dokumen->file_path);
+        $pathToFile = storage_path('app/' . $dokumen->file_path);
         if (!file_exists($pathToFile)) {
             abort(404, 'File tidak ditemukan.');
         }

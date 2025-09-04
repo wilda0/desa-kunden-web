@@ -4,23 +4,20 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Berita;
-use Illuminate\Support\Facades\Storage;
+use App\Models\BeritaMediaKonten;
 use App\Models\Komentar;
 use App\Models\ProdukUmkm;
-use Illuminate\Support\Facades\File;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class BeritaController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Berita::query();
-
-        if ($request->filled('tanggal')) {
-            $query->whereDate('tanggal', $request->tanggal);
-        }
-
-        $beritas = Berita::when(request('tanggal'), fn($query) =>
-            $query->whereDate('tanggal', request('tanggal'))
+        $beritas = Berita::when(
+            request('tanggal'),
+            fn($query) => $query->whereDate('tanggal', request('tanggal'))
         )->latest()->paginate(10);
 
         return view('admin.berita.index', compact('beritas'));
@@ -35,27 +32,101 @@ class BeritaController extends Controller
     {
         $request->validate([
             'nama_berita' => 'required|string|max:255',
-            'tanggal' => 'required|date',
             'jenis' => 'required|string|in:Berita Desa,Pengumuman Desa,Pembangunan Desa,Kegiatan Desa',
-            'deskripsi' => 'required|string',
-            'foto' => 'required|image|max:2048',
+            'deskripsi' => 'required|string'
         ]);
-
-        $path = $request->file('foto')->store('berita', 'public');
-        $source = storage_path('app/public/' . $path);
-        $destination = public_path('storage/' . $path);
-        File::ensureDirectoryExists(dirname($destination));
-        File::copy($source, $destination);
 
         Berita::create([
             'nama_berita' => $request->nama_berita,
-            'tanggal' => $request->tanggal,
             'jenis' => $request->jenis,
             'deskripsi' => $request->deskripsi,
-            'foto' => $path,
+            'tanggal' => Carbon::now()->toDateString()
         ]);
 
         return redirect()->route('admin.berita.index')->with('success', 'Berita berhasil ditambahkan.');
+    }
+
+
+
+    public function upload_media_konten(Request $request)
+    {
+        $request->validate([
+            'media' => [
+                'required',
+                'file',
+                'mimes:jpg,jpeg,png,gif,mp4,mov,avi',
+                'max:204800', // 200MB
+            ]
+        ]);
+
+        // Get the original filename and extension
+        $originalFilename = $request->file('media')->getClientOriginalName();
+        $extension = $request->file('media')->getClientOriginalExtension();
+
+        // Generate a new unique filename
+        $newFilename = time() . '_' . Str::random(10) . '.' . $extension;
+
+        // Store the file with the new filename in the 'berita-media' subdirectory
+        $path = $request->file('media')->storeAs('berita-media', $newFilename, 'public');
+
+        // Create the database record
+        $media = BeritaMediaKonten::create([
+            'filename' => $originalFilename, // You might want to save the original filename for display
+            'path' => $path // Save the new file's path
+        ]);
+
+        return response()->json([
+            "filename" => $originalFilename,
+            "path" => $path,
+            "url" => asset('storage/' . $path),
+            "id" => $media->id,
+            "type" => "ADD"
+        ]);
+    }
+
+    public function get_media_id(Request $request)
+    {
+        $request->validate([
+            "url" => "required|array", // make sure it's an array
+            "url.*" => "string"        // each item must be a string
+        ]);
+
+        // Get all medias from DB keyed by path for fast lookup
+        $medias = BeritaMediaKonten::whereIn("path", $request->url)->get()->keyBy("path");
+
+        // Map each requested URL and attach id if exists
+        $results = collect($request->url)->map(function ($url) use ($medias) {
+            $media = $medias->get($url);
+
+            return [
+                "url" => $url,
+                "id" => $media?->id,
+                "exists" => $media !== null,
+            ];
+        });
+
+        return response()->json($results);
+    }
+
+
+    public function remove_media_konten(Request $request)
+    {
+        $request->validate([
+            "id" => "required"
+        ]);
+        $media = BeritaMediaKonten::findOrFail($request->id);
+
+        // Use the Storage facade to delete the file from the public disk
+        if ($media->path && Storage::disk('public')->exists($media->path)) {
+            Storage::disk('public')->delete($media->path);
+        }
+
+        $media->delete();
+
+        return response()->json([
+            "filename" => $media->filename . " berhasil di hapus ",
+            "type" => "REMOVE"
+        ]);
     }
 
     public function edit($id)
@@ -70,40 +141,36 @@ class BeritaController extends Controller
 
         $request->validate([
             'nama_berita' => 'required|string|max:255',
-            'tanggal' => 'required|date',
             'deskripsi' => 'required|string',
-            'foto' => 'nullable|image|max:2048',
+            'jenis' => 'required|string',
         ]);
 
-        $data = $request->only(['nama_berita', 'tanggal', 'deskripsi']);
-
-        if ($request->hasFile('foto')) {
-            Storage::disk('public')->delete($berita->foto);
-            File::delete(public_path('storage/' . $berita->foto));
-
-            $path = $request->file('foto')->store('berita', 'public');
-            $source = storage_path('app/public/' . $path);
-            $destination = public_path('storage/' . $path);
-            File::ensureDirectoryExists(dirname($destination));
-            File::copy($source, $destination);
-
-            $data['foto'] = $path;
-        }
-
-        $berita->update($data);
+        $berita->update($request->all());
 
         return redirect()->route('admin.berita.index')->with('success', 'Berita berhasil diperbarui.');
+    }
+
+    public function auto_update(Request $request)
+    {
+        
+        $request->validate([
+            'nama_berita' => 'required|string|max:255',
+            'deskripsi' => 'required|string',
+            'jenis' => 'required|string',
+            'id' => "required"
+        ]);
+
+        $berita = Berita::findOrFail($request->id);
+        $berita->update($request->all());
+
+        return response()->json([
+            "message" => "menyimpan otomatis"
+        ]);
     }
 
     public function destroy($id)
     {
         $berita = Berita::findOrFail($id);
-
-        if ($berita->foto) {
-            Storage::disk('public')->delete($berita->foto);
-            File::delete(public_path('storage/' . $berita->foto));
-        }
-
         $berita->delete();
 
         return redirect()->route('admin.berita.index')->with('success', 'Berita berhasil dihapus.');
@@ -155,5 +222,4 @@ class BeritaController extends Controller
 
         return view('welcome', compact('beritaDesa', 'pengumumanDesa'));
     }
-
 }

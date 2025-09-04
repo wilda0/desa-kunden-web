@@ -14,6 +14,9 @@ use App\Http\Controllers\DataPendidikanController;
 use App\Http\Controllers\DataKesehatanController;
 use App\Http\Controllers\DataKeagamaanController;
 use App\Http\Controllers\DataEkonomiController;
+use App\Http\Controllers\LayananController;
+use App\Http\Controllers\LembagaController;
+use App\Livewire\LembagaAdmin;
 use App\Models\Berita;
 use App\Models\Aparatur;
 use App\Models\DataEkonomi;
@@ -74,7 +77,7 @@ Route::get('/dokumen', [DokumenController::class, 'dokumenPublik'])->name('dokum
 Route::get('/unduh-dokumen/{id}', [DokumenController::class, 'download'])->name('dokumen.download');
 
 // Galeri Desa
-Route::get('/galeri-desa', fn() => view('galeri-desa'))->name('galeri.index');
+Route::get('/galeri-desa', [ GaleriController::class,"publik"])->name('galeri.index');
 
 // Aparatur Desa
 Route::get('/aparatur', fn() => view('aparatur'))->name('aparatur.index');
@@ -84,12 +87,23 @@ Route::get('/produk-hukum', [ProdukHukumController::class, 'publik'])->name('pro
 
 // Informasi Publik
 Route::get('/informasi-publik', [InformasiPublikController::class, 'publik'])->name('informasi-publik.index');
+Route::get('/informasi-publik/detail/{id}', [InformasiPublikController::class, 'detail_publik'])->name('informasi-publik.detail');
+// Layanan Desa Publik
+Route::get('/layanan-desa', [LayananController::class, 'publik'])->name('layanan-desa');
+
+// Lembaga Publik
+Route::get('/lembaga-desa', [LembagaController::class, 'publik'])->name('lembaga-desa');
+Route::get('/lembaga-desa-detail/{id}', [LembagaController::class, 'detail'])->name('lembaga-desa-detail');
 
 // Produk UMKM
 Route::get('/produk-umkm', [ProdukUmkmController::class, 'publik'])->name('produk-umkm.index');
 Route::get('/produk-umkm/{produkUmkm}', [ProdukUmkmController::class, 'showPublik'])->name('produk-umkm.show');
 Route::post('/produk-umkm/{id}/komentar', [ProdukUmkmController::class, 'simpanKomentar'])->name('produk-umkm.komentar.store');
 
+
+Route::get("/get-token", function () {
+    return csrf_token();
+})->name('get-token');
 /*
 |--------------------------------------------------------------------------
 | HALAMAN ADMIN
@@ -102,6 +116,12 @@ Route::middleware([
 ])->group(function () {
     Route::get('/dashboard', fn() => view('dashboard'))->name('dashboard');
 
+    // Layanan
+    Route::resource('/admin/layanan', LayananController::class)->names('admin.layanan');
+
+    // Lembaga
+    Route::resource("/admin/lembaga",LembagaController::class)->names("admin.lembaga");
+   
     // Data Jenis Kelamin
     Route::get('/admin/data-kelamin', [DemografiKelaminController::class, 'index'])->name('admin.data-kelamin.index');
     Route::post('/admin/data-kelamin', [DemografiKelaminController::class, 'store'])->name('admin.data-kelamin.store');
@@ -131,6 +151,10 @@ Route::middleware([
 
     // Berita Admin
     Route::resource('/admin/berita', BeritaController::class)->names('admin.berita');
+    Route::post('admin/berita/upload-media', [BeritaController::class, 'upload_media_konten'])->name('berita.media.add');
+    Route::post('admin/berita/remove-media', [BeritaController::class, 'remove_media_konten'])->name('berita.media.remove');
+    Route::post('admin/berita/media-id', [BeritaController::class, 'get_media_id'])->name('berita.media.id');
+    Route::post('admin/berita/auto-update', [BeritaController::class, 'auto_update'])->name('berita.media.auto_update');
 
     // Galeri Desa
     Route::resource('/admin/galeri', GaleriController::class)->names('admin.galeri');
@@ -143,6 +167,10 @@ Route::middleware([
 
     // Informasi Publik
     Route::resource('/admin/informasi-publik', InformasiPublikController::class)->names('admin.informasi-publik');
+    Route::post('admin/informasi-publik/upload-media', [InformasiPublikController::class, 'upload_media_konten'])->name('informasi-publik.media.add');
+    Route::post('admin/informasi-publik/remove-media', [InformasiPublikController::class, 'remove_media_konten'])->name('informasi-publik.media.remove');
+    Route::post('admin/informasi-publik/media-id', [InformasiPublikController::class, 'get_media_id'])->name('informasi-publik.media.id');
+    Route::post('admin/informasi-publik/auto-update', [InformasiPublikController::class, 'auto_update'])->name('informasi-publik.media.auto_update');
 
     // Produk UMKM
     Route::resource('/admin/produk-umkm', ProdukUmkmController::class)->names('admin.produk-umkm');

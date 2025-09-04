@@ -6,14 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Data Ekonomi - Website Desa Kunden</title>
 
-    <link rel="icon" type="image/png" href="/public/images/logo-kunden.png">
+    <link rel="icon" type="image/png" href="/images/logo-kunden.png">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600,700" rel="stylesheet" />
 
     <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    @vite(['resources/css/app.css', 'resources/js/app.js','resources/js/quillInit.js'])
 
     <!-- Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -84,7 +84,7 @@
     </style>
 </head>
 
-<body class="bg-gray-50 font-sans text-gray-800">
+<body class="  bg-gray-50 font-sans text-gray-800">
 
     @include('layouts.partials.header')
 
@@ -118,13 +118,13 @@
     @endphp
 
     <main>
-        <div class="bg-gray-50">
+        <div class="  bg-gray-50">
 
             {{-- Bagian Judul dan Breadcrumb --}}
             <section class="bg-slate-800 relative text-white text-center py-20 sm:py-28">
                 <div class="absolute inset-0 bg-cover bg-center"
-                    style="background-image: url('/public/images/lahan-kunyit.png');"></div>
-                <div class="absolute inset-0 bg-black/60"></div>
+                    style="background-image: url('/images/lahan-kunyit.png');"></div>
+                <div class="absolute inset-0 bg-[rgba(0,0,0,0.25)]/60"></div>
                 <div class="relative z-10 container mx-auto px-4">
                     <nav class="flex justify-center" aria-label="Breadcrumb">
                         <ol role="list" class="flex items-center space-x-2">
@@ -262,7 +262,7 @@
                                                         {{ $data->kambing }}</td>
                                                 </tr>
                                                 <tr
-                                                    class="bg-gray-50 hover:bg-blue-50 transition-colors duration-200">
+                                                    class="  bg-gray-50 hover:bg-blue-50 transition-colors duration-200">
                                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2.
                                                     </td>
                                                     <td
@@ -283,7 +283,7 @@
                                                         {{ $data->ayam }}</td>
                                                 </tr>
                                                 <tr
-                                                    class="bg-gray-50 hover:bg-blue-50 transition-colors duration-200">
+                                                    class="  bg-gray-50 hover:bg-blue-50 transition-colors duration-200">
                                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">4.
                                                     </td>
                                                     <td

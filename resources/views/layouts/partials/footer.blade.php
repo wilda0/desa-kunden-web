@@ -1,5 +1,5 @@
 <!-- Footer -->
-<footer class="bg-gray-800 text-white">
+<footer class="  bg-gray-800 text-white">
     <div class="container mx-auto px-16 py-12">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
             <!-- Tentang -->
@@ -55,7 +55,7 @@
             </div>
         </div>
     </div>
-    <div class="bg-gray-900 py-4">
+    <div class="  bg-gray-900 py-4">
         <p class="text-center text-gray-500 text-sm">&copy; 2024 Pemerintah Desa Kunden. All Rights Reserved.</p>
     </div>
 </footer>

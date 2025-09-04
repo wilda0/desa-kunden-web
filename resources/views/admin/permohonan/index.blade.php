@@ -10,11 +10,11 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg">
-                <div class="p-6 lg:p-8 bg-white dark:bg-gray-800 dark:bg-gradient-to-bl dark:from-gray-700/50 dark:via-transparent border-b border-gray-200 dark:border-gray-700">
+                <div class="p-6 lg:p-8 bg-white dark:bg-gray-800 dark:radient-to-bl dark:from-gray-700/50 dark:via-transparent border-b border-gray-200 dark:border-gray-700">
 
                     {{-- Notifikasi Sukses --}}
                     @if (session('success'))
-                        <div class="mb-4 p-4 bg-green-100 dark:bg-green-800 border border-green-200 dark:border-green-600 text-green-700 dark:text-green-200 rounded-lg">
+                        <div class="mb-4 p-4  bg-green-100 dark: bg-green-800 border border-green-200 dark:border-green-600 text-green-700 dark:text-green-200 rounded-lg">
                             {{ session('success') }}
                         </div>
                     @endif
@@ -22,7 +22,7 @@
                     {{-- Tabel Permohonan --}}
                     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
                         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                            <thead class="text-xs text-gray-700 uppercase   bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                 <tr>
                                     <th scope="col" class="px-6 py-3">Nama</th>
                                     <th scope="col" class="px-6 py-3">Instansi</th>
@@ -55,7 +55,7 @@
                                             <div x-data="{ open: false }">
                                                 <button @click="open = true" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Lihat Detail</button>
 
-                                                <div x-show="open" @click.away="open = false" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50" style="display: none;">
+                                                <div x-show="open" @click.away="open = false" class="fixed inset-0 z-50 flex items-center justify-center bg-[rgba(0,0,0,0.25)] bg-opacity-50" style="display: none;">
                                                     <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl p-6 max-w-lg w-full">
                                                         <div class="flex justify-between items-center border-b pb-3 mb-4">
                                                             <h3 class="text-lg font-bold text-gray-900 dark:text-white">Detail Permohonan</h3>
@@ -78,7 +78,7 @@
                                                     <input type="checkbox" name="status" x-model="on" class="hidden">
                                                     <button type="button" @click="on = !on; $nextTick(() => $refs.toggleForm.submit())"
                                                             class="relative inline-flex items-center h-6 rounded-full w-11 transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:focus:ring-offset-gray-800"
-                                                            :class="on ? 'bg-green-500' : 'bg-gray-300 dark:bg-gray-600'">
+                                                            :class="on ? ' bg-green-500' : '  bg-gray-300 dark:bg-gray-600'">
                                                         <span class="sr-only">Toggle Status</span>
                                                         <span class="inline-block w-4 h-4 transform bg-white rounded-full transition-transform duration-300 ease-in-out"
                                                             :class="{ 'translate-x-6': on, 'translate-x-1': !on }">

@@ -1,9 +1,10 @@
 @section('title', content: 'Admin - Artikel')
 
 <x-app-layout>
+    @vite(['resources/js/quillInit.js'])
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Edit Artikel') }}
+            {{ __('Update Artikel ') }}
         </h2>
     </x-slot>
 
@@ -11,13 +12,14 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg">
                 <div
-                    class="p-6 lg:p-8 bg-white dark:bg-gray-800 dark:bg-gradient-to-bl dark:from-gray-700/50 dark:via-transparent border-b border-gray-200 dark:border-gray-700">
+                    class="p-6 lg:p-8 bg-white dark:bg-gray-800 dark:radient-to-bl dark:from-gray-700/50 dark:via-transparent border-b border-gray-200 dark:border-gray-700">
 
-                    {{-- Tampilkan Validasi Error --}}
+                    {{-- Menampilkan Error Validasi --}}
                     @if ($errors->any())
                         <div class="mb-4">
                             <div class="font-medium text-red-600 dark:text-red-400">
-                                {{ __('Whoops! Something went wrong.') }}</div>
+                                {{ __('Whoops! Something went wrong.') }}
+                            </div>
                             <ul class="mt-3 list-disc list-inside text-sm text-red-600 dark:text-red-400">
                                 @foreach ($errors->all() as $error)
                                     <li>{{ $error }}</li>
@@ -26,78 +28,85 @@
                         </div>
                     @endif
 
-                    <form action="{{ route('admin.berita.update', $berita->id) }}" method="POST"
-                        enctype="multipart/form-data">
+                    <form editor-attach action="{{ route('admin.berita.update', $berita) }}" method="POST">
                         @csrf
-                        @method('PUT')
+                        @method("PUT")
                         <div class="space-y-6">
+                            <!-- Nama Artikel -->
 
-                            {{-- Nama Artikel --}}
-                            <div>
-                                <x-label for="nama_berita" value="{{ __('Nama Artikel') }}" />
-                                <x-input id="nama_berita" class="block mt-1 w-full" type="text" name="nama_berita"
-                                    :value="old('nama_berita', $berita->nama_berita)" required autofocus />
-                            </div>
+                            <div class="flex items-center gap-2 mb-4">
 
-                            {{-- Tanggal --}}
-                            <div>
-                                <x-label for="tanggal" value="{{ __('Tanggal') }}" />
-                                <x-input id="tanggal" class="block mt-1 w-full" type="date" name="tanggal"
-                                    :value="old('tanggal', $berita->tanggal)" required />
-                            </div>
+                                <div class="relative inline-block w-50">
+                                    <select id="selected-item" name="jenis" class="hidden">
+                                        <option value="Berita Desa" {{ $berita->jenis === "Berita Desa" ? "selected" : "" }}>Berita Desa</option>
+                                        <option value="Pengumuman Desa" {{ $berita->jenis === "Pengumuman Desa" ? "selected" : "" }}>Pengumuman Desa</option>
+                                        <option value="Pembangunan Desa" {{ $berita->jenis === "Pembangunan Desa" ? "selected" : "" }}>Pembangunan Desa</option>
+                                        <option value="Kegiatan Desa" {{ $berita->jenis === "Kegiatan Desa" ? "selected" : "" }}>Kegiatan Desa</option>
+                                    </select>
+                                    <!-- Trigger -->
+                                    <button type="button"
+                                        class="w-full flex justify-between items-center px-4 py-2 text-sm bg-white border border-gray-300 rounded-2xl shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-200"
+                                        onclick="this.nextElementSibling.classList.toggle('hidden')">
+                                        <span id="selected">Jenis Artikel {{ old("jenis", $berita->jenis) }}</span>
+                                        <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor"
+                                            viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M19 9l-7 7-7-7" />
+                                        </svg>
+                                    </button>
 
-                            <!-- Jenis -->
-                            <div>
-                                <x-label for="jenis" value="{{ __('Jenis Artikel') }}" />
-                                <select name="jenis" id="jenis"
-                                    class="block mt-1 w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm">
-                                    <option disabled selected>Pilih Jenis Artikel</option>
-                                    <option value="Berita Desa"
-                                        {{ old('jenis', $berita->jenis ?? '') == 'Berita Desa' ? 'selected' : '' }}>
-                                        Berita Desa</option>
-                                    <option value="Pengumuman Desa"
-                                        {{ old('jenis', $berita->jenis ?? '') == 'Pengumuman Desa' ? 'selected' : '' }}>
-                                        Pengumuman Desa</option>
-                                    <option value="Pembangunan Desa"
-                                        {{ old('jenis', $berita->jenis ?? '') == 'Pembangunan Desa' ? 'selected' : '' }}>
-                                        Pembangunan Desa</option>
-                                    <option value="Kegiatan Desa"
-                                        {{ old('jenis', $berita->jenis ?? '') == 'Kegiatan Desa' ? 'selected' : '' }}>
-                                        Kegiatan Desa</option>
-                                </select>
-                            </div>
-
-                            <!-- Deskripsi dengan CKEditor -->
-                            <div>
-                                <x-label for="deskripsi" value="{{ __('Deskripsi') }}" />
-                                <textarea id="deskripsi" name="deskripsi" class="block mt-1 w-full" rows="8">
-                                    {!! old('deskripsi', $berita->deskripsi) !!}
-                                </textarea>
-                            </div>
-
-                            {{-- Foto --}}
-                            <div>
-                                <x-label for="foto" value="{{ __('Ganti Foto (Opsional, Maks 2MB)') }}" />
-                                <div class="mt-2">
-                                    <img id="foto-lama" src="{{ asset('public/storage/' . $berita->foto) }}" alt="Foto saat ini"
-                                        class="h-40 rounded-md object-cover mb-2">
-                                    <img id="preview-foto" class="h-40 rounded-md object-cover" style="display: none;">
+                                    <!-- Options -->
+                                    <ul
+                                        class="absolute z-10 mt-1 w-full bg-white border border-gray-200 rounded-2xl shadow-lg hidden">
+                                        <li class="px-4 py-2 hover:bg-indigo-50 rounded-t-2xl cursor-pointer"
+                                            onclick="selectOption(this)">Berita Desa</li>
+                                        <li class="px-4 py-2 hover:bg-indigo-50 cursor-pointer"
+                                            onclick="selectOption(this)">Pengumuman Desa</li>
+                                        <li class="px-4 py-2 hover:bg-indigo-50 cursor-pointer"
+                                            onclick="selectOption(this)">Pembangunan Desa</li>
+                                        <li class="px-4 py-2 hover:bg-indigo-50 rounded-b-2xl cursor-pointer"
+                                            onclick="selectOption(this)">Kegiatan Desa</li>
+                                    </ul>
                                 </div>
-                                <input id="foto"
-                                    class="block mt-2 w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50"
-                                    type="file" name="foto">
-                                <p class="mt-1 text-xs text-gray-500 dark:text-gray-300">Kosongkan jika tidak ingin
-                                    mengubah foto.</p>
+
+                                <script>
+                                    function selectOption(el) {
+                                        const value = el.textContent.trim();
+                                        document.getElementById("selected").textContent = `Jenis Artikel ${value}`;
+                                        const select = document.getElementById("selected-item");
+                                        select.value = value;
+
+                                        // Trigger change event so Livewire sees it
+                                        select.dispatchEvent(new Event('change', { bubbles: true }));
+
+                                        el.parentElement.classList.add("hidden");
+                                    }
+                                </script>
+
+
+                                <input id="nama-berita" type="text"
+                                    value="{{ old("nama_berita", $berita->nama_berita) }}" name="nama_berita"
+                                    placeholder="Nama Berita..."
+                                    class="flex-1 px-4 py-2 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-200 focus:border-indigo-400" />
                             </div>
 
-                            {{-- Tombol --}}
+                            <div class="flex justify-center items-center flex-col">
+                                <label id="d-label" class="w-full mb-2 dark:text-white"
+                                    for="deskripsi">{{ __('Deskripsi') }}</label>
+                                <div id="deskripsi" rows="10" class="bg-white porse w-full rounded-b-xl min-h-[200px]">
+                                </div>
+
+                            </div>
+
+
+
                             <div class="flex items-center justify-end mt-4">
                                 <a href="{{ route('admin.berita.index') }}"
                                     class="text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white underline mr-4">
                                     Batal
                                 </a>
                                 <x-button>
-                                    {{ __('Perbarui Artikel') }}
+                                    {{ __('Update Artikel') }}
                                 </x-button>
                             </div>
                         </div>
@@ -106,49 +115,150 @@
             </div>
         </div>
     </div>
+    <script>
+        let initialImages = [];
+        window.deskripsiDelta = JSON.parse(@json($berita->deskripsi));
+        window.quillTextChangeEventHandler = async (quill, delta_content) => {
 
-    @push('scripts')
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-        <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-        <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
+            document.querySelector("#d-label").innerHTML = `Deskripsi (Menyimpan otomatis 🔃)`;
+            const form_data = new FormData();
+            const jenis = document.querySelector("#selected-item");
+            const nama_berita = document.querySelector("#nama-berita");
+            const markdownInput = document.createElement("input");
+            form_data.append("nama_berita", nama_berita.value);
+            form_data.append("jenis", jenis.value);
+            form_data.append("deskripsi", delta_content);
+            form_data.append("id", "{{ $berita->id }}");
 
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                flatpickr("#tanggal", {
-                    dateFormat: "Y-m-d",
-                    allowInput: true,
-                });
-
-                ClassicEditor
-                    .create(document.querySelector('#deskripsi'))
-                    .catch(error => console.error(error));
-
-                const fotoInput = document.getElementById('foto');
-                const previewFoto = document.getElementById('preview-foto');
-                const fotoLama = document.getElementById('foto-lama');
-
-                if (fotoInput) {
-                    fotoInput.addEventListener('change', function(e) {
-                        const file = e.target.files[0];
-                        if (file) {
-                            const reader = new FileReader();
-                            reader.onload = function(evt) {
-                                previewFoto.src = evt.target.result;
-                                previewFoto.style.display = 'block';
-                                if (fotoLama) {
-                                    fotoLama.style.display = 'none';
-                                }
-                            }
-                            reader.readAsDataURL(file);
-                        } else {
-                            previewFoto.style.display = 'none';
-                            if (fotoLama) {
-                                fotoLama.style.display = 'block';
-                            }
-                        }
-                    });
-                }
+            const response = await fetch("{{ route("berita.media.auto_update") }}", {
+                method: "POST",
+                headers: {
+                    "X-CSRF-TOKEN": "{{ csrf_token() }}",
+                    'accept': "application/json"
+                },
+                body: form_data
             });
-        </script>
-    @endpush
+
+            if (!response.ok) {
+                document.querySelector("#d-label").innerHTML = `Deskripsi (Menyimpan otomatis ❌)`;
+                throw new Error('menyimpan otomatis gagal.');
+            }
+
+            const result = await response.json();
+            if (result.message) {
+                document.querySelector("#d-label").innerHTML = `Deskripsi (Menyimpan otomatis ✅)`;
+            }
+        };
+        window.mediasURLHandler = async urls => {
+            if (!urls.length) return;
+            const form_data = new FormData();
+            urls.forEach(url => {
+                const _t = new URL(url);
+                const _url = url.replace(_t.origin + "/storage/", "");
+                form_data.append("url[]", _url);
+            });
+            const response = await fetch("{{ route("berita.media.id") }}", {
+                method: "POST",
+                headers: {
+                    "X-CSRF-TOKEN": "{{ csrf_token() }}",
+                    'accept': "application/json"
+                },
+                body: form_data
+            });
+
+            if (!response.ok) {
+                throw new Error('media id failed.');
+            }
+
+            const result = await response.json();
+            result.forEach((d, i) => {
+                if (d.exists) initialImages.push({ ...d, url: urls[i] });
+            });
+        };
+        window.handlers = {
+            ...(window.handlers || {}),
+            image() {
+                const input = document.createElement('input');
+                input.setAttribute('type', 'file');
+                input.setAttribute('accept', 'image/*,video/*');
+                input.click();
+
+                input.onchange = async () => {
+                    const file = input.files[0];
+                    if (file) {
+                        const formData = new FormData();
+                        formData.append('media', file);
+
+                        const range = this.quill.getSelection(true);
+                        const editorIndex = range ? range.index : this.quill.getLength();
+
+                        try {
+                            const response = await fetch('{{ route("berita.media.add") }}', {
+                                method: 'POST',
+                                body: formData,
+                                headers: {
+                                    'X-CSRF-TOKEN': '{{ @csrf_token() }}'
+                                }
+                            });
+
+                            if (!response.ok) {
+                                throw new Error('File upload failed.');
+                            }
+
+                            const data = await response.json();
+
+                            // FIX: Use the 'url' property instead of 'path'
+                            const serverUrl = data.url;
+                            initialImages.push(data);
+
+                            this.quill.insertEmbed(editorIndex, 'image', serverUrl);
+                        } catch (error) {
+                            console.error('Upload error:', error);
+                            alert('Error uploading image.');
+                        }
+                    }
+                };
+            }
+        };
+
+        window.handleImageDeletion = (quill) => {
+            // Get all image tags currently in the Quill editor
+            const editorImages = quill.root.querySelectorAll('img');
+            const currentImageUrls = Array.from(editorImages).map(img => img.src);
+
+            // Assuming you have an array of initial image URLs from the server
+            // e.g., window.initialImages = ['/storage/image1.jpg', '/storage/image2.jpg'];
+            const imagesToDelete = initialImages.filter(({ url }) => !currentImageUrls.includes(url));
+
+            // Send a request to the server for each image to be deleted
+            imagesToDelete.forEach(({ url, id }) => {
+                // Extract the filename or ID from the URL
+                const filename = new URL(url).pathname.split('/').pop();
+                const data = new FormData();
+                data.append("id", id);
+
+                fetch(`{{ route("berita.media.remove") }}`, {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': '{{ @csrf_token() }}' // CSRF token for security
+                    },
+                    body: data
+                })
+                    .then(response => {
+                        if (response.ok) {
+
+                            console.log(`Successfully deleted image: ${filename}`);
+                            // Remove the URL from the initial list to prevent re-deleting
+                            initialImages = initialImages.filter(img => img.id !== id);
+                        } else {
+                            console.error(`Failed to delete image: ${filename}`);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Network or server error:', error);
+                    });
+            });
+        }
+    </script>
+@vite(['resources/js/customEditor.js'])
 </x-app-layout>

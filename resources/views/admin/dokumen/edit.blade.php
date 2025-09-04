@@ -10,7 +10,7 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg">
-                <div class="p-6 lg:p-8 bg-white dark:bg-gray-800 dark:bg-gradient-to-bl dark:from-gray-700/50 dark:via-transparent border-b border-gray-200 dark:border-gray-700">
+                <div class="p-6 lg:p-8 bg-white dark:bg-gray-800 dark:radient-to-bl dark:from-gray-700/50 dark:via-transparent border-b border-gray-200 dark:border-gray-700">
 
                     @if ($errors->any())
                         <div class="mb-4">
@@ -52,8 +52,8 @@
                             <!-- Upload Dokumen PDF -->
                             <div>
                                 <x-label for="file_dokumen" value="{{ __('Upload Dokumen Baru (Opsional)') }}" />
-                                <p class="text-sm text-gray-500 dark:text-gray-400 mt-1 mb-2">Dokumen saat ini: <a href="{{ asset('public/storage/' . $dokumen->file_path) }}" target="_blank" class="text-blue-500 hover:underline">{{ basename($dokumen->file_path) }}</a></p>
-                                <input id="file_dokumen" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" type="file" name="file_dokumen">
+                                <p class="text-sm text-gray-500 dark:text-gray-400 mt-1 mb-2">Dokumen saat ini: <a href="{{ asset('storage/' . $dokumen->file_path) }}" target="_blank" class="text-blue-500 hover:underline">{{ basename($dokumen->file_path) }}</a></p>
+                                <input id="file_dokumen" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer   bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" type="file" name="file_dokumen">
                                 <p class="mt-1 text-xs text-gray-500 dark:text-gray-300">Kosongkan jika tidak ingin mengubah file.</p>
                             </div>
 

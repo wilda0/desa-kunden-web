@@ -18,5 +18,5 @@ Artisan::command('generate:sitemap', function () {
         ->add(Url::create('https://kunden.id/kontak'))
         ->writeToFile(public_path('sitemap.xml'));
 
-    $this->info('✅ Sitemap berhasil dibuat di public/sitemap.xml');
+    $this->info('✅ Sitemap berhasil dibuat di sitemap.xml');
 })->purpose('Generate sitemap XML untuk SEO');

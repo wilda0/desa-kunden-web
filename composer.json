@@ -12,6 +12,7 @@
         "laravel/jetstream": "^5.3",
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.10.1",
+        "league/commonmark": "^2.7",
         "livewire/livewire": "^3.0",
         "spatie/laravel-sitemap": "^7.3"
     },

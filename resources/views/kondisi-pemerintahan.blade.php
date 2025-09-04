@@ -6,14 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Kondisi Pemerintahan - Website Desa Kunden</title>
 
-    <link rel="icon" type="image/png" href="/public/images/logo-kunden.png">
+    <link rel="icon" type="image/png" href="/images/logo-kunden.png">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600,700" rel="stylesheet" />
 
     <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    @vite(['resources/css/app.css', 'resources/js/app.js','resources/js/quillInit.js'])
 
     <!-- Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -89,20 +89,20 @@
     </style>
 </head>
 
-<body class="bg-gray-50 font-sans text-gray-800">
+<body class="  bg-gray-50 font-sans text-gray-800">
 
     <!-- Header & Navbar -->
     @include('layouts.partials.header')
 
     <main>
-        <div class="bg-gray-50">
+        <div class="  bg-gray-50">
 
             {{-- Bagian Judul dan Breadcrumb --}}
             <section class="bg-slate-800 relative text-white text-center py-20 sm:py-28">
                 <div class="absolute inset-0 bg-cover bg-center"
-                    style="background-image: url('/public/images/lahan-kunyit.png');">
+                    style="background-image: url('/images/lahan-kunyit.png');">
                 </div>
-                <div class="absolute inset-0 bg-black/60"></div>
+                <div class="absolute inset-0 bg-[rgba(0,0,0,0.25)]/60"></div>
                 <div class="relative z-10 container mx-auto px-4">
                     <nav class="flex justify-center" aria-label="Breadcrumb">
                         <ol role="list" class="flex items-center space-x-2">
@@ -159,7 +159,7 @@
                         <p class="mt-2 text-lg text-gray-600">Bagan Struktur Organisasi Pemerintahan Desa Kunden.</p>
                     </div>
                     <div class="max-w-5xl mx-auto bg-white p-4 sm:p-6 rounded-2xl shadow-2xl border">
-                        <img src="{{ asset('public/images/struktur-organisasi.png') }}" alt="Struktur Organisasi Desa Kunden"
+                        <img src="{{ asset('/images/struktur-organisasi.png') }}" alt="Struktur Organisasi Desa Kunden"
                             class="w-full h-auto rounded-lg">
                     </div>
                 </section>
@@ -175,7 +175,7 @@
                         <div
                             class="bg-white p-6 rounded-xl shadow-lg text-center hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
                             <div
-                                class="mx-auto bg-blue-100 text-blue-600 w-16 h-16 rounded-full flex items-center justify-center mb-4">
+                                class="mx-auto  bg-blue-100 text-blue-600 w-16 h-16 rounded-full flex items-center justify-center mb-4">
                                 <i data-lucide="map-pin" class="w-8 h-8"></i>
                             </div>
                             <h3 class="text-xl font-bold text-gray-800">Dusun 01 Sumberagung</h3>
@@ -184,7 +184,7 @@
                         <div
                             class="bg-white p-6 rounded-xl shadow-lg text-center hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
                             <div
-                                class="mx-auto bg-green-100 text-green-600 w-16 h-16 rounded-full flex items-center justify-center mb-4">
+                                class="mx-auto  bg-green-100 text-green-600 w-16 h-16 rounded-full flex items-center justify-center mb-4">
                                 <i data-lucide="map-pin" class="w-8 h-8"></i>
                             </div>
                             <h3 class="text-xl font-bold text-gray-800">Dusun 02 Sumberejo</h3>
@@ -217,22 +217,22 @@
                             <ul class="space-y-4">
                                 <li class="bg-white p-4 rounded-lg shadow-md flex justify-between items-center">
                                     <span class="text-gray-700">Kepala Desa</span>
-                                    <span class="font-bold bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">1
+                                    <span class="font-bold  bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">1
                                         Orang</span>
                                 </li>
                                 <li class="bg-white p-4 rounded-lg shadow-md flex justify-between items-center">
                                     <span class="text-gray-700">Sekretaris Desa</span>
-                                    <span class="font-bold bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">1
+                                    <span class="font-bold  bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">1
                                         Orang</span>
                                 </li>
                                 <li class="bg-white p-4 rounded-lg shadow-md flex justify-between items-center">
                                     <span class="text-gray-700">Perangkat Desa</span>
-                                    <span class="font-bold bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">9
+                                    <span class="font-bold  bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">9
                                         Orang</span>
                                 </li>
                                 <li class="bg-white p-4 rounded-lg shadow-md flex justify-between items-center">
                                     <span class="text-gray-700">BPD</span>
-                                    <span class="font-bold bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">9
+                                    <span class="font-bold  bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">9
                                         Orang</span>
                                 </li>
                             </ul>
@@ -246,31 +246,31 @@
                                 <li class="bg-white p-4 rounded-lg shadow-md flex justify-between items-center">
                                     <span class="text-gray-700">LPMD</span>
                                     <span
-                                        class="font-bold bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">1
+                                        class="font-bold  bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">1
                                         Lembaga</span>
                                 </li>
                                 <li class="bg-white p-4 rounded-lg shadow-md flex justify-between items-center">
                                     <span class="text-gray-700">PKK</span>
                                     <span
-                                        class="font-bold bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">1
+                                        class="font-bold  bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">1
                                         Lembaga</span>
                                 </li>
                                 <li class="bg-white p-4 rounded-lg shadow-md flex justify-between items-center">
                                     <span class="text-gray-700">Posyandu</span>
                                     <span
-                                        class="font-bold bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">9
+                                        class="font-bold  bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">9
                                         Lembaga</span>
                                 </li>
                                 <li class="bg-white p-4 rounded-lg shadow-md flex justify-between items-center">
                                     <span class="text-gray-700">Kelompok Tani</span>
                                     <span
-                                        class="font-bold bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">4
+                                        class="font-bold  bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">4
                                         Kelompok</span>
                                 </li>
                                 <li class="bg-white p-4 rounded-lg shadow-md flex justify-between items-center">
                                     <span class="text-gray-700">Karang Taruna</span>
                                     <span
-                                        class="font-bold bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">1
+                                        class="font-bold  bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">1
                                         Kelompok</span>
                                 </li>
                                 <!-- Tambahkan lembaga lainnya jika perlu -->

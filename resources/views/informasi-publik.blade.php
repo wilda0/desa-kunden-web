@@ -6,14 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Informasi Publik - Website Desa Kunden</title>
 
-    <link rel="icon" type="image/png" href="/public/images/logo-kunden.png">
+    <link rel="icon" type="image/png" href="/images/logo-kunden.png">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600,700" rel="stylesheet" />
 
     <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    @vite(['resources/css/app.css', 'resources/js/app.js','resources/js/quillInit.js'])
 
     <!-- Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -47,7 +47,7 @@
     </style>
 </head>
 
-<body class="bg-gray-100 font-sans text-gray-800">
+<body class="  bg-gray-100 font-sans text-gray-800">
 
     @include('layouts.partials.header')
 
@@ -85,7 +85,7 @@
                         </div>
                         <div>
                             <button type="submit"
-                                class="w-full bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors flex items-center justify-center">
+                                class="w-full  bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors flex items-center justify-center">
                                 <i data-lucide="search" class="w-4 h-4 mr-2"></i>
                                 Cari
                             </button>
@@ -98,7 +98,7 @@
             <div class="bg-white rounded-lg shadow-md overflow-hidden">
                 <div class="overflow-x-auto">
                     <table class="min-w-full text-left">
-                        <thead class="bg-gray-50 border-b">
+                        <thead class="  bg-gray-50 border-b">
                             <tr>
                                 <th class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider w-12">No
                                 </th>
@@ -113,17 +113,19 @@
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-gray-200">
-                            @forelse($informasiPubliks as $item)
+                            @forelse($informasiPubliks as $index => $item)
                                 <tr class="hover:bg-gray-50">
                                     <td class="px-6 py-4 whitespace-nowrap text-gray-500">
                                         {{ $loop->iteration + ($informasiPubliks->currentPage() - 1) * $informasiPubliks->perPage() }}
                                     </td>
                                     <td class="px-6 py-4">
                                         <div class="font-semibold text-gray-900">{{ $item->judul_informasi }}</div>
-                                        <div class="text-gray-600 mt-1">{{ $item->deskripsi }}</div>
+                                        
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">{{ $item->kategori }}</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">{{ $item->deskripsi }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <a class="text-blue-600 hover:text-indigo-600" href="{{route("informasi-publik.detail",$item)}}">detail</a>
+                                    </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         {{ \Carbon\Carbon::parse($item->created_at)->isoFormat('D MMMM Y') }}</td>
                                 </tr>

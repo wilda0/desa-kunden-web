@@ -13,7 +13,7 @@
                 <div class="p-6 lg:p-8 bg-white dark:bg-gray-800">
 
                     @if ($errors->any())
-                        <div class="mb-4 p-4 bg-red-100 text-red-700 border border-red-200 rounded-lg">
+                        <div class="mb-4 p-4  bg-red-100 text-red-700 border border-red-200 rounded-lg">
                             <div class="font-medium">{{ __('Whoops! Something went wrong.') }}</div>
                             <ul class="mt-3 list-disc list-inside text-sm">
                                 @foreach ($errors->all() as $error)
@@ -41,7 +41,7 @@
                             <!-- Foto -->
                             <div>
                                 <x-label for="foto" value="{{ __('Foto (Maks 2MB)') }}" />
-                                <input id="foto" class="block mt-1 w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" type="file" name="foto" required accept="image/*">
+                                <input id="foto" class="block mt-1 w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer   bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" type="file" name="foto" required accept="image/*">
                                 <img id="preview-foto" class="mt-4 h-48 object-cover rounded-md shadow" style="display: none;" alt="Preview Foto">
                             </div>
 

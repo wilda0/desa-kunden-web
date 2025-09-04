@@ -1,50 +1,88 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>@yield('title', 'Website Desa Kunden')</title>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <link rel="icon" type="image/png" href="{{ asset('images/logo-kunden.png') }}">
+    <title>@yield('title', 'Website Desa Kunden')</title>
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+    <link rel="icon" type="image/png" href="{{ asset('images/logo-kunden.png') }}">
 
-        <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
 
-        <!-- Styles -->
-        @livewireStyles
-    </head>
-    <body class="font-sans antialiased">
-        <x-banner />
+        /* Custom styles for a cleaner prose look */
+        .prose {
+            line-height: 1.6;
+            width: 100%;
+        }
 
-        <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
-            @livewire('navigation-menu')
+        .prose h1,
+        .prose h2,
+        .prose h3 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            line-height: 1.25;
+            margin-top: 1em;
+            margin-bottom: 0.5em;
+        }
 
-            <!-- Page Heading -->
-            @if (isset($header))
-                <header class="bg-white dark:bg-gray-800 shadow-sm">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endif
+        .prose p {
+            margin-bottom: 1.5em;
+            text-align: justify;
+        }
+    </style>
 
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
-        </div>
+    <!-- Scripts -->
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-        @stack('modals')
+    <!-- Styles -->
+    @livewireStyles
 
-        @livewireScripts
+    <style>
+        div.ql-toolbar.ql-snow {
+            background: white;
+            border-radius: 0.75rem 0.75rem 0 0;
+        }
+    </style>
+</head>
 
-        <!-- Script tambahan dari child views -->
-        @stack('scripts')
-    </body>
+<body class="font-sans antialiased">
+    <x-banner />
+
+    <div class="min-h-screen   bg-gray-100 dark:bg-gray-900">
+        @livewire('navigation-menu')
+
+        <!-- Page Heading -->
+        @if (isset($header))
+            <header class="bg-white dark:bg-gray-800 shadow-sm">
+                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                    {{ $header }}
+                </div>
+            </header>
+        @endif
+
+        <!-- Page Content -->
+        <main>
+            {{ $slot }}
+        </main>
+    </div>
+
+    @stack('modals')
+
+    @livewireScripts
+
+    <!-- Script tambahan dari child views -->
+    @stack('scripts')
+    
+</body>
+
 </html>

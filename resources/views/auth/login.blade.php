@@ -8,7 +8,7 @@
     <title>Login</title>
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="{{ asset('/public/images/logo-kunden.png') }}">
+    <link rel="icon" type="image/png" href="{{ asset('/images/logo-kunden.png') }}">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,7 +16,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Scripts -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    @vite(['resources/css/app.css', 'resources/js/app.js','resources/js/quillInit.js'])
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <!-- Custom Styles -->
@@ -26,14 +26,14 @@
         }
     </style>
 </head>
-<body class="antialiased bg-gray-100 dark:bg-gray-900 min-h-screen flex items-center justify-center px-4">
+<body class="antialiased   bg-gray-100 dark:bg-gray-900 min-h-screen flex items-center justify-center px-4">
 
     <div class="w-full max-w-md bg-white dark:bg-gray-800 rounded-lg shadow-2xl p-6 sm:p-8">
 
         {{-- Logo --}}
         <div class="flex justify-center mb-6">
             <a href="/">
-                <img src="{{ asset('public/images/logo-kunden.png') }}" alt="Logo Desa Kunden" class="h-20 w-auto">
+                <img src="{{ asset('images/logo-kunden.png') }}" alt="Logo Desa Kunden" class="h-20 w-auto">
             </a>
         </div>
 
@@ -102,7 +102,7 @@
                 <!--@endif--> --}}
 
                 <button type="submit"
-                    class="w-full sm:w-auto inline-flex justify-center items-center px-8 py-2 bg-blue-600 text-white text-sm font-semibold rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition">
+                    class="w-full sm:w-auto inline-flex justify-center items-center px-8 py-2  bg-blue-600 text-white text-sm font-semibold rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition">
                     {{ __('Log in') }}
                 </button>
             </div>

@@ -1,6 +1,8 @@
 @section('title', content: 'Admin - Informasi Publik')
 
 <x-app-layout>
+    @vite(['resources/js/quillInit.js'])
+
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
             {{ __('Tambah Informasi Publik') }}
@@ -13,7 +15,7 @@
                 <div class="p-6 lg:p-8 bg-white dark:bg-gray-800">
 
                     @if ($errors->any())
-                        <div class="mb-4 p-4 bg-red-100 text-red-700 border border-red-200 rounded-lg">
+                        <div class="mb-4 p-4  bg-red-100 text-red-700 border border-red-200 rounded-lg">
                             <div class="font-medium">{{ __('Whoops! Something went wrong.') }}</div>
                             <ul class="mt-3 list-disc list-inside text-sm">
                                 @foreach ($errors->all() as $error)
@@ -23,7 +25,7 @@
                         </div>
                     @endif
 
-                    <form action="{{ route('admin.informasi-publik.store') }}" method="POST" class="space-y-6">
+                    <form editor-attach action="{{ route('admin.informasi-publik.store') }}" method="POST" class="space-y-6">
                         @csrf
 
                         <div>
@@ -50,9 +52,9 @@
 
                         <div>
                             <x-label for="deskripsi" value="{{ __('Deskripsi') }}" />
-                            <textarea id="deskripsi" name="deskripsi" rows="5"
+                            <div id="deskripsi" name="deskripsi" rows="5"
                                 class="block mt-1 w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm"
-                                required>{{ old('deskripsi') }}</textarea>
+                                required>{{ old('deskripsi') }}</div>
                         </div>
 
                         <div>
@@ -75,4 +77,95 @@
             </div>
         </div>
     </div>
+        <script>
+        let initialImages = [];
+        window.mediasURLHandler = urls =>{
+            console.log(urls);
+        };
+        window.handlers = {
+            ...(window.handlers || {}),
+            image() {
+                const input = document.createElement('input');
+                input.setAttribute('type', 'file');
+                input.setAttribute('accept', 'image/*,video/*');
+                input.click();
+
+                input.onchange = async () => {
+                    const file = input.files[0];
+                    if (file) {
+                        const formData = new FormData();
+                        formData.append('media', file);
+
+                        const range = this.quill.getSelection(true);
+                        const editorIndex = range ? range.index : this.quill.getLength();
+
+                        try {
+                            const response = await fetch('{{ route("informasi-publik.media.add") }}', {
+                                method: 'POST',
+                                body: formData,
+                                headers: {
+                                    'X-CSRF-TOKEN': '{{ @csrf_token() }}'
+                                }
+                            });
+
+                            if (!response.ok) {
+                                throw new Error('File upload failed.');
+                            }
+
+                            const data = await response.json();
+
+                            // FIX: Use the 'url' property instead of 'path'
+                            const serverUrl = data.url;
+                            initialImages.push(data);
+
+                            this.quill.insertEmbed(editorIndex, 'image', serverUrl);
+                        } catch (error) {
+                            console.error('Upload error:', error);
+                            alert('Error uploading image.');
+                        }
+                    }
+                };
+            }
+        };
+
+        window.handleImageDeletion = (quill) => {
+            // Get all image tags currently in the Quill editor
+            const editorImages = quill.root.querySelectorAll('img');
+            const currentImageUrls = Array.from(editorImages).map(img => img.src);
+
+            // Assuming you have an array of initial image URLs from the server
+            // e.g., window.initialImages = ['/storage/image1.jpg', '/storage/image2.jpg'];
+            const imagesToDelete = initialImages.filter(({ url }) => !currentImageUrls.includes(url));
+
+            // Send a request to the server for each image to be deleted
+            imagesToDelete.forEach(({ url, id }) => {
+                // Extract the filename or ID from the URL
+                const filename = new URL(url).pathname.split('/').pop();
+                const data = new FormData();
+                data.append("id", id);
+
+                fetch(`{{ route("informasi-publik.media.remove") }}`, {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': '{{ @csrf_token() }}' // CSRF token for security
+                    },
+                    body: data
+                })
+                    .then(response => {
+                        if (response.ok) {
+
+                            console.log(`Successfully deleted image: ${filename}`);
+                            // Remove the URL from the initial list to prevent re-deleting
+                            initialImages = initialImages.filter(img => img.id !== id);
+                        } else {
+                            console.error(`Failed to delete image: ${filename}`);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Network or server error:', error);
+                    });
+            });
+        }
+    </script>
+    @vite(['resources/js/customEditor.js'])
 </x-app-layout>

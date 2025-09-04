@@ -33,7 +33,7 @@ class ProdukUmkmController extends Controller
 
         $path = $request->file('foto')->store('produk-umkm', 'public');
 
-        $source = storage_path('app/public/' . $path);
+        $source = storage_path('app/' . $path);
         $destination = public_path('storage/' . $path);
         File::ensureDirectoryExists(dirname($destination));
         File::copy($source, $destination);
@@ -71,7 +71,7 @@ class ProdukUmkmController extends Controller
             File::delete(public_path('storage/' . $produkUmkm->foto));
 
             $path = $request->file('foto')->store('produk-umkm', 'public');
-            $source = storage_path('app/public/' . $path);
+            $source = storage_path('app/' . $path);
             $destination = public_path('storage/' . $path);
             File::ensureDirectoryExists(dirname($destination));
             File::copy($source, $destination);

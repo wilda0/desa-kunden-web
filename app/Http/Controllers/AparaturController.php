@@ -30,8 +30,8 @@ class AparaturController extends Controller
 
         $path = $request->file('foto')->store('aparatur', 'public');
 
-        // Copy ke public/storage/aparatur/
-        $source = storage_path('app/public/' . $path);
+        // Copy ke storage/aparatur/
+        $source = storage_path('app/' . $path);
         $destination = public_path('storage/' . $path);
         File::ensureDirectoryExists(dirname($destination));
         File::copy($source, $destination);
@@ -67,8 +67,8 @@ class AparaturController extends Controller
 
             $path = $request->file('foto')->store('aparatur', 'public');
 
-            // Copy ke public/storage/aparatur/
-            $source = storage_path('app/public/' . $path);
+            // Copy ke storage/aparatur/
+            $source = storage_path('app/' . $path);
             $destination = public_path('storage/' . $path);
             File::ensureDirectoryExists(dirname($destination));
             File::copy($source, $destination);

@@ -6,14 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Berita - Website Desa Kunden</title>
 
-    <link rel="icon" type="image/png" href="/public/images/logo-kunden.png">
+    <link rel="icon" type="image/png" href="/images/logo-kunden.png">
+    @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/quillInit.js'])
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600,700" rel="stylesheet" />
 
     <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    @vite(['resources/css/app.css', 'resources/js/app.js','resources/js/quillInit.js'])
 
     <!-- Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -45,7 +46,7 @@
     </style>
 </head>
 
-<body class="bg-gray-100 font-sans text-gray-800">
+<body class="  bg-gray-100 font-sans text-gray-800">
 
     <!-- Header & Navbar -->
     @include('layouts.partials.header')
@@ -69,10 +70,6 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 @foreach ($beritas as $berita)
                     <div class="bg-white rounded-lg shadow-md overflow-hidden group">
-                        <a href="{{ route('berita.detail', $berita->id) }}">
-                            <img src="{{ asset('public/storage/' . $berita->foto) }}" alt="{{ $berita->nama_berita }}"
-                                class="w-full h-48 object-cover group-hover:opacity-80 transition-opacity">
-                        </a>
                         <div class="p-5">
                             <h3 class="font-bold text-xl mb-2">
                                 <a href="{{ route('berita.detail', $berita->id) }}"
@@ -83,9 +80,24 @@
                             <div class="text-xs font-semibold text-blue-600 mb-2 uppercase">
                                 {{ $berita->jenis }}
                             </div>
-                            <p class="text-gray-600 text-sm mb-4 line-clamp-3">
-                                {{ Str::limit(strip_tags($berita->deskripsi), 150) }}
-                            </p>
+                            <div class="text-gray-600 text-sm mb-4 line-clamp-3">
+                                <div id="deskripsi-berita-{{$berita->id}}" class="p-2"></div>
+                                <script>
+                                    window.document.addEventListener("DOMContentLoaded", () => {
+                                        const container = document.querySelector("#deskripsi-berita-{{$berita->id}}");
+                                        const content = new Quill(container, {
+                                            theme: "bubble",
+                                            readOnly: true,
+                                            modules: {
+                                                toolbar: false
+                                            }
+                                        });
+                                        const delta = JSON.parse(@json($berita->deskripsi));
+                                        content.updateContents(delta);
+                                        container.innerHTML = content.getText().substring(0, 100) + (content.getLength() > 100 ? "..." : "");
+                                    });
+                                </script>
+                            </div>
                             <div class="flex justify-between items-center text-xs text-gray-500 border-t pt-3">
                                 <div class="flex items-center space-x-4">
                                     <div class="flex items-center">
@@ -123,6 +135,7 @@
     <script>
         lucide.createIcons();
     </script>
+    @vite(['resources/js/customEditor.js'])
 </body>
 
 </html>

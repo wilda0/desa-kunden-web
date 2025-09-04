@@ -6,14 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Data Kesehatan - Website Desa Kunden</title>
 
-    <link rel="icon" type="image/png" href="/public/images/logo-kunden.png">
+    <link rel="icon" type="image/png" href="/images/logo-kunden.png">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600,700" rel="stylesheet" />
 
     <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    @vite(['resources/css/app.css', 'resources/js/app.js','resources/js/quillInit.js'])
 
     <!-- Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -84,7 +84,7 @@
     </style>
 </head>
 
-<body class="bg-gray-50 font-sans text-gray-800">
+<body class="  bg-gray-50 font-sans text-gray-800">
 
     @include('layouts.partials.header')
 
@@ -112,13 +112,13 @@
     @endphp
 
     <main>
-        <div class="bg-gray-50">
+        <div class="  bg-gray-50">
 
             {{-- Bagian Judul dan Breadcrumb --}}
             <section class="bg-slate-800 relative text-white text-center py-20 sm:py-28">
                 <div class="absolute inset-0 bg-cover bg-center"
-                    style="background-image: url('/public/images/lahan-kunyit.png');"></div>
-                <div class="absolute inset-0 bg-black/60"></div>
+                    style="background-image: url('/images/lahan-kunyit.png');"></div>
+                <div class="absolute inset-0 bg-[rgba(0,0,0,0.25)]/60"></div>
                 <div class="relative z-10 container mx-auto px-4">
                     <nav class="flex justify-center" aria-label="Breadcrumb">
                         <ol role="list" class="flex items-center space-x-2">
@@ -227,12 +227,12 @@
                         <p class="mt-2 text-lg text-gray-600">Data kondisi gizi anak-anak balita di Desa Kunden.</p>
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                        <div class="bg-blue-500 text-white p-6 rounded-xl shadow-lg">
+                        <div class=" bg-blue-500 text-white p-6 rounded-xl shadow-lg">
                             <i data-lucide="users" class="w-8 h-8 mb-3 opacity-70"></i>
                             <p class="text-3xl font-bold">{{ number_format($data->jumlah_balita) }}</p>
                             <p class="text-blue-100">Jumlah Balita</p>
                         </div>
-                        <div class="bg-green-500 text-white p-6 rounded-xl shadow-lg">
+                        <div class=" bg-green-500 text-white p-6 rounded-xl shadow-lg">
                             <i data-lucide="smile" class="w-8 h-8 mb-3 opacity-70"></i>
                             <p class="text-3xl font-bold">{{ number_format($data->gizi_baik) }}</p>
                             <p class="text-green-100">Balita Gizi Baik</p>
@@ -242,7 +242,7 @@
                             <p class="text-3xl font-bold">{{ number_format($data->gizi_kurang) }}</p>
                             <p class="text-yellow-100">Balita Gizi Kurang</p>
                         </div>
-                        <div class="bg-red-500 text-white p-6 rounded-xl shadow-lg">
+                        <div class=" bg-red-500 text-white p-6 rounded-xl shadow-lg">
                             <i data-lucide="alert-triangle" class="w-8 h-8 mb-3 opacity-70"></i>
                             <p class="text-3xl font-bold">{{ number_format($data->gizi_buruk) }}</p>
                             <p class="text-red-100">Balita Gizi Buruk</p>

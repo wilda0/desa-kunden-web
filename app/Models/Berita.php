@@ -11,9 +11,8 @@ class Berita extends Model
     protected $fillable = [
         'nama_berita',
         'deskripsi',
-        'tanggal',
-        'foto',
         'jenis',
+        'tanggal'
     ];
 
     public function komentars()

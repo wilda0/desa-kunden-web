@@ -6,14 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Dokumen - Website Desa Kunden</title>
 
-    <link rel="icon" type="image/png" href="/public/images/logo-kunden.png">
+    <link rel="icon" type="image/png" href="/images/logo-kunden.png">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600,700" rel="stylesheet" />
 
     <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    @vite(['resources/css/app.css', 'resources/js/app.js','resources/js/quillInit.js'])
 
     <!-- Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -45,7 +45,7 @@
     </style>
 </head>
 
-<body class="bg-gray-100 font-sans text-gray-800">
+<body class="  bg-gray-100 font-sans text-gray-800">
 
     @include('layouts.partials.header')
 
@@ -109,13 +109,13 @@
                                 </div>
                             </div>
                             <div class="flex space-x-3 mt-4 md:mt-0 flex-shrink-0">
-                                <a href="{{ asset('public/storage/' . $dokumen->file_path) }}" target="_blank"
-                                    class="bg-blue-100 text-blue-700 font-semibold px-4 py-2 rounded-lg flex items-center space-x-2 hover:bg-blue-200 transition-colors">
+                                <a href="{{ asset('storage/' . $dokumen->file_path) }}" target="_blank"
+                                    class=" bg-blue-100 text-blue-700 font-semibold px-4 py-2 rounded-lg flex items-center space-x-2 hover:bg-blue-200 transition-colors">
                                     <i data-lucide="eye" class="w-5 h-5"></i>
                                     <span>Lihat Berkas</span>
                                 </a>
                                 <a href="{{ route('dokumen.download', $dokumen->id) }}"
-                                    class="bg-green-100 text-green-700 font-semibold px-4 py-2 rounded-lg flex items-center space-x-2 hover:bg-green-200 transition-colors">
+                                    class=" bg-green-100 text-green-700 font-semibold px-4 py-2 rounded-lg flex items-center space-x-2 hover:bg-green-200 transition-colors">
                                     <i data-lucide="download-cloud" class="w-5 h-5"></i>
                                     <span>Unduh ({{ $dokumen->download_count }}x)</span>
                                 </a>
@@ -127,7 +127,7 @@
             </section>
 
             <!-- Ajukan Permohonan Informasi Section -->
-            <section id="permohonan-info" class="mt-16 text-center bg-gray-200/50 p-10 rounded-lg">
+            <section id="permohonan-info" class="mt-16 text-center   bg-gray-200/50 p-10 rounded-lg">
                 <h2 class="text-2xl font-bold text-gray-800 mb-3">Ingin mengajukan permohonan informasi?</h2>
                 <a href="{{ route('permohonan.create') }}"
                     class="inline-block bg-white text-blue-600 font-semibold border border-blue-600 px-8 py-3 rounded-lg hover:bg-blue-600 hover:text-white transition-colors duration-300 mt-4">

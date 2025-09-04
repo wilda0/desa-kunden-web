@@ -10,11 +10,11 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg">
-                <div class="p-6 lg:p-8 bg-white dark:bg-gray-800 dark:bg-gradient-to-bl dark:from-gray-700/50 dark:via-transparent border-b border-gray-200 dark:border-gray-700">
+                <div class="p-6 lg:p-8 bg-white dark:bg-gray-800 dark:radient-to-bl dark:from-gray-700/50 dark:via-transparent border-b border-gray-200 dark:border-gray-700">
 
                     {{-- Menampilkan Error Validasi --}}
                     @if ($errors->any())
-                        <div class="mb-4 p-4 bg-red-100 dark:bg-red-800 border border-red-200 dark:border-red-600 text-red-700 dark:text-red-200 rounded-lg">
+                        <div class="mb-4 p-4  bg-red-100 dark:ed-800 border border-red-200 dark:border-red-600 text-red-700 dark:text-red-200 rounded-lg">
                             <div class="font-bold">{{ __('Whoops! Something went wrong.') }}</div>
                             <ul class="mt-2 list-disc list-inside text-sm">
                                 @foreach ($errors->all() as $error)
@@ -55,7 +55,7 @@
                             <div>
                                 <x-label for="foto" value="{{ __('Foto Produk (JPG, PNG, maks 2MB)') }}" />
                                 <input id="foto"
-                                    class="block mt-1 w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50"
+                                    class="block mt-1 w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer   bg-gray-50"
                                     type="file" name="foto" required>
                                 <img id="preview-foto" class="mt-4 h-40 object-cover rounded-md" style="display: none;">
                             </div>

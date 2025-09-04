@@ -13,7 +13,7 @@
                 <div class="p-6 lg:p-8 bg-white dark:bg-gray-800">
 
                     @if ($errors->any())
-                        <div class="mb-4 p-4 bg-red-100 text-red-700 border border-red-200 rounded-lg">
+                        <div class="mb-4 p-4  bg-red-100 text-red-700 border border-red-200 rounded-lg">
                             <div class="font-medium">{{ __('Whoops! Something went wrong.') }}</div>
                             <ul class="mt-3 list-disc list-inside text-sm">
                                 @foreach ($errors->all() as $error)

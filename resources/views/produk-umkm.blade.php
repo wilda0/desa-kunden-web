@@ -6,14 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Produk UMKM - Website Desa Kunden</title>
 
-    <link rel="icon" type="image/png" href="/public/images/logo-kunden.png">
+    <link rel="icon" type="image/png" href="/images/logo-kunden.png">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600,700" rel="stylesheet" />
 
     <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    @vite(['resources/css/app.css', 'resources/js/app.js','resources/js/quillInit.js'])
 
     <!-- Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -46,7 +46,7 @@
     </style>
 </head>
 
-<body class="bg-gray-100 font-sans text-gray-800">
+<body class="  bg-gray-100 font-sans text-gray-800">
 
     @include('layouts.partials.header')
 
@@ -85,7 +85,7 @@
                 @forelse ($produkUmkms as $produk)
                     <a href="{{ route('produk-umkm.show', $produk) }}"
                         class="bg-white rounded-lg shadow-md overflow-hidden group">
-                        <img src="{{ asset('public/storage/' . $produk->foto) }}" alt="{{ $produk->nama_produk }}"
+                        <img src="{{ asset('storage/' . $produk->foto) }}" alt="{{ $produk->nama_produk }}"
                             class="w-full h-48 object-cover group-hover:opacity-80 transition-opacity">
                         <div class="p-4">
                             <h3 class="font-semibold text-gray-800 truncate">{{ $produk->nama_produk }}</h3>
